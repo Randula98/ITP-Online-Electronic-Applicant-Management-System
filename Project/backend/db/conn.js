@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 require("dotenv").config({ path: "./.env" });
 
-const url = process.env.REACT_APP_BACKEND_ATLAS_URL;
+const url = process.env.ATLAS_URI;
 const frontend = new MongoClient(url, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
