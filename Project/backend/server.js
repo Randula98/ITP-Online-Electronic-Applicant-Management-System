@@ -6,6 +6,10 @@ const port = process.env.REACT_APP_BACKEND_PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+//get routes
+app.use("/item", require("./routes/item/record"));
+app.use("/itemtype", require("./routes/itemtype/record"));
+
 //get driver connection
 const dbo = require("./db/conn");
 
