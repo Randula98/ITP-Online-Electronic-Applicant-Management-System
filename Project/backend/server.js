@@ -7,6 +7,9 @@ app.use(cors());
 app.use(express.json());
 
 //get routes
+app.use("/employee", require("./routes/employee/record"));
+app.use("/position", require("./routes/position/record"));
+
 app.use("/cart", require("./routes/cart/record"));
 app.use("/cart-item", require("./routes/cart-item/record"));
 
@@ -32,3 +35,4 @@ app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
 
+ 
