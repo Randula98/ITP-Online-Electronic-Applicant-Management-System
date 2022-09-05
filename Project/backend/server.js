@@ -23,6 +23,12 @@ app.use("/itemtype", require("./routes/itemtype/record"));
 app.use("/customer", require("./routes/customer/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
 
+app.use("/supplier-ranking", require("./routes/supplier-ranking/record"));
+app.use("/supplier", require("./routes/supplier/record"));
+app.use("/order", require("./routes/order/record"));
+app.use("/pre-order", require("./routes/pre-order/record"));
+
+
 //get driver connection
 const dbo = require("./db/conn");
 
