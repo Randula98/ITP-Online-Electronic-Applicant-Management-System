@@ -8,8 +8,13 @@ app.use(express.json());
 
 //get routes
 
+app.use("/target",require("./routes/target/record"));
+app.use("/discount",require("./routes/discount/record"));
+app.use("/promotion",require("./routes/promotion/record"));
+
 app.use("/item", require("./routes/item/record"));
 app.use("/itemtype", require("./routes/itemtype/record"));
+
 app.use("/customer", require("./routes/customer/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
 
