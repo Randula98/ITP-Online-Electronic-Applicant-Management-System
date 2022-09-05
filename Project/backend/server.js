@@ -7,6 +7,8 @@ app.use(cors());
 app.use(express.json());
 
 //get routes
+app.use("/cart", require("./routes/cart/record"));
+app.use("/cart-item", require("./routes/cart-item/record"));
 
 app.use("/target",require("./routes/target/record"));
 app.use("/discount",require("./routes/discount/record"));
@@ -17,7 +19,6 @@ app.use("/itemtype", require("./routes/itemtype/record"));
 
 app.use("/customer", require("./routes/customer/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
-
 
 //get driver connection
 const dbo = require("./db/conn");
