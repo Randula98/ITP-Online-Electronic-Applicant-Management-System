@@ -28,10 +28,12 @@ app.use("/supplier", require("./routes/supplier/record"));
 app.use("/order", require("./routes/order/record"));
 app.use("/pre-order", require("./routes/pre-order/record"));
 
+app.use("/loan", require("./routes/loan/record"));
+app.use("/payment", require("./routes/payment/record"));
+
 app.use("/rating", require("./routes/rating/record"));
 app.use("/repair", require("./routes/repair/record"));
 app.use("/delivery", require("./routes/delivery/record"));
-
 
 //get driver connection
 const dbo = require("./db/conn");
