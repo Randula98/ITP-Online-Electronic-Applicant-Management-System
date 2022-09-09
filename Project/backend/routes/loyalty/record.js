@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -13,70 +13,68 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
 loyaltyRoutes.route("/loyalty").get(function (req, res) {
-    let db_connect = dbo.getDb("synthetic");
-    db_connect
-        .collection("loyalty")
-        .find({})
-        .toArray(function (err, result) {
-            if (err) throw err;
-            res.json(result);
-        });
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("loyalty")
+		.find({})
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 // This section will help you get a single record by id
 loyaltyRoutes.route("/loyalty/:id").get(function (req, res) {
-    let db_connect = dbo.getDb("synthetic");
-    let myquery = { _id: ObjectId(req.params.id) };
-    db_connect
-        .collection("loyalty")
-        .findOne(myquery, function (err, result) {
-            if (err) throw err;
-            res.json(result);
-        });
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	db_connect.collection("loyalty").findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
 });
 
 // This section will help you create a new record.
 loyaltyRoutes.route("/loyalty/add").post(function (req, response) {
-    let db_connect = dbo.getDb("synthetic");
-    let myobj = {
-        type: req.body.type,
-        discount: req.body.discount,
-        purchases: req.body.purchases,
-        payments: req.body.payments,
-    };
-    db_connect.collection("loyalty").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-    });
+	let db_connect = dbo.getDb("synthetic");
+	let myobj = {
+		type: req.body.type,
+		discount: req.body.discount,
+		purchases: req.body.purchases,
+		payments: req.body.payments,
+	};
+	db_connect.collection("loyalty").insertOne(myobj, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
 });
 
 // This section will help you update a record by id.
 loyaltyRoutes.route("/loyalty/update/:id").post(function (req, response) {
-    let db_connect = dbo.getDb("synthetic");
-    let myquery = { _id: ObjectId(req.params.id) };
-    let newvalues = {
-        $set: {
-        type: req.body.type,
-        discount: req.body.discount,
-        purchases: req.body.purchases,
-        payments: req.body.payments,
-        },
-    };
-    db_connect.collection("loyalty").updateOne(myquery, newvalues, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-    });
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			type: req.body.type,
+			discount: req.body.discount,
+			purchases: req.body.purchases,
+			payments: req.body.payments,
+		},
+	};
+	db_connect.collection("loyalty").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
 });
 
 // This section will help you delete a record
 loyaltyRoutes.route("/loyalty/delete/:id").delete((req, response) => {
-    let db_connect = dbo.getDb("synthetic");
-    let myquery = { _id: ObjectId(req.params.id) };
-    db_connect.collection("loyalty").deleteOne(myquery, function (err, obj) {
-        if (err) throw err;
-        console.log("1 document deleted");
-        response.json(obj);
-    });
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	db_connect.collection("loyalty").deleteOne(myquery, function (err, obj) {
+		if (err) throw err;
+		console.log("1 document deleted");
+		response.json(obj);
+	});
 });
 
 module.exports = loyaltyRoutes;
