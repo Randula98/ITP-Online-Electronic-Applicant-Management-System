@@ -4,7 +4,7 @@
 echo '🏗️👷 Hi, my name is Randula98. I am responsible for testing your project before commit'
 
 # Change to the project directory
-cd Project/backend
+cd Project/fronetend
 
 # Check Prettier standards
 yarn check-format ||
