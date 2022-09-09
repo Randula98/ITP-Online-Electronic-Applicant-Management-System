@@ -3,7 +3,7 @@ const express = require("express");
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
-const recordRoutes = express.Router();
+const discountRoutes = express.Router();
 
 // This will help us connect to the database
 const dbo = require("../../db/conn");
@@ -12,7 +12,7 @@ const dbo = require("../../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
-recordRoutes.route("/discount").get(function (req, res) {
+discountRoutes.route("/discount").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("discount")
@@ -24,7 +24,7 @@ recordRoutes.route("/discount").get(function (req, res) {
 });
 
 // This section will help you get a single record by id
-recordRoutes.route("/discount/:id").get(function (req, res) {
+discountRoutes.route("/discount/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("discount").findOne(myquery, function (err, result) {
@@ -34,7 +34,7 @@ recordRoutes.route("/discount/:id").get(function (req, res) {
 });
 
 // This section will help you create a new record.
-recordRoutes.route("/discount/add").post(function (req, response) {
+discountRoutes.route("/discount/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		// name: req.body.name,
@@ -53,7 +53,7 @@ recordRoutes.route("/discount/add").post(function (req, response) {
 });
 
 // This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
+discountRoutes.route("/discount/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb();
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -75,10 +75,10 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a record
-recordRoutes.route("/discount/delete/:id").delete((req, response) => {
+discountRoutes.route("/discount/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("records").deleteOne(myquery, function (err, obj) {
+	db_connect.collection("discount").deleteOne(myquery, function (err, obj) {
 		if (err) throw err;
 		console.log("1 document deleted");
 		response.json(obj);
