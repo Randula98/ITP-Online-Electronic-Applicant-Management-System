@@ -5,3 +5,14 @@
 	object-position: center;
 	margin-right: 20px;
 }
+
+.searchbar input {
+	width: 125%;
+	height: 30px;
+}
+
+.searchbar button {
+	margin-right: -67px;
+	margin-bottom: -8px;
+	height: 30px;
+}
