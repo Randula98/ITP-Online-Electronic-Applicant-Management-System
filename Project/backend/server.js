@@ -13,9 +13,9 @@ app.use("/position", require("./routes/position/record"));
 app.use("/cart", require("./routes/cart/record"));
 app.use("/cart-item", require("./routes/cart-item/record"));
 
-app.use("/target",require("./routes/target/record"));
-app.use("/discount",require("./routes/discount/record"));
-app.use("/promotion",require("./routes/promotion/record"));
+app.use("/targets", require("./routes/targets/record"));
+app.use("/discount", require("./routes/discount/record"));
+app.use("/promotion", require("./routes/promotion/record"));
 
 app.use("/item", require("./routes/item/record"));
 app.use("/itemtype", require("./routes/itemtype/record"));
@@ -23,10 +23,10 @@ app.use("/itemtype", require("./routes/itemtype/record"));
 app.use("/customer", require("./routes/customer/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
 
-app.use("/supplier-ranking", require("./routes/supplier-ranking/record"));
-app.use("/supplier", require("./routes/supplier/record"));
-app.use("/order", require("./routes/order/record"));
-app.use("/pre-order", require("./routes/pre-order/record"));
+//app.use("/supplier-ranking", require("./routes/supplier-ranking/record"));
+//app.use("/supplier", require("./routes/supplier/record"));
+//app.use("/order", require("./routes/order/record"));
+//app.use("/pre-order", require("./routes/pre-order/record"));
 
 app.use("/loan", require("./routes/loan/record"));
 app.use("/payment", require("./routes/payment/record"));
@@ -39,12 +39,10 @@ app.use("/delivery", require("./routes/delivery/record"));
 const dbo = require("./db/conn");
 
 app.listen(port, () => {
-    //perform connection to database
-    dbo.connectToServer(function (err){
-        if (err) console.error(err);
-    });
-    console.log("................");
-    console.log(`Server started on port ${port}`);
+	//perform connection to database
+	dbo.connectToServer(function (err) {
+		if (err) console.error(err);
+	});
+	console.log("................");
+	console.log(`Server started on port ${port}`);
 });
-
- 
