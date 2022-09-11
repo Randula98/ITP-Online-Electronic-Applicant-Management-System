@@ -13,7 +13,7 @@ function NavBar() {
 					<span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Synthetic Deals</span>
 				</a>
 				<div className="flex md:order-2">
-					<a href="/">
+					<a href="/login">
 						<button
 							type="button"
 							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
@@ -21,7 +21,7 @@ function NavBar() {
 							Login
 						</button>
 					</a>
-					<a href="/">
+					<a href="/register">
 						<button
 							type="button"
 							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
@@ -57,15 +57,15 @@ function NavBar() {
 						<li>
 							<a
 								href="/"
-								className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-								aria-current="page"
+								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+								// aria-current="page"
 							>
 								Home
 							</a>
 						</li>
 						<li>
 							<a
-								href="/"
+								href="/products"
 								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
 								Products
@@ -73,7 +73,7 @@ function NavBar() {
 						</li>
 						<li>
 							<a
-								href="/"
+								href="/brands"
 								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
 								Brands
@@ -81,7 +81,7 @@ function NavBar() {
 						</li>
 						<li>
 							<a
-								href="/"
+								href="/services"
 								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
 								Services
@@ -89,7 +89,7 @@ function NavBar() {
 						</li>
 						<li>
 							<a
-								href="/"
+								href="/about"
 								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
 								About
@@ -97,7 +97,7 @@ function NavBar() {
 						</li>
 						<li>
 							<a
-								href="/"
+								href="/contact"
 								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
 								Contact
