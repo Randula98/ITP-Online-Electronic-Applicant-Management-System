@@ -2,6 +2,8 @@ import React from "react";
 
 import HeroSection from "./HeroSection";
 import OfferSection from "./OfferSection";
+import MobilePhoneSection from "./MobilePhoneSection";
+import LaptopsSection from "./LaptopsSection";
 import KitchenItemSection from "./KitchenItemSection";
 
 const Home = () => {
@@ -9,7 +11,9 @@ const Home = () => {
 		<div>
 			<HeroSection />
 			<OfferSection />
-			<KitchenItemSection />
+      <MobilePhoneSection />
+			<LaptopsSection />
+      <KitchenItemSection />
 		</div>
 	);
 };
