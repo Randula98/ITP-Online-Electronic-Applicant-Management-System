@@ -11,9 +11,9 @@ const Home = () => {
 		<div>
 			<HeroSection />
 			<OfferSection />
-      <MobilePhoneSection />
+			<MobilePhoneSection />
 			<LaptopsSection />
-      <KitchenItemSection />
+			<KitchenItemSection />
 		</div>
 	);
 };
