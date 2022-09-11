@@ -1,5 +1,35 @@
 .heroSection {
-	width: 80%;
+	width: 90%;
 	margin: 0px auto;
 	margin-top: 100px;
+}
+
+.slide-offer {
+	width: 90%;
+	height: 500px;
+	background: #000;
+	opacity: 0.5;
+	/* position: absolute; */
+	margin-top: 520px;
+	margin: 0px auto;
+
+	/*z-index: 1; */
+}
+.header {
+	margin: 0px auto;
+	width: 300px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.header-bar {
+	width: 100%;
+	height: auto;
+	background-color: rgba(0, 0, 0, 0.203);
+	transition: 1s;
+}
+
+.header-bar:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: aliceblue;
 }
