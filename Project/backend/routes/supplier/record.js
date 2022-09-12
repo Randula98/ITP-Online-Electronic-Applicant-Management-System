@@ -2,7 +2,7 @@ const express = require("express");
 
 // recordRoutes is a instance
 
-const recordRoutes = express.Router();
+const supplierRoutes = express.Router();
 
 const dbo = require("../../db/conn");
 
