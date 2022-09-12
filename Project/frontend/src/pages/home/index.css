@@ -16,10 +16,8 @@
 	/*z-index: 1; */
 }
 .header {
+	width: 550px;
 	margin: 0px auto;
-	width: 600px;
-	margin-right: auto;
-	margin-left: auto;
 }
 
 .header-bar {
@@ -32,4 +30,9 @@
 .header-bar:hover {
 	background-color: rgba(0, 0, 0, 0.5);
 	color: aliceblue;
+}
+
+.slidings {
+	width: 90%;
+	margin: 0px auto;
 }

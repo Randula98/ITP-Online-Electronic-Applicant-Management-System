@@ -12,6 +12,9 @@ export default class MobilePhoneSection extends Component {
 			speed: 500,
 			slidesToShow: 4,
 			slidesToScroll: 3,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			cssEase: "linear",
 		};
 		return (
 			<div>
@@ -21,35 +24,37 @@ export default class MobilePhoneSection extends Component {
 						<h1 className="font-medium leading-tight text-5xl mt-0 mb-2 text-black-600">Mobile Phones on Sale!!!</h1>
 					</div>
 				</div>
-				<Slider {...settings}>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-					<div>
-						<img src="https://via.placeholder.com/500x400" className="w-100" />
-					</div>
-				</Slider>
+				<div className="slidings">
+					<Slider {...settings}>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/500x400" className="w-100" />
+						</div>
+					</Slider>
+				</div>
 			</div>
 		);
 	}
