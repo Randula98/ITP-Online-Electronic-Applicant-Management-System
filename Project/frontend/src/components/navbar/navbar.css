@@ -12,7 +12,8 @@
 }
 
 .searchbar button {
-	margin-right: -67px;
+	margin-right: -62px;
 	margin-bottom: -8px;
 	height: 30px;
+	background-color: rgb(100, 100, 135);
 }
