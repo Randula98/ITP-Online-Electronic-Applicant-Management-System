@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import NavBar from "../components/navbar/navbar";
+import Footer from "../components/footer/footer";
 
 import Home from "../pages/home";
 import Products from "../pages/products";
@@ -28,6 +29,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 				</Routes>
+				<Footer />
 			</Router>
 		</>
 	);
