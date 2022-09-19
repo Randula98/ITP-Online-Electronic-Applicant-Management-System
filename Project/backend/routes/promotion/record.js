@@ -12,7 +12,7 @@ const dbo = require("../../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
-promotionRoutes.route("/promotion").get(function (req, res) {
+promotionRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("promotion")
@@ -34,7 +34,7 @@ promotionRoutes.route("/promotion/:id").get(function (req, res) {
 });
 
 // This section will help you create a new record.
-promotionRoutes.route("/promotion/add").post(function (req, response) {
+promotionRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		// name: req.body.name,
@@ -51,7 +51,7 @@ promotionRoutes.route("/promotion/add").post(function (req, response) {
 });
 
 // This section will help you update a record by id.
-promotionRoutes.route("/promotion/update/:id").post(function (req, response) {
+promotionRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb();
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -71,7 +71,7 @@ promotionRoutes.route("/promotion/update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a record
-promotionRoutes.route("/promotion/delete/:id").delete((req, response) => {
+promotionRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("promotion").deleteOne(myquery, function (err, obj) {

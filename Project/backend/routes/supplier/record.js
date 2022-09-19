@@ -8,7 +8,7 @@ const dbo = require("../../db/conn");
 
 const ObjectId = require("mongodb").ObjectId;
 
-supplierRoutes.route("/supplier").get(function (req, res) {
+supplierRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("supplier")
@@ -28,7 +28,7 @@ supplierRoutes.route("/supplier/:id").get(function (req, res) {
 	});
 });
 
-supplierRoutes.route("/supplier/add").post(function (req, response) {
+supplierRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		//supplierid: req.body.supplierid,
@@ -46,7 +46,7 @@ supplierRoutes.route("/supplier/add").post(function (req, response) {
 	});
 });
 
-supplierRoutes.route("/supplier/update/:id").post(function (req, response) {
+supplierRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -67,7 +67,7 @@ supplierRoutes.route("/supplier/update/:id").post(function (req, response) {
 	});
 });
 
-supplierRoutes.route("/supplier/delete/:id").delete((req, response) => {
+supplierRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("supplier").deleteOne(myquery, function (err, obj) {
