@@ -4,14 +4,20 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
-import Home from "../pages/home";
-import Products from "../pages/products";
-import Brands from "../pages/brands";
-import Services from "../pages/services";
-import About from "../pages/about";
-import Contact from "../pages/contact";
-import Login from "../pages/login";
-import Register from "../pages/register";
+// pages
+import {
+	About,
+	Brands,
+	Contact,
+	Home,
+	Login,
+	Cuslogin,
+	Emplogin,
+	Adminlogin,
+	Products,
+	Register,
+	Services,
+} from "../pages";
 
 function App() {
 	return (
@@ -26,7 +32,14 @@ function App() {
 					<Route path="/services" element={<Services />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
+
+					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
+					<Route path="/login/cuslogin" element={<Cuslogin />} />
+					<Route path="/login/emplogin" element={<Emplogin />} />
+					<Route path="/login/adminlogin" element={<Adminlogin />} />
+
+					{/* Register Selection */}
 					<Route path="/register" element={<Register />} />
 				</Routes>
 				<Footer />
