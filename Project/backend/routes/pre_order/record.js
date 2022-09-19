@@ -8,10 +8,10 @@ const dbo = require("../../db/conn");
 
 const ObjectId = require("mongodb").ObjectId;
 
-pre_orderRoutes.route("/pre-order").get(function (req, res) {
+pre_orderRoutes.route("/pre_order").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
-		.collection("pre-order")
+		.collection("pre_order")
 		.find({})
 		.toArray(function (err, result) {
 			if (err) throw err;
@@ -19,16 +19,16 @@ pre_orderRoutes.route("/pre-order").get(function (req, res) {
 		});
 });
 
-pre_orderRoutes.route("/pre-order/:id").get(function (req, res) {
+pre_orderRoutes.route("/pre_order/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("pre-order").findOne(myquery, function (err, result) {
+	db_connect.collection("pre_order").findOne(myquery, function (err, result) {
 		if (err) throw err;
 		res.json(result);
 	});
 });
 
-pre_orderRoutes.route("/pre-order/add").post(function (req, response) {
+pre_orderRoutes.route("/pre_order/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		itemid: req.body.itemid,
@@ -36,13 +36,13 @@ pre_orderRoutes.route("/pre-order/add").post(function (req, response) {
 		date: req.body.date,
 		quantity: req.body.quantity,
 	};
-	db_connect.collection("pre-order").insertOne(myobj, function (err, res) {
+	db_connect.collection("pre_order").insertOne(myobj, function (err, res) {
 		if (err) throw err;
 		response.json(res);
 	});
 });
 
-pre_orderRoutes.route("/pre-order/update/:id").post(function (req, response) {
+pre_orderRoutes.route("/pre_order/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -53,16 +53,16 @@ pre_orderRoutes.route("/pre-order/update/:id").post(function (req, response) {
 			quantity: req.body.quantity,
 		},
 	};
-	db_connect.collection("pre-order").updateOne(myquery, newvalues, function (err, res) {
+	db_connect.collection("pre_order").updateOne(myquery, newvalues, function (err, res) {
 		if (err) throw err;
 		response.json(res);
 	});
 });
 
-pre_orderRoutes.route("/pre-order/delete/:id").delete((req, response) => {
+pre_orderRoutes.route("/pre_order/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("pre-order").deleteOne(myquery, function (err, obj) {
+	db_connect.collection("pre_order").deleteOne(myquery, function (err, obj) {
 		if (err) throw err;
 		console.log("1 document deleted");
 		response.json(obj);
