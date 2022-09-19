@@ -3,7 +3,8 @@ const supplier_rankingRoutes = express.Router();
 const dbo = require("../../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-supplier_rankingRoutes.route("/supplier_ranking").get(function (req, res) {
+
+supplier_rankingRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("supplier_ranking")
@@ -23,7 +24,8 @@ supplier_rankingRoutes.route("/supplier_ranking/:id").get(function (req, res) {
 	});
 });
 
-supplier_rankingRoutes.route("/supplier_ranking/add").post(function (req, response) {
+
+supplier_rankingRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		supplierid: req.body.supplierid,
@@ -37,7 +39,8 @@ supplier_rankingRoutes.route("/supplier_ranking/add").post(function (req, respon
 	});
 });
 
-supplier_rankingRoutes.route("/supplier_ranking/update/:id").post(function (req, response) {
+
+supplier_rankingRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -54,7 +57,7 @@ supplier_rankingRoutes.route("/supplier_ranking/update/:id").post(function (req,
 	});
 });
 
-supplier_rankingRoutes.route("/supplier_ranking/delete/:id").delete((req, response) => {
+supplier_rankingRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("supplier_ranking").deleteOne(myquery, function (err, obj) {
