@@ -3,7 +3,6 @@ const supplier_rankingRoutes = express.Router();
 const dbo = require("../../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-
 supplier_rankingRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
@@ -24,7 +23,6 @@ supplier_rankingRoutes.route("/supplier_ranking/:id").get(function (req, res) {
 	});
 });
 
-
 supplier_rankingRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
@@ -38,7 +36,6 @@ supplier_rankingRoutes.route("/add").post(function (req, response) {
 		response.json(res);
 	});
 });
-
 
 supplier_rankingRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
