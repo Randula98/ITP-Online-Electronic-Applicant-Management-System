@@ -12,7 +12,7 @@ const dbo = require("../../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
-loyaltyRoutes.route("/loyalty").get(function (req, res) {
+loyaltyRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("loyalty")
@@ -34,7 +34,7 @@ loyaltyRoutes.route("/loyalty/:id").get(function (req, res) {
 });
 
 // This section will help you create a new record.
-loyaltyRoutes.route("/loyalty/add").post(function (req, response) {
+loyaltyRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		type: req.body.type,
@@ -49,7 +49,7 @@ loyaltyRoutes.route("/loyalty/add").post(function (req, response) {
 });
 
 // This section will help you update a record by id.
-loyaltyRoutes.route("/loyalty/update/:id").post(function (req, response) {
+loyaltyRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -67,7 +67,7 @@ loyaltyRoutes.route("/loyalty/update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a record
-loyaltyRoutes.route("/loyalty/delete/:id").delete((req, response) => {
+loyaltyRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("loyalty").deleteOne(myquery, function (err, obj) {
