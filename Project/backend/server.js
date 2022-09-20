@@ -19,6 +19,7 @@ app.use("/promotion", require("./routes/promotion/record"));
 
 app.use("/item", require("./routes/item/record"));
 app.use("/itemtype", require("./routes/itemtype/record"));
+app.use("/brand", require("./routes/brand/record"));
 
 app.use("/customer", require("./routes/customer/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
