@@ -16,6 +16,8 @@ import {
 	Adminlogin,
 	Products,
 	Register,
+	CusRegister,
+	EmpRegister,
 	Services,
 } from "../pages";
 
@@ -41,6 +43,8 @@ function App() {
 
 					{/* Register Selection */}
 					<Route path="/register" element={<Register />} />
+					<Route path="/register/cusregister" element={<CusRegister />} />
+					<Route path="/register/empregister" element={<EmpRegister />} />
 				</Routes>
 				<Footer />
 			</Router>
