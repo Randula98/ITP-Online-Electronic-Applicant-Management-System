@@ -37,7 +37,6 @@ itemRoutes.route("/item/:id").get(function (req, res) {
 itemRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb();
 	let myobj = {
-		itemid: req.body.itemid,
 		itemname: req.body.itemname,
 		unitprice: req.body.unitprice,
 		itemtype: req.body.itemtype,
@@ -56,7 +55,6 @@ itemRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			itemid: req.body.itemid,
 			itemname: req.body.itemname,
 			unitprice: req.body.unitprice,
 			itemtype: req.body.itemtype,
