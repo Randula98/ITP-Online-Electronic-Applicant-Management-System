@@ -13,6 +13,7 @@
 		"bootstrap": "^5.2.0",
 		"eslint-config-prettier": "^8.5.0",
 		"flowbite": "^1.5.3",
+		"flowbite-react": "^0.1.11",
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
 		"mdb-ui-kit": "^5.0.0",

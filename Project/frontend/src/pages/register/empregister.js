@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Register extends Component {
+export default class EmpRegister extends Component {
 	render() {
 		return (
 			<div>
@@ -8,7 +8,7 @@ export default class Register extends Component {
 				<br />
 				<br />
 				<br />
-				<h1>Register</h1>
+				empreg
 			</div>
 		);
 	}
