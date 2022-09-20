@@ -38,6 +38,7 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		type: req.body.type,
+		color: req.body.color,
 		discount: req.body.discount,
 		purchases: req.body.purchases,
 		payments: req.body.payments,
@@ -55,6 +56,7 @@ loyaltyRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			type: req.body.type,
+			color: req.body.color,
 			discount: req.body.discount,
 			purchases: req.body.purchases,
 			payments: req.body.payments,
