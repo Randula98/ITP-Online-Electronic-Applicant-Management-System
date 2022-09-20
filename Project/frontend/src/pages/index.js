@@ -7,7 +7,23 @@ import Cuslogin from "./login/cuslogin";
 import Emplogin from "./login/emplogin";
 import Adminlogin from "./login/adminlogin";
 import Products from "./products";
-import Register from "./register";
+import Register from "./register/regselect";
+import CusRegister from "./register/cusregister";
+import EmpRegister from "./register/empregister";
 import Services from "./services";
 
-export { About, Brands, Contact, Home, Login, Cuslogin, Emplogin, Adminlogin, Products, Register, Services };
+export {
+	About,
+	Brands,
+	Contact,
+	Home,
+	Login,
+	Cuslogin,
+	Emplogin,
+	Adminlogin,
+	Products,
+	Register,
+	CusRegister,
+	EmpRegister,
+	Services,
+};
