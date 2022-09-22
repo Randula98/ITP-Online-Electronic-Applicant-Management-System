@@ -11,7 +11,7 @@ app.use("/employee", require("./routes/employee/record"));
 app.use("/position", require("./routes/position/record"));
 
 app.use("/cart", require("./routes/cart/record"));
-app.use("/cart-item", require("./routes/cart_item/record"));
+app.use("/cart_item", require("./routes/cart_item/record"));
 
 app.use("/targets", require("./routes/targets/record"));
 app.use("/discount", require("./routes/discount/record"));
@@ -27,7 +27,7 @@ app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/supplier_ranking", require("./routes/supplier_ranking/record"));
 app.use("/supplier", require("./routes/supplier/record"));
 app.use("/order", require("./routes/order/record"));
-app.use("/pre-order", require("./routes/pre_order/record"));
+app.use("/pre_order", require("./routes/pre_order/record"));
 
 app.use("/loan", require("./routes/loan/record"));
 app.use("/payment", require("./routes/payment/record"));

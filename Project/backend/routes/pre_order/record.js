@@ -8,7 +8,7 @@ const dbo = require("../../db/conn");
 
 const ObjectId = require("mongodb").ObjectId;
 
-pre_orderRoutes.route("/pre_order").get(function (req, res) {
+pre_orderRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("pre_order")
@@ -28,7 +28,7 @@ pre_orderRoutes.route("/pre_order/:id").get(function (req, res) {
 	});
 });
 
-pre_orderRoutes.route("/pre_order/add").post(function (req, response) {
+pre_orderRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		itemid: req.body.itemid,
@@ -42,7 +42,7 @@ pre_orderRoutes.route("/pre_order/add").post(function (req, response) {
 	});
 });
 
-pre_orderRoutes.route("/pre_order/update/:id").post(function (req, response) {
+pre_orderRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -59,7 +59,7 @@ pre_orderRoutes.route("/pre_order/update/:id").post(function (req, response) {
 	});
 });
 
-pre_orderRoutes.route("/pre_order/delete/:id").delete((req, response) => {
+pre_orderRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("pre_order").deleteOne(myquery, function (err, obj) {

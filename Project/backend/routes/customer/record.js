@@ -1,4 +1,5 @@
 const express = require("express");
+let alert = require("alert");
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -36,6 +37,13 @@ customerRoutes.route("/customer/:id").get(function (req, res) {
 // This section will help you create a new record.
 customerRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
+	// if (db_connect.collection("customer").findOne({ email: req.body.email })) {
+	// 	console.log("Email already exists");
+	// 	console.log(req.body.email);
+	// 	return response.status(400).json({ success: false, msg: "Email already exists" });
+	// 	//window.alert("message");
+	// }
+
 	let myobj = {
 		fname: req.body.fname,
 		lname: req.body.lname,
@@ -43,10 +51,11 @@ customerRoutes.route("/add").post(function (req, response) {
 		contactno: req.body.contactno,
 		email: req.body.email,
 		password: req.body.password,
-		totalpurchases: req.body.totalpurchases,
-		totalpayements: req.body.totalpayements,
+		totalpurchases: 0,
+		totalpayments: 0,
 		imgurl: req.body.imgurl,
 	};
+	console.log(req.body.imgurl);
 	db_connect.collection("customer").insertOne(myobj, function (err, res) {
 		if (err) throw err;
 		response.json(res);
@@ -66,7 +75,7 @@ customerRoutes.route("/update/:id").post(function (req, response) {
 			email: req.body.email,
 			password: req.body.password,
 			totalpurchases: req.body.totalpurchases,
-			totalpayements: req.body.totalpayements,
+			totalpayments: req.body.totalpayments,
 			imgurl: req.body.imgurl,
 		},
 	};

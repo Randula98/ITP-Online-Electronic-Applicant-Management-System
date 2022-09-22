@@ -1,6 +1,8 @@
 import About from "./about";
 import Brands from "./brands";
 import Contact from "./contact";
+import EmpDash from "./empdash/dash";
+import CusDash from "./cusdash/dash";
 import Home from "./home";
 import Login from "./login/loginselect";
 import Cuslogin from "./login/cuslogin";
@@ -16,6 +18,8 @@ export {
 	About,
 	Brands,
 	Contact,
+	CusDash,
+	EmpDash,
 	Home,
 	Login,
 	Cuslogin,
