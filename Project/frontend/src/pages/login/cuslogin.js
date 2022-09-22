@@ -65,6 +65,12 @@ export default class Cuslogin extends Component {
 											</a>
 										</p>
 									</form>
+									<p className="text-sm font-light text-gray-500 dark:text-gray-400 dark:text-black">
+										Don’t have an account yet?{" "}
+										<a href="/empdash" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+											Bypass
+										</a>
+									</p>
 								</div>
 							</div>
 						</div>

@@ -9,6 +9,7 @@ import {
 	About,
 	Brands,
 	Contact,
+	CusDash,
 	EmpDash,
 	Home,
 	Login,
@@ -49,6 +50,9 @@ function App() {
 
 					{/* Employee Dashboard */}
 					<Route path="/empdash" element={<EmpDash />} />
+
+					{/* Customer Dashboard */}
+					<Route path="/cusdash" element={<CusDash />} />
 				</Routes>
 				<Footer />
 			</Router>
