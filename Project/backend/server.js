@@ -11,7 +11,7 @@ app.use("/employee", require("./routes/employee/record"));
 app.use("/position", require("./routes/position/record"));
 
 app.use("/cart", require("./routes/cart/record"));
-app.use("/cart-item", require("./routes/cart_item/record"));
+app.use("/cart_item", require("./routes/cart_item/record"));
 
 app.use("/targets", require("./routes/targets/record"));
 app.use("/discount", require("./routes/discount/record"));
