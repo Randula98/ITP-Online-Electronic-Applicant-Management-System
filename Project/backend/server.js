@@ -27,7 +27,7 @@ app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/supplier_ranking", require("./routes/supplier_ranking/record"));
 app.use("/supplier", require("./routes/supplier/record"));
 app.use("/order", require("./routes/order/record"));
-app.use("/pre-order", require("./routes/pre_order/record"));
+app.use("/pre_order", require("./routes/pre_order/record"));
 
 app.use("/loan", require("./routes/loan/record"));
 app.use("/payment", require("./routes/payment/record"));
