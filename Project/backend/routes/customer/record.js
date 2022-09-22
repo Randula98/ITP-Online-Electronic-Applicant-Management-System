@@ -51,8 +51,8 @@ customerRoutes.route("/add").post(function (req, response) {
 		contactno: req.body.contactno,
 		email: req.body.email,
 		password: req.body.password,
-		totalpurchases: req.body.totalpurchases,
-		totalpayments: req.body.totalpayments,
+		totalpurchases: 0,
+		totalpayments: 0,
 		imgurl: req.body.imgurl,
 	};
 	console.log(req.body.imgurl);

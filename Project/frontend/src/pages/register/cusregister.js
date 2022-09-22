@@ -1,89 +1,26 @@
+/* eslint-disable object-shorthand */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+// import { async } from "@firebase/util";
 
 export default function CusRegister() {
-	const [imageUpload, setImageUpload] = useState(null);
+	// const [imageUpload, setImageUpload] = useState(null);
 	// const [imageList , setImageList] = useState([]);
 
-	const uploadImage = () => {
-		if (imageUpload == null) return;
+	const [fname, setFname] = useState("");
+	const [lname, setLname] = useState("");
+	const [address, setAddress] = useState("");
+	const [contactno, setContactno] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [imgurl, setImgurl] = useState("");
 
-		const imageRef = ref(storage, `customer/${imageUpload.name + v4()}`);
+	// const navigate = useNavigate();
 
-		uploadBytes(imageRef, imageUpload).then((snapshot) => {
-			console.log("Uploaded a blob or file!");
-			alert("Image Uploaded Successfully");
-			getDownloadURL(imageRef).then((url) => {
-				console.log(url);
-				alert(url);
-				// const imageurl = url;
-			});
-		});
-	};
-
-	// const imageRef = null;
-
-	// useEffect(() => {
-	// 	listAll(imageRef).then((response) =>{
-	// 		setImageList(response.items);
-	// 	});
-	// }, []);
-
-	const [form, setForm] = useState({
-		fname: "",
-		lname: "",
-		address: "",
-		contactno: "",
-		email: "",
-		password: "",
-		totalpurchases: "0",
-		totalpayments: "0",
-		imgurl: "",
-	});
-
-	const navigate = useNavigate();
-
-	function updateFrom(value) {
-		return setForm((prev) => {
-			return { ...prev, ...value };
-		});
-	}
-
-	async function onSubmit(e) {
-		e.preventDefault();
-
-		const newCustomer = { ...form };
-
-		await fetch("http://localhost:5001/customer/add", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(newCustomer),
-		}).catch((err) => {
-			window.alert(err);
-			// return;
-		});
-
-		console.log("newCustomer");
-		alert("User Registered Successfully");
-
-		setForm({
-			fname: "",
-			lname: "",
-			address: "",
-			contactno: "",
-			email: "",
-			password: "",
-			totalpurchases: "0",
-			totalpayments: "0",
-			imgurl: "",
-		});
-		navigate("/login/cuslogin");
-	}
+	// navigate("/login/cuslogin");
 
 	return (
 		<div className="cusreg">
@@ -112,7 +49,56 @@ export default function CusRegister() {
 							<h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 								Create and account
 							</h1>
-							<form className="space-y-4 md:space-y-6" onSubmit={onSubmit}>
+							<form
+								className="space-y-4 md:space-y-6"
+								onSubmit={async (e) => {
+									e.preventDefault();
+
+									const storageRef = ref(storage, `customer/${Image.name + v4()}`);
+
+									await uploadBytes(storageRef, imgurl)
+										.then(() => {
+											console.log("uploaded");
+										})
+										.catch((err) => {
+											console.log(err);
+										});
+
+									await getDownloadURL(storageRef)
+										.then((url) => {
+											setImgurl(url);
+
+											console.log(url);
+
+											const newCustomer = {
+												fname: fname,
+												lname: lname,
+												address: address,
+												contactno: contactno,
+												email: email,
+												password: password,
+												imgurl: url,
+											};
+
+											fetch("http://localhost:5001/customer/add", {
+												method: "POST",
+												headers: {
+													"Content-Type": "application/json",
+												},
+												body: JSON.stringify(newCustomer),
+											}).catch((err) => {
+												window.alert(err);
+												// return;
+											});
+										})
+										.catch((err) => {
+											console.log(err);
+										});
+
+									console.log("newCustomer");
+									alert("User Registered Successfully");
+								}}
+							>
 								{/* name  */}
 								<div className="grid gap-6 mb-6 md:grid-cols-2">
 									<div>
@@ -124,8 +110,7 @@ export default function CusRegister() {
 											id="fname"
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="John"
-											value={form.fname}
-											onChange={(e) => updateFrom({ fname: e.target.value })}
+											onChange={(e) => setFname({ fname: e.target.value })}
 											required
 										/>
 									</div>
@@ -138,8 +123,7 @@ export default function CusRegister() {
 											id="lname"
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="Doe"
-											value={form.lname}
-											onChange={(e) => updateFrom({ lname: e.target.value })}
+											onChange={(e) => setLname({ lname: e.target.value })}
 											required
 										/>
 									</div>
@@ -155,8 +139,7 @@ export default function CusRegister() {
 										id="address"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="No. 134, Main Road, Colombo"
-										value={form.address}
-										onChange={(e) => updateFrom({ address: e.target.value })}
+										onChange={(e) => setAddress({ address: e.target.value })}
 										required
 									/>
 								</div>
@@ -171,8 +154,7 @@ export default function CusRegister() {
 										id="contactno"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
-										value={form.contactno}
-										onChange={(e) => updateFrom({ contactno: e.target.value })}
+										onChange={(e) => setContactno({ contactno: e.target.value })}
 										required
 									/>
 								</div>
@@ -187,8 +169,7 @@ export default function CusRegister() {
 										id="email"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
-										value={form.email}
-										onChange={(e) => updateFrom({ email: e.target.value })}
+										onChange={(e) => setEmail({ email: e.target.value })}
 										required
 									/>
 								</div>
@@ -204,7 +185,7 @@ export default function CusRegister() {
 											id="password"
 											placeholder="••••••••"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											onChange={(e) => updateFrom({ password: e.target.value })}
+											onChange={(e) => setPassword({ password: e.target.value })}
 											required
 										/>
 									</div>
@@ -241,8 +222,8 @@ export default function CusRegister() {
 											id="default_size"
 											type="file"
 											name="image"
-											onChange={(event) => {
-												setImageUpload(event.target.files[0]);
+											onChange={(e) => {
+												setImgurl(e.target.files[0]);
 											}}
 										/>
 									</div>
@@ -269,7 +250,6 @@ export default function CusRegister() {
 								<button
 									type="submit"
 									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-									onClick={uploadImage}
 								>
 									Create an account
 								</button>
