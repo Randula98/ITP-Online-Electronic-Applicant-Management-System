@@ -37,16 +37,16 @@ employeeRoutes.route("/employee/:id").get(function (req, res) {
 employeeRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		fname: req.body.fname,
-		lname: req.body.lname,
-		contact: req.body.contact,
-		position: req.body.position,
-		email: req.body.email,
-		password: req.body.password,
+		fname: req.body.fname.fname,
+		lname: req.body.lname.lname,
+		contact: req.body.contact.contact,
+		position: req.body.position.position,
+		email: req.body.email.email,
+		password: req.body.password.password,
 		imgurl: req.body.imgurl,
-		totalsales: req.body.totalsales,
-		totalappoinments: req.body.totalappoinments,
-		totalservices: req.body.totalservices,
+		totalsales: 0,
+		totalappoinments: 0,
+		totalservices: 0,
 	};
 	db_connect.collection("employee").insertOne(myobj, function (err, res) {
 		if (err) throw err;
