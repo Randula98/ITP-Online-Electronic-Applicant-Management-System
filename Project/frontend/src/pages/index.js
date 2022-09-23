@@ -8,6 +8,7 @@ import Login from "./login/loginselect";
 import Cuslogin from "./login/cuslogin";
 import Emplogin from "./login/emplogin";
 import Adminlogin from "./login/adminlogin";
+import ErrPage from "./errorpage";
 import Products from "./products";
 import Register from "./register/regselect";
 import CusRegister from "./register/cusregister";
@@ -20,6 +21,7 @@ export {
 	Contact,
 	CusDash,
 	EmpDash,
+	ErrPage,
 	Home,
 	Login,
 	Cuslogin,
