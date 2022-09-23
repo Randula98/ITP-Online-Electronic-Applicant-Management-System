@@ -71,12 +71,12 @@ export default function CusRegister() {
 											console.log(url);
 
 											const newCustomer = {
-												fname: fname,
-												lname: lname,
-												address: address,
-												contactno: contactno,
-												email: email,
-												password: password,
+												fname,
+												lname,
+												address,
+												contactno,
+												email,
+												password,
 												imgurl: url,
 											};
 
