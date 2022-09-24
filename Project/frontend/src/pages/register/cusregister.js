@@ -50,6 +50,8 @@ export default function CusRegister() {
 								onSubmit={async (e) => {
 									e.preventDefault();
 
+									const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+
 									const storageRef = ref(storage, `customer/${Image.name + v4()}`);
 
 									await uploadBytes(storageRef, imgurl)
@@ -76,7 +78,7 @@ export default function CusRegister() {
 												imgurl: url,
 											};
 
-											fetch("http://localhost:5001/customer/add", {
+											fetch(`${BASE_URL}/customer/add`, {
 												method: "POST",
 												headers: {
 													"Content-Type": "application/json",
