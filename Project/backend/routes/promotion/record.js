@@ -37,12 +37,10 @@ promotionRoutes.route("/promotion/:id").get(function (req, res) {
 promotionRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		// name: req.body.name,
-		// position: req.body.position,
-		//level: req.body.level,
-
 		typeid: req.body.typeid,
 		precentage: req.body.precentage,
+		startdate: req.body.startdate,
+		enddate: req.body.enddate,
 	};
 	db_connect.collection("promotion").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -56,12 +54,10 @@ promotionRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			//e: req.body.name,
-			//position: req.body.position,
-			//level: req.body.level,
-
 			typeid: req.body.typeid,
 			precentage: req.body.precentage,
+			startdate: req.body.startdate,
+			enddate: req.body.enddate,
 		},
 	};
 	db_connect.collection("promotion").updateOne(myquery, newvalues, function (err, res) {
