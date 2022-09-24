@@ -46,6 +46,7 @@ repairRoutes.route("/add").post(function (req, response) {
 		itemname: req.body.itemname,
 		repaidescription: req.body.repaidescription,
 		repairfee: req.body.repairfee,
+		imgurl: req.body.imgurl,
 	};
 	db_connect.collection("repair").insertOne(myobj, function (err, res) {
 		if (err) throw err;

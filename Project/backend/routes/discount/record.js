@@ -37,13 +37,8 @@ discountRoutes.route("/discount/:id").get(function (req, res) {
 discountRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		// name: req.body.name,
-		// position: req.body.position,
-		//level: req.body.level,
-
+		itemID: req.body.itemID,
 		precentage: req.body.precentage,
-		startdate: req.body.startdate,
-		enddate: req.body.enddate,
 		remarks: req.body.remarks,
 	};
 	db_connect.collection("discount").insertOne(myobj, function (err, res) {
@@ -58,13 +53,8 @@ discountRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			//e: req.body.name,
-			//position: req.body.position,
-			//level: req.body.level,
-
+			itemID: req.body.itemID,
 			precentage: req.body.precentage,
-			startdate: req.body.startdate,
-			enddate: req.body.enddate,
 			remarks: req.body.remarks,
 		},
 	};
