@@ -55,6 +55,8 @@ export default function EmpRegister() {
 								onSubmit={async (e) => {
 									e.preventDefault();
 
+									const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+
 									const storageRef = ref(storage, `employee/${Image.name + v4()}`);
 
 									await uploadBytes(storageRef, imgurl)
@@ -81,7 +83,7 @@ export default function EmpRegister() {
 												imgurl: url,
 											};
 
-											fetch("http://localhost:5001/employee/add", {
+											fetch(`${BASE_URL}/employee/add`, {
 												method: "POST",
 												headers: {
 													"Content-Type": "application/json",
