@@ -16,11 +16,25 @@ export default function CusRegister() {
 	const [contactno, setContactno] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [imgurl, setImgurl] = useState("");
+	const [isErr, setIsErr] = useState("");
 
 	// const navigate = useNavigate();
 
 	// navigate("/login/cuslogin");
+	const checkValidation = (e) => {
+		setConfirmPassword(e.target.value);
+		if (password.password !== confirmPassword) {
+			// alert("Password not matched");
+			setIsErr("Password are not matched");
+			console.log(isErr);
+			console.log(password.password);
+			console.log(confirmPassword);
+		} else {
+			setIsErr("");
+		}
+	};
 
 	return (
 		<div className="cusreg">
@@ -184,6 +198,7 @@ export default function CusRegister() {
 											placeholder="••••••••"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											onChange={(e) => setPassword({ password: e.target.value })}
+											// value = {password}
 											required
 										/>
 									</div>
@@ -196,12 +211,14 @@ export default function CusRegister() {
 											Confirm password
 										</label>
 										<input
-											type="confirm-password"
+											type="password"
 											name="confirm-password"
 											id="confirm-password"
 											placeholder="••••••••"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											// required
+											value={confirmPassword}
+											onChange={(e) => checkValidation(e)}
+											required
 										/>
 									</div>
 								</div>
@@ -224,6 +241,9 @@ export default function CusRegister() {
 												setImgurl(e.target.files[0]);
 											}}
 										/>
+									</div>
+									<div>
+										<h1>{isErr}</h1>
 									</div>
 								</div>
 								<div className="flex items-start">
