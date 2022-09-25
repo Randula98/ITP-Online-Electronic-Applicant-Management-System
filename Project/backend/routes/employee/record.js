@@ -1,5 +1,7 @@
 const express = require("express");
 
+const jwt = require("jsonwebtoken");
+
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
@@ -86,6 +88,38 @@ employeeRoutes.route("/delete/:id").delete((req, response) => {
 		if (err) throw err;
 		console.log("1 document deleted");
 		response.json(obj);
+	});
+});
+
+employeeRoutes.route("/login").post(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let email = req.body.email;
+	let password = req.body.password;
+
+	db_connect.collection("employee").findOne({ email: email, password: password }, function (err, result) {
+		if (err) throw err;
+		if (result) {
+			const token = jwt.sign(
+				{
+					id: result._id,
+					fname: result.fname,
+					lname: result.lname,
+					contact: result.contact,
+					position: result.position,
+					email: result.email,
+					password: result.password,
+					imgurl: result.imgurl,
+					totalsales: result.totalsales,
+					totalappoinments: result.totalappoinments,
+					totalservices: result.totalservices,
+				},
+				"secretkey"
+			);
+
+			return response.json({ user: true, msg: "Login Success", status: "ok", token: token });
+		} else {
+			return response.json({ user: false, msg: "Login Failed", status: "error" , email: email, password: password});
+		}
 	});
 });
 
