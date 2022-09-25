@@ -55,7 +55,7 @@ customerRoutes.route("/add").post(function (req, response) {
 		if (result) {
 			console.log("Email already exists");
 			console.log(req.body.email.email);
-			return response.status(400).json({ success: false, msg: "Email already exists" });
+			return response.status(400).json({ success: false, msg: "Email already exists" , found: "email" });
 		} else {
 			let myquery = { contactno: req.body.contactno.contactno };
 			db_connect.collection("customer").findOne(myquery, function (err, result) {
@@ -63,7 +63,7 @@ customerRoutes.route("/add").post(function (req, response) {
 				if (result) {
 					console.log("Contact No already exists");
 					console.log(req.body.contactno.contactno);
-					return response.status(400).json({ success: false, msg: "Contact No already exists" });
+					return response.status(400).json({ success: false, msg: "Contact No already exists" , found: "contact" });
 				} else {
 					let myobj = {
 						fname: req.body.fname.fname,
@@ -80,7 +80,7 @@ customerRoutes.route("/add").post(function (req, response) {
 					db_connect.collection("customer").insertOne(myobj, function (err, res) {
 						if (err) throw err;
 						console.log("1 document inserted");
-						response.json(res);
+						return response.status(400).json({ success: true, msg: "1 document inserted" , found: "contact" });
 					});
 				}
 			});

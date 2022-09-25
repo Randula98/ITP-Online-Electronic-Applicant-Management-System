@@ -19,7 +19,6 @@ export default function CusRegister() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [imgurl, setImgurl] = useState("");
 	const [isErr, setIsErr] = useState("");
-
 	// const navigate = useNavigate();
 
 	// navigate("/login/cuslogin");
@@ -46,7 +45,7 @@ export default function CusRegister() {
 			<br />
 			<section className="bg-gray-50 dark: cusregsec">
 				<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 cusregcard">
-					<a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white regtext">
+					<a href="/register" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white regtext">
 						<img className="w-10 h-10 mr-2 regimg" src="https://i.ibb.co/dKgfxZQ/cus.png" alt="logo" />
 						<h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl lg:text-5xl">
 							<span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
@@ -77,7 +76,7 @@ export default function CusRegister() {
 										});
 
 									await getDownloadURL(storageRef)
-										.then((url) => {
+										.then(async (url) => {
 											setImgurl(url);
 
 											console.log(url);
@@ -92,7 +91,7 @@ export default function CusRegister() {
 												imgurl: url,
 											};
 
-											fetch(`${BASE_URL}/customer/add`, {
+											const response = await fetch(`${BASE_URL}/customer/add`, {
 												method: "POST",
 												headers: {
 													"Content-Type": "application/json",
@@ -102,13 +101,24 @@ export default function CusRegister() {
 												window.alert(err);
 												// return;
 											});
+											const content = await response.json();
+											console.log(content);
+
+											
+											if(content.success === true){
+												alert("User Registered Successfully");
+												window.location.href = "/login/cuslogin";
+											}
+											else if (content.found === "email") {
+												alert("Email already exist");
+											}
+											else if (content.found === "contact") {
+												alert("Contact Number already exist");
+											}
 										})
 										.catch((err) => {
 											console.log(err);
-										});
-
-									console.log("newCustomer");
-									alert("User Registered Successfully");
+										});					
 								}}
 							>
 								{/* name  */}
@@ -123,7 +133,7 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="John"
 											onChange={(e) => setFname({ fname: e.target.value })}
-											required
+										// required
 										/>
 									</div>
 									<div>
@@ -136,7 +146,7 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="Doe"
 											onChange={(e) => setLname({ lname: e.target.value })}
-											required
+										// required
 										/>
 									</div>
 								</div>
@@ -152,7 +162,7 @@ export default function CusRegister() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="No. 134, Main Road, Colombo"
 										onChange={(e) => setAddress({ address: e.target.value })}
-										required
+									// required
 									/>
 								</div>
 								{/* contactno */}
@@ -167,7 +177,7 @@ export default function CusRegister() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
 										onChange={(e) => setContactno({ contactno: e.target.value })}
-										required
+									// required
 									/>
 								</div>
 								{/* email */}
@@ -182,7 +192,7 @@ export default function CusRegister() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
 										onChange={(e) => setEmail({ email: e.target.value })}
-										required
+									// required
 									/>
 								</div>
 								<div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -198,8 +208,8 @@ export default function CusRegister() {
 											placeholder="••••••••"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											onChange={(e) => setPassword({ password: e.target.value })}
-											// value = {password}
-											required
+										// value = {password}
+										// required
 										/>
 									</div>
 									{/* confirm password */}
@@ -218,20 +228,32 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											value={confirmPassword}
 											onChange={(e) => checkValidation(e)}
-											required
+										// required
 										/>
 									</div>
 								</div>
-								{/* image */}
 
 								<div className="grid gap-6 mb-6 md:grid-cols-2">
 									<div>
 										<label
-											className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-											htmlFor="default_size"
+											htmlFor="confirm-password"
+											className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 										>
-											Default size
+											Upload Profile Picture
 										</label>
+									</div>
+									<div>
+										<label
+											htmlFor="confirm-password"
+											className="block mb-2 text-sm font-medium text-gray-900 dark:text-red-600"
+										>
+											{isErr}
+										</label>
+									</div>
+								</div>
+								{/* image */}
+								<div>
+									<div>
 										<input
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											id="default_size"
@@ -242,9 +264,6 @@ export default function CusRegister() {
 											}}
 										/>
 									</div>
-									<div>
-										<h1>{isErr}</h1>
-									</div>
 								</div>
 								<div className="flex items-start">
 									<div className="flex items-center h-5">
@@ -253,13 +272,13 @@ export default function CusRegister() {
 											aria-describedby="terms"
 											type="checkbox"
 											className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-											// required
+										// required
 										/>
 									</div>
 									<div className="ml-3 text-sm">
 										<label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">
 											I accept the{" "}
-											<a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">
+											<a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="/">
 												Terms and Conditions
 											</a>
 										</label>
@@ -268,12 +287,13 @@ export default function CusRegister() {
 								<button
 									type="submit"
 									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+
 								>
 									Create an account
 								</button>
 								<p className="text-sm font-light text-gray-500 dark:text-gray-400">
 									Already have an account?{" "}
-									<a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+									<a href="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
 										Login here
 									</a>
 								</p>
