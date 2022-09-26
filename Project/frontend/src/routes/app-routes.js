@@ -23,6 +23,7 @@ import {
 	CusRegister,
 	EmpRegister,
 	Services,
+	CusManagement,
 } from "../pages";
 
 function App() {
@@ -59,6 +60,9 @@ function App() {
 
 					{/* Error Page */}
 					<Route path="*" element={<ErrPage />} />
+
+					{/* Customer Management */}
+					<Route path="/managecus" element={<CusManagement />} />
 				</Routes>
 				<Footer />
 			</Router>

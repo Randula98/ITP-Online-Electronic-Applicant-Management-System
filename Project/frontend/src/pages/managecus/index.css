@@ -1,0 +1,35 @@
+.newCustomers {
+    width: 91%;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #c8c2c243;
+    padding: 20px;
+    margin-top: 90px;
+}
+
+.cuscard {
+    width: 250px;
+    margin-left: 15px;
+    position: relative;
+    float: left;
+}
+
+.btnrow {
+    margin-top: 30px;
+    width: 280px;
+    height: 50px;
+    margin: 0px auto;
+}
+
+.topCustomers {
+    width: 91%;
+    height: auto;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #c8c2c243;
+}
+.ribbon{
+    width: 100%;
+    height: 450px;
+    
+}

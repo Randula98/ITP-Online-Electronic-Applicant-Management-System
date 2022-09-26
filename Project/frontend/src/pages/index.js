@@ -15,6 +15,7 @@ import Register from "./register/regselect";
 import CusRegister from "./register/cusregister";
 import EmpRegister from "./register/empregister";
 import Services from "./services";
+import CusManagement from "./managecus";
 
 export {
 	About,
@@ -34,4 +35,5 @@ export {
 	CusRegister,
 	EmpRegister,
 	Services,
+	CusManagement,
 };
