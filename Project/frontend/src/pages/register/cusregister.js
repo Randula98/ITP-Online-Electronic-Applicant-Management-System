@@ -60,6 +60,7 @@ export default function CusRegister() {
 							</h1>
 							<form
 								className="space-y-4 md:space-y-6"
+								autocomplete="off"
 								onSubmit={async (e) => {
 									e.preventDefault();
 
@@ -133,7 +134,7 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="John"
 											onChange={(e) => setFname({ fname: e.target.value })}
-										// required
+											required
 										/>
 									</div>
 									<div>
@@ -146,7 +147,7 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="Doe"
 											onChange={(e) => setLname({ lname: e.target.value })}
-										// required
+											required
 										/>
 									</div>
 								</div>
@@ -162,7 +163,7 @@ export default function CusRegister() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="No. 134, Main Road, Colombo"
 										onChange={(e) => setAddress({ address: e.target.value })}
-									// required
+										required
 									/>
 								</div>
 								{/* contactno */}
@@ -177,7 +178,7 @@ export default function CusRegister() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
 										onChange={(e) => setContactno({ contactno: e.target.value })}
-									// required
+										required
 									/>
 								</div>
 								{/* email */}
@@ -192,7 +193,7 @@ export default function CusRegister() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
 										onChange={(e) => setEmail({ email: e.target.value })}
-									// required
+										required
 									/>
 								</div>
 								<div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -209,7 +210,7 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											onChange={(e) => setPassword({ password: e.target.value })}
 										// value = {password}
-										// required
+											required
 										/>
 									</div>
 									{/* confirm password */}
@@ -228,7 +229,7 @@ export default function CusRegister() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											value={confirmPassword}
 											onChange={(e) => checkValidation(e)}
-										// required
+											required
 										/>
 									</div>
 								</div>
@@ -262,6 +263,7 @@ export default function CusRegister() {
 											onChange={(e) => {
 												setImgurl(e.target.files[0]);
 											}}
+											required
 										/>
 									</div>
 								</div>
@@ -272,7 +274,7 @@ export default function CusRegister() {
 											aria-describedby="terms"
 											type="checkbox"
 											className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-										// required
+											required
 										/>
 									</div>
 									<div className="ml-3 text-sm">

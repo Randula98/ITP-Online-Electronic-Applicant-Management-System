@@ -60,7 +60,9 @@ export default function Cuslogin() {
 								<h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 									Sign in to your account
 								</h1>
-								<form className="space-y-4 md:space-y-6" onSubmit={cusLogin}>
+								<form className="space-y-4 md:space-y-6" 
+									  onSubmit={cusLogin}
+									  autocomplete="off">
 									<div>
 										<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 											Your email
@@ -102,12 +104,6 @@ export default function Cuslogin() {
 										</a>
 									</p>
 								</form>
-								<p className="text-sm font-light text-gray-500 dark:text-gray-400 dark:text-black">
-									Don’t have an account yet?{" "}
-									<a href="/empdash" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-										Bypass
-									</a>
-								</p>
 							</div>
 						</div>
 					</div>
