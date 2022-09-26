@@ -38,6 +38,7 @@ brandRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		bname: req.body.bname,
+		brandurl: req.body.brandurl,
 	};
 	db_connect.collection("brand").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -52,6 +53,7 @@ brandRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			bname: req.body.bname,
+			brandurl: req.body.brandurl,
 		},
 	};
 	db_connect.collection("brand").updateOne(myquery, newvalues, function (err, res) {
