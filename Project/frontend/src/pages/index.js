@@ -1,6 +1,7 @@
 import About from "./about";
 import Brands from "./brands";
 import Contact from "./contact";
+import AdminDash from "./admindash/dash";
 import EmpDash from "./empdash/dash";
 import CusDash from "./cusdash/dash";
 import Home from "./home";
@@ -21,6 +22,7 @@ export {
 	Contact,
 	CusDash,
 	EmpDash,
+	AdminDash,
 	ErrPage,
 	Home,
 	Login,
