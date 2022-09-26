@@ -25,6 +25,34 @@ customerRoutes.route("/").get(function (req, res) {
 		});
 });
 
+//new 5 customers
+customerRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("customer")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//top customers
+customerRoutes.route("/top5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("customer")
+		.find({})
+		.sort({ totalpayments: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you get a single record by id
 customerRoutes.route("/customer/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
