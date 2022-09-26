@@ -37,9 +37,13 @@ positionRoutes.route("/position/:id").get(function (req, res) {
 positionRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		id: req.body.id,
 		position: req.body.position,
-		salary: req.body.salary,
+		basicSalary: req.body.basicSalary,
+		allowances: req.body.allowances,
+		epf: req.body.epf,
+		etf: req.body.etf,
+		bonus: req.body.bonus,
+		deductions: req.body.deductions,
 	};
 	db_connect.collection("position").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -53,9 +57,13 @@ positionRoutes.route("update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			id: req.body.id,
 			position: req.body.position,
-			salary: req.body.salary,
+			basicSalary: req.body.basicSalary,
+			allowances: req.body.allowances,
+			epf: req.body.epf,
+			etf: req.body.etf,
+			bonus: req.body.bonus,
+			deductions: req.body.deductions,
 		},
 	};
 	db_connect.collection("position").updateOne(myquery, newvalues, function (err, res) {
