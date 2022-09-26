@@ -3,8 +3,26 @@ import "./navbar.css";
 
 // import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+export default function NavBar() {
 	// const navigate = useNavigate();
+
+	const logout = () => {
+		localStorage.removeItem("session");
+		localStorage.removeItem("cusID");
+		localStorage.removeItem("cusFname");
+		localStorage.removeItem("cusLname");
+		localStorage.removeItem("cusAddress");
+		localStorage.removeItem("cusContactno");
+		localStorage.removeItem("cusEmail");
+		localStorage.removeItem("cusPassword");
+		localStorage.removeItem("cusTotalpurchases");
+		localStorage.removeItem("cusTotalpayments");
+		localStorage.removeItem("cusImgurl");
+		localStorage.removeItem("authToken");
+		localStorage.removeItem("user");
+		window.location.href = "/";
+	};
+
 	return (
 		<nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
 			<div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -13,22 +31,86 @@ function NavBar() {
 					<span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Synthetic Deals</span>
 				</a>
 				<div className="flex md:order-2">
-					<a href="/login">
-						<button
-							type="button"
-							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
-						>
-							Login
-						</button>
-					</a>
-					<a href="/register">
-						<button
-							type="button"
-							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
-						>
-							Register
-						</button>
-					</a>
+					{/* admin menu */}
+					{localStorage.getItem("user") === "ADMIN" ? (
+						<>
+							<a href="/admindash">
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
+								>
+									Dashboard
+								</button>
+							</a>
+						</>
+					) : (
+						<></>
+					)}
+
+					{/* employee menu */}
+					{localStorage.getItem("user") === "EMPLOYEE" ? (
+						<>
+							<a href="/empdash">
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
+								>
+									Dashboard
+								</button>
+							</a>
+						</>
+					) : (
+						<></>
+					)}
+
+					{/* customer menu */}
+					{localStorage.getItem("user") === "CUSTOMER" ? (
+						<>
+							<a href="/cusdash">
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
+								>
+									Dashboard
+								</button>
+							</a>
+						</>
+					) : (
+						<></>
+					)}
+
+					{/* login menu */}
+					{localStorage.getItem("authToken") ? (
+						<>
+							<button
+								type="button"
+								onClick={logout}
+								className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
+							>
+								Log Out
+							</button>
+						</>
+					) : (
+						<>
+							<a href="/register">
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
+								>
+									Resigter
+								</button>
+							</a>
+							<a href="/login">
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-10"
+								>
+									Log in
+								</button>
+							</a>
+						</>
+					)}
+
 					<button
 						data-collapse-toggle="navbar-sticky"
 						type="button"
@@ -81,7 +163,7 @@ function NavBar() {
 						</li>
 						<li>
 							<a
-								href="/services"
+								href="/ad"
 								className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
 								Services
@@ -147,5 +229,3 @@ function NavBar() {
 		</nav>
 	);
 }
-
-export default NavBar;

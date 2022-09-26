@@ -3,7 +3,7 @@ const express = require("express");
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
-const positionRoutes = express.Router();
+const recordRoutes = express.Router();
 
 // This will help us connect to the database
 const dbo = require("../../db/conn");
@@ -12,10 +12,10 @@ const dbo = require("../../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
-positionRoutes.route("/").get(function (req, res) {
+recordRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
-		.collection("position")
+		.collection("completed_orders")
 		.find({})
 		.toArray(function (err, result) {
 			if (err) throw err;
@@ -24,63 +24,55 @@ positionRoutes.route("/").get(function (req, res) {
 });
 
 // This section will help you get a single record by id
-positionRoutes.route("/position/:id").get(function (req, res) {
+recordRoutes.route("/completed_orders/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("position").findOne(myquery, function (err, result) {
+	db_connect.collection("completed_orders").findOne(myquery, function (err, result) {
 		if (err) throw err;
 		res.json(result);
 	});
 });
 
 // This section will help you create a new record.
-positionRoutes.route("/add").post(function (req, response) {
+recordRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		position: req.body.position,
-		basicSalary: req.body.basicSalary,
-		allowances: req.body.allowances,
-		epf: req.body.epf,
-		etf: req.body.etf,
-		bonus: req.body.bonus,
-		deductions: req.body.deductions,
+		customerId: req.body.customerId,
+		noOfItems: req.body.noOfItems,
+		totalAmount: req.body.totalAmount,
 	};
-	db_connect.collection("position").insertOne(myobj, function (err, res) {
+	db_connect.collection("completed_orders").insertOne(myobj, function (err, res) {
 		if (err) throw err;
 		response.json(res);
 	});
 });
 
 // This section will help you update a record by id.
-positionRoutes.route("update/:id").post(function (req, response) {
+recordRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			position: req.body.position,
-			basicSalary: req.body.basicSalary,
-			allowances: req.body.allowances,
-			epf: req.body.epf,
-			etf: req.body.etf,
-			bonus: req.body.bonus,
-			deductions: req.body.deductions,
+			customerId: req.body.customerId,
+			noOfItems: req.body.noOfItems,
+			totalAmount: req.body.totalAmount,
 		},
 	};
-	db_connect.collection("position").updateOne(myquery, newvalues, function (err, res) {
+	db_connect.collection("completed_orders").updateOne(myquery, newvalues, function (err, res) {
 		if (err) throw err;
 		response.json(res);
 	});
 });
 
 // This section will help you delete a record
-positionRoutes.route("delete/:id").delete((req, response) => {
+recordRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("position").deleteOne(myquery, function (err, obj) {
+	db_connect.collection("completed_orders").deleteOne(myquery, function (err, obj) {
 		if (err) throw err;
 		console.log("1 document deleted");
 		response.json(obj);
 	});
 });
 
-module.exports = positionRoutes;
+module.exports = recordRoutes;

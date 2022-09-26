@@ -9,9 +9,11 @@ app.use(express.json());
 //get routes
 app.use("/employee", require("./routes/employee/record"));
 app.use("/position", require("./routes/position/record"));
+app.use("/admin", require("./routes/admin/record"));
 
 app.use("/cart", require("./routes/cart/record"));
 app.use("/cart_item", require("./routes/cart_item/record"));
+app.use("/completed_orders", require("./routes/completed_orders/record"));
 
 app.use("/targets", require("./routes/targets/record"));
 app.use("/discount", require("./routes/discount/record"));
