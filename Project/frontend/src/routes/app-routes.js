@@ -9,6 +9,7 @@ import {
 	About,
 	Brands,
 	Contact,
+	AdminDash,
 	CusDash,
 	EmpDash,
 	ErrPage,
@@ -51,9 +52,10 @@ function App() {
 
 					{/* Employee Dashboard */}
 					<Route path="/empdash" element={<EmpDash />} />
-
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
+					{/* Admin Dashboard */}
+					<Route path="/admindash" element={<AdminDash />} />
 
 					{/* Error Page */}
 					<Route path="*" element={<ErrPage />} />
