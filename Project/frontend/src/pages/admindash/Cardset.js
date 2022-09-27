@@ -156,12 +156,12 @@ export default function Cardset() {
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="#">
+              <a href="/managepurchase">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Purchase
                   Management</h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the details of the purchases done by the system. Get a report of Purchase Details.</p>
-              <a href="#"
+              <a href="/managepurchase"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -181,7 +181,7 @@ export default function Cardset() {
         <div className="row">
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="#">
+            <a href="/managepurchase">
               <img className="rounded-t-lg"
                 src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Fdelivery.jpg?alt=media&token=205335fe-4324-42aa-90ff-11858d6c4ba2"
                 alt="" />

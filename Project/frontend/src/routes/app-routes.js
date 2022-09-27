@@ -25,6 +25,7 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	PurchaseManagement,
 	SalesManagement,
 	ServiceManagement,
 	HRManagement,
@@ -74,6 +75,10 @@ function App() {
 					{/* Customer Management */}
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
+
+					{/* Purchase Management */}
+					<Route path="/managepurchase" element={<PurchaseManagement />} />
+					
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
