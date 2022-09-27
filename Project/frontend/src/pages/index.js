@@ -21,6 +21,8 @@ import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
 import AddPosition from "./managehr/addposition";
 import UpdatePosition from "./managehr/updateposition";
+import StockManagement from "./managestocks/Stockhome";
+import SupManagement from "./managesup";
 
 export {
 	About,
@@ -46,4 +48,6 @@ export {
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
+	StockManagement,
+	SupManagement,
 };
