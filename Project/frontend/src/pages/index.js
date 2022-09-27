@@ -17,6 +17,7 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import ServiceManagement from "./manageservice";
 
 export {
 	About,
@@ -38,4 +39,6 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ServiceManagement,
+
 };
