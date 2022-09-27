@@ -45,6 +45,7 @@ deliveryRoutes.route("/add").post(function (req, response) {
 		remarks: req.body.remarks,
 		customerid: req.body.customerid,
 		date: req.body.date,
+		status: req.body.status,
 	};
 	db_connect.collection("delivery").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -66,6 +67,7 @@ deliveryRoutes.route("/update/:id").post(function (req, response) {
 			remarks: req.body.remarks,
 			customerid: req.body.customerid,
 			date: req.body.date,
+			status: req.body.status,
 		},
 	};
 	db_connect.collection("delivery").updateOne(myquery, newvalues, function (err, res) {
