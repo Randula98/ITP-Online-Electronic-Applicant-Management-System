@@ -34,47 +34,117 @@ const RecordNewSup = (props) => (
 
 const RecordOrders = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
-                                    class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
-                                </th>
-                                <td class="py-4 px-6">
-                                    Sliver
-                                </td>
-                                <td class="py-4 px-6">
-                                    Laptop
-                                </td>
-                                <td class="py-4 px-6">
-                                    $2999
-                                </td>
-                                <td class="py-4 px-6">
-                                    $2999
-                                </td>
-                            </tr>
+        <th scope="row"
+            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.supplierid}
+        </th>
+        <td class="py-4 px-6">
+            {props.record.date}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemid}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.quantity}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.aprrovedstatus}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.orderstatus}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.details}
+        </td>
+
+    </tr>
 );
 
 const RecordPreOrders = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
-                                    class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
-                                </th>
-                                <td class="py-4 px-6">
-                                    Sliver
-                                </td>
-                                <td class="py-4 px-6">
-                                    Laptop
-                                </td>
-                                <td class="py-4 px-6">
-                                    $2999
-                                </td>
-                                <td class="py-4 px-6">
-                                    $2999
-                                </td>
-                            </tr>
+        <th scope="row"
+            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.itemid}
+        </th>
+        <td class="py-4 px-6">
+            {props.record.supplierid}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.date}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.quantity}
+        </td>
+
+    </tr>
 );
 
-export default function index() {
+export default function SupplierManagement() {
+
+    const [records, setRecords] = useState([]);
+    const [records2, setRecords2] = useState([]);
+    const [records3, setRecords3] = useState([]);
+    
+
+    // This method fetches the records from the database.
+    useEffect(() => {
+        async function getRecords() {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/`);
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records = await response.json();
+            setRecords(records);
+        }
+
+        getRecords();
+
+        return;
+    }, [records.length]);
+
+    useEffect(() => {
+        async function getRecords() {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/`);
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records = await response.json();
+            setRecords(records);
+        }
+
+        getRecords();
+
+        return;
+    }, [records.length]);
+
+    useEffect(() => {
+        async function getRecords() {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pre_order/`);
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records = await response.json();
+            setRecords(records);
+        }
+
+        getRecords();
+
+        return;
+    }, [records.length]);
+
+
     return (
         <div>
             <h1>Manage Supplier</h1>
