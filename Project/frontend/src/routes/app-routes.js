@@ -25,6 +25,7 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
@@ -72,6 +73,9 @@ function App() {
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 
+					{/* Service Management */}
+					<Route path="/manageservice" element={<ServiceManagement />} />
+					
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />

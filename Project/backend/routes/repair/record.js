@@ -47,6 +47,7 @@ repairRoutes.route("/add").post(function (req, response) {
 		repaidescription: req.body.repaidescription,
 		repairfee: req.body.repairfee,
 		imgurl: req.body.imgurl,
+		rstatus: req.body.rstatus,
 	};
 	db_connect.collection("repair").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -69,6 +70,7 @@ repairRoutes.route("/update/:id").post(function (req, response) {
 			itemname: req.body.itemname,
 			repaidescription: req.body.repaidescription,
 			repairfee: req.body.repairfee,
+			rstatus: req.body.rstatus,
 		},
 	};
 	db_connect.collection("repair").updateOne(myquery, newvalues, function (err, res) {

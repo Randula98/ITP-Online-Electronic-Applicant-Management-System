@@ -17,6 +17,7 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import ServiceManagement from "./manageservice";
 import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
 import AddPosition from "./managehr/addposition";
@@ -44,6 +45,7 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
