@@ -69,6 +69,7 @@ function App() {
 
 					{/* Supplier Management */}
 					<Route path="/managesup" element={<SupManagement />} />
+
 				</Routes>
 				<Footer />
 			</Router>
