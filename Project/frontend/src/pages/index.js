@@ -17,6 +17,10 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import HRManagement from "./managehr";
+import ViewAllEmp from "./managehr/viewallemp";
+import AddPosition from "./managehr/addposition";
+import UpdatePosition from "./managehr/updateposition";
 
 export {
 	About,
@@ -38,4 +42,8 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	HRManagement,
+	ViewAllEmp,
+	AddPosition,
+	UpdatePosition,
 };
