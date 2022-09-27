@@ -52,7 +52,7 @@ positionRoutes.route("/add").post(function (req, response) {
 });
 
 // This section will help you update a record by id.
-positionRoutes.route("update/:id").post(function (req, response) {
+positionRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
@@ -73,7 +73,7 @@ positionRoutes.route("update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a record
-positionRoutes.route("delete/:id").delete((req, response) => {
+positionRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	db_connect.collection("position").deleteOne(myquery, function (err, obj) {
@@ -84,3 +84,4 @@ positionRoutes.route("delete/:id").delete((req, response) => {
 });
 
 module.exports = positionRoutes;
+
