@@ -68,7 +68,7 @@ function App() {
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 
 					{/* Supplier Management */}
-					<Route path="/managesupplier" element={<SupManagement />} />
+					<Route path="/managesup" element={<SupManagement />} />
 
 				</Routes>
 				<Footer />
