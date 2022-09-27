@@ -18,6 +18,7 @@ import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
 import StockManagement from "./managestocks/Stockhome";
+import SupManagement from "./managesup";
 
 export {
 	About,
@@ -40,4 +41,5 @@ export {
 	CusManagement,
 	ViewAllCus,
 	StockManagement,
+	SupManagement,
 };

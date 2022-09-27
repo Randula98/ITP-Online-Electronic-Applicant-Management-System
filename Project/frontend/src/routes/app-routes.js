@@ -26,6 +26,7 @@ import {
 	CusManagement,
 	ViewAllCus,
 	StockManagement,
+	SupManagement,
 } from "../pages";
 
 function App() {
@@ -69,6 +70,9 @@ function App() {
 
 					{/* Stock Management */}
 					<Route path="/managestocks" element={<StockManagement />} />
+          
+					{/* Supplier Management */}
+					<Route path="/managesup" element={<SupManagement />} />
 				</Routes>
 				<Footer />
 			</Router>
