@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ViewCus() {
+export default function editcus() {
   return (
     <div>
-      
-      
+
+        
     </div>
   )
 }
