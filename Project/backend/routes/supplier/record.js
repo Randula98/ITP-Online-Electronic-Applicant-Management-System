@@ -58,6 +58,7 @@ supplierRoutes.route("/update/:id").post(function (req, response) {
 			city: req.body.city,
 			province: req.body.province,
 			contactnumber: req.body.contactnumber,
+			email: req.body.email,
 			imgurl: req.body.imgurl,
 		},
 	};
