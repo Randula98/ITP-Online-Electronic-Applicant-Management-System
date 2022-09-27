@@ -46,7 +46,7 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
-	SalesManagement
+	SalesManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,

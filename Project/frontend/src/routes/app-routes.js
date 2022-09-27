@@ -25,12 +25,12 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
-	SalesManagement
+	SalesManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
-	UpdatePosition
+	UpdatePosition,
 	StockManagement,
 	SupManagement,
 } from "../pages";
