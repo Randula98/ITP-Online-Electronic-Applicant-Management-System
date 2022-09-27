@@ -18,6 +18,12 @@ import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
 import ServiceManagement from "./manageservice";
+import HRManagement from "./managehr";
+import ViewAllEmp from "./managehr/viewallemp";
+import AddPosition from "./managehr/addposition";
+import UpdatePosition from "./managehr/updateposition";
+import StockManagement from "./managestocks/Stockhome";
+import SupManagement from "./managesup";
 
 export {
 	About,
@@ -40,5 +46,10 @@ export {
 	CusManagement,
 	ViewAllCus,
 	ServiceManagement,
-
+	HRManagement,
+	ViewAllEmp,
+	AddPosition,
+	UpdatePosition,
+	StockManagement,
+	SupManagement,
 };

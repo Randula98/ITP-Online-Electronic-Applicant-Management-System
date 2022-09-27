@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import "./index.css";
+import { Link } from "react-router-dom";
 
-const RecordNewCus = (props) => (
+const RecordNewEmp = (props) => (
     <div
         className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscard">
         <a href="#">
@@ -18,7 +19,7 @@ const RecordNewCus = (props) => (
                 {props.record.email}<br />
                 {props.record.contactno}<br />
             </p>
-            <a href={`/viewcustomer/${props.record._id}`} target="_blank" rel="noreferrer"
+            <a href={`/viewemployee/${props.record._id}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 View Profile
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -32,7 +33,7 @@ const RecordNewCus = (props) => (
     </div>
 );
 
-const RecordTopCus = (props) => (
+const RecordTopEmp = (props) => (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
             className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -42,28 +43,63 @@ const RecordTopCus = (props) => (
             {props.record.email}
         </td>
         <td className="py-4 px-6">
-            {props.record.contactno}
+            {props.record.contact}
         </td>
         <td className="py-4 px-6">
-            {props.record.totalpurchases}
+            {props.record.totalsales}
         </td>
         <td className="py-4 px-6">
-            {props.record.totalpayments}
+            {props.record.totalappoinments}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.totalservices}
         </td>
     </tr>
 );
 
+const RecordPosition = (props) => (
+    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scopeName="row"
+            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.position}
+        </th>
+        <td className="py-4 px-6">
+            {props.record.basicSalary}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.allowances}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.epf}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.etf}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.bonus}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.deductions}
+        </td>
+        <td class="py-4 px-6">
+            <Link className="btn btn-link" to={`/UpdatePosition/${props.record._id}`}><span className="text-red-800"> Edit - </span></Link>
+            <button onClick={() => {
+                props.deleteRecord(props.record._id);
+            }}><span className="text-red-800"> Delete</span></button>
+        </td>
+    </tr>
+)
 
-
-export default function CusManagement() {
+export default function EmpManagement() {
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
+    const [records3, setRecords3] = useState([]);
 
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/new5`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/employee/new5`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -82,7 +118,7 @@ export default function CusManagement() {
 
     useEffect(() => {
         async function getRecords2() {
-            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/top5`);
+            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/employee/top5`);
 
             if (!response2.ok) {
                 const message = `An error occurred: ${response2.statusText}`;
@@ -99,6 +135,25 @@ export default function CusManagement() {
         return;
     }, [records2.length]);
 
+    useEffect(() => {
+        async function getRecords3() {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/position`);
+
+            if (!response3.ok) {
+                const message = `An error occurred: ${response3.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records3 = await response3.json();
+            setRecords3(records3);
+        }
+
+        getRecords3();
+
+        return;
+    }, [records3.length]);
+
     // This method will delete a record
     // async function deleteRecord(id) {
     //     await fetch(`http://localhost:5000/${id}`, {
@@ -109,11 +164,20 @@ export default function CusManagement() {
     //     setRecords(newRecords);
     // }
 
+    async function deleteRecord(id) {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/position/delete/${id}`, {
+            method: "DELETE"
+        });
+
+        const newRecords = records.filter((el) => el._id !== id);
+        setRecords3(newRecords);
+    }
+
     // This method will map out the records on the table
     function recordList() {
         return records.map((record) => {
             return (
-                <RecordNewCus
+                <RecordNewEmp
                     record={record}
                     // deleteRecord={() => deleteRecord(record._id)}
                     key={record._id}
@@ -125,9 +189,21 @@ export default function CusManagement() {
     function recordList2() {
         return records2.map((record) => {
             return (
-                <RecordTopCus
+                <RecordTopEmp
                     record={record}
                     // deleteRecord={() => deleteRecord(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
+
+    function recordList3() {
+        return records3.map((record) => {
+            return (
+                <RecordPosition
+                    record={record}
+                    deleteRecord={() => deleteRecord(record._id)}
                     key={record._id}
                 />
             );
@@ -141,7 +217,7 @@ export default function CusManagement() {
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
-                            <h1>New Customers!!</h1>
+                            <h1>New Employees!!</h1>
                         </span>
                     </div>
                 </div>
@@ -152,9 +228,9 @@ export default function CusManagement() {
 
                 <div className="ribbon"></div>
                 <div className="row btnrow">
-                    <a href="#"><button type="button"
+                    <a href="/viewallemp" target="_blank"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
-                        All Customers</button></a>
+                        All Employees</button></a>
                 </div>
             </div>
             <br />
@@ -164,7 +240,7 @@ export default function CusManagement() {
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
-                            <h1>Top Customers!!</h1>
+                            <h1>Top Employees!!</h1>
                         </span>
                     </div>
                 </div>
@@ -174,20 +250,23 @@ export default function CusManagement() {
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" className="py-3 px-6">
-                                        Customer Name
+                                    <th scope="col" class="py-3 px-6">
+                                        Employee Name
                                     </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Customer Email
+                                    <th scope="col" class="py-3 px-6">
+                                        Employee Email
                                     </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Customer Contact No
+                                    <th scope="col" class="py-3 px-6">
+                                        Employee Contact No
                                     </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Number of Purchases
+                                    <th scope="col" class="py-3 px-6">
+                                        Number of Sales
                                     </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Total Spent Amount
+                                    <th scope="col" class="py-3 px-6">
+                                        number of Appoinments
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Number of Services
                                     </th>
                                 </tr>
                             </thead>
@@ -198,25 +277,25 @@ export default function CusManagement() {
                     </div>
 
                 </div>
-                <br/>
+                <br />
                 <div className="row btnrow">
                     <a href="#"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                        Generate Customer Activity Record</button></a>
+                        Generate Employee Activity Record</button></a>
                 </div>
 
             </div>
-
             <br />
-            {/* <div className="topCustomers">
+
+            <div className="topemp">
                 <div className="row">
-                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                    <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
-                            <h1>Least Interacted Customers For The Past 3 Months!!</h1>
+                            <h1>Employee Positions</h1>
                         </span>
                     </div>
-                </div> 
+                </div>
                 <div className="row">
 
                     <div className="overflow-x-auto relative">
@@ -224,54 +303,50 @@ export default function CusManagement() {
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" className="py-3 px-6">
-                                        Customer Name
+                                        Position
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Customer Email
+                                        Basic Salary
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Customer Contact No
+                                        Allowances
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Number of Purchases
+                                        EPF
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Total Spent Amount
+                                        ETF
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Action
+                                        Bonus
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Deductions
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Actions
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row"
-                                        className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td className="py-4 px-6">
-                                        Sliver
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        Laptop
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        $2999
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        $2999
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        <a href="#"><span className="text-red-800">Delete</span></a>
-                                    </td>
-                                </tr>
+                                {recordList3()}
+
                             </tbody>
                         </table>
                     </div>
 
-                </div> 
+                </div>
+                <br />
+                <div className="row btnrow2">
+                    <a href="#"><button type="button"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                        Generate Employee Salary Report</button></a>
+                    <a href="/addposition"><button type="button"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btnright">
+                        Add Employee Positions</button></a>
+                </div>
+            </div>
 
-            </div>*/}
         </div>
     )
 }
