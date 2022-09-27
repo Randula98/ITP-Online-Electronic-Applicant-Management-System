@@ -17,6 +17,7 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import SalesManagement from "./managesales/";
 import ServiceManagement from "./manageservice";
 import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
@@ -45,6 +46,7 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	SalesManagement
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,

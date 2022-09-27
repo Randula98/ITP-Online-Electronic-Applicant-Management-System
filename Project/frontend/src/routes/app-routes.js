@@ -25,6 +25,7 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	SalesManagement
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
@@ -33,6 +34,7 @@ import {
 	StockManagement,
 	SupManagement,
 } from "../pages";
+
 
 function App() {
 	return (
@@ -72,6 +74,9 @@ function App() {
 					{/* Customer Management */}
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
+
+					{/* Sales Management */}
+					<Route path="/managesales" element={<SalesManagement />} />
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
