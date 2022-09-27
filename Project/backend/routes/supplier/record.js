@@ -38,6 +38,7 @@ supplierRoutes.route("/add").post(function (req, response) {
 		city: req.body.city,
 		province: req.body.province,
 		contactnumber: req.body.contactnumber,
+		email: req.body.email,
 		imgurl: req.body.imgurl,
 	};
 	db_connect.collection("supplier").insertOne(myobj, function (err, res) {
