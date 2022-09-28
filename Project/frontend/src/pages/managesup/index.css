@@ -26,6 +26,13 @@
     border: 1px solid black;
     background-color: #c8c2c243;
 }
+
 a.btnup{
 width: 146.65px;
+}
+
+.ribbon{
+    width: 100%;
+    height: 450px;
+    
 }
