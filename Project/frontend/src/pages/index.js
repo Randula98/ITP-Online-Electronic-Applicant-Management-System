@@ -18,6 +18,13 @@ import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
 import SalesManagement from "./managesales/";
+import SetTargetAdd from "./managesales/SetTargetAdd";
+import SetDiscuntAdd from "./managesales/SetDiscountAdd";
+import SetPromotionAdd from "./managesales/SetPromotionAdd";
+import SetTargetUpdate from "./managesales/SetTargetUpdate";
+import SetDiscountUpdate from "./managesales/SetDiscountUpdate";
+import SetPromotionUpdate from "./managesales/SetPromotionUpdate";
+
 export {
 	About,
 	Brands,
@@ -38,5 +45,12 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
-	SalesManagement
+	SalesManagement,
+	SetTargetAdd,
+	SetDiscuntAdd,
+	SetPromotionAdd,
+	SetTargetUpdate,
+	SetDiscountUpdate,
+	SetPromotionUpdate,
+
 };

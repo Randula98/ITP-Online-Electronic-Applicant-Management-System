@@ -25,7 +25,14 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
-	SalesManagement
+	SalesManagement,
+	SetTargetAdd,
+	SetDiscountAdd,
+	SetPromotionAdd,
+	SetTargetUpdate,
+	SetDiscountUpdate,
+	SetPromotionUpdate
+	
 } from "../pages";
 
 
@@ -40,6 +47,7 @@ function App() {
 					<Route path="/products" element={<Products />} />
 					<Route path="/brands" element={<Brands />} />
 					<Route path="/services" element={<Services />} />
+					
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 
@@ -70,6 +78,14 @@ function App() {
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
+					<Route path="/managesales/settargetadd" element={<SetTargetAdd />} />
+					<Route path="/managesales/setdiscountadd" element={<SetDiscountAdd />} />
+					<Route path="/managesales/setpromotionadd" element={<SetPromotionAdd />} />
+					<Route path="/managesales/settargetupdate" element={<SetTargetUpdate />} />
+					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
+					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
+
+
 				</Routes>
 				<Footer />
 			</Router>
