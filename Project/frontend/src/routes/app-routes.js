@@ -83,12 +83,13 @@ function App() {
 					<Route path="/stockhome" element={<Stockhome />} />
 					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
 
+
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
-
+          
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
