@@ -20,6 +20,12 @@ import ViewAllCus from "./managecus/viewallcus";
 import ViewCus from "./managecus/viewcus";
 import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
+import SetTargetAdd from "./managesales/SetTargetAdd";
+import SetDiscountAdd from "./managesales/SetDiscountAdd";
+import SetPromotionAdd from "./managesales/SetPromotionsAdd";
+import SetTargetUpdate from "./managesales/SetTargetUpdate";
+import SetDiscountUpdate from "./managesales/SetDiscountUpdate";
+import SetPromotionUpdate from "./managesales/SetPromotionsUpdate";
 import ServiceManagement from "./manageservice";
 import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
@@ -27,6 +33,9 @@ import AddPosition from "./managehr/addposition";
 import UpdatePosition from "./managehr/updateposition";
 import StockManagement from "./managestocks/Stockhome";
 import SupManagement from "./managesup";
+import Stockadd from "./managestocks/Stockadd";
+import Stockupdate from "./managestocks/Stockupdate";
+import Stockhome from "./managestocks/Stockhome";
 
 export {
 	About,
@@ -49,8 +58,14 @@ export {
 	CusManagement,
 	ViewAllCus,
 	ViewCus,
-	PurchaseManagement,
 	SalesManagement,
+	SetTargetAdd,
+	SetDiscountAdd,
+	SetPromotionAdd,
+	SetTargetUpdate,
+	SetDiscountUpdate,
+	SetPromotionUpdate,
+	// PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
@@ -58,5 +73,7 @@ export {
 	UpdatePosition,
 	StockManagement,
 	SupManagement,
-
+	Stockadd,
+	Stockupdate,
+	Stockhome,
 };

@@ -15,8 +15,8 @@ const RecordNewSup = (props) => (
                 </h5>
             </a>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Address<br />
-                Contact Number<br />
+            {props.record.street} {props.record.city} {props.record.province}<br />
+            {props.record.contactnumber}<br />
             </p>
             <a href="#"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 btnup">
@@ -84,7 +84,7 @@ export default function SupplierManagement() {
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
     const [records3, setRecords3] = useState([]);
-    
+
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -104,50 +104,176 @@ export default function SupplierManagement() {
         getRecords();
 
         return;
-    }, [records.length]);
+    }, [records2.length]);
 
     useEffect(() => {
-        async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/`);
+        async function getRecords2() {
+            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/`);
 
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
+            if (!response2.ok) {
+                const message = `An error occurred: ${response2.statusText}`;
                 window.alert(message);
                 return;
             }
 
-            const records = await response.json();
-            setRecords(records);
+            const records2 = await response2.json();
+            setRecords2(records2);
         }
 
-        getRecords();
+        getRecords2();
 
         return;
-    }, [records.length]);
+    }, [records2.length]);
 
     useEffect(() => {
-        async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pre_order/`);
+        async function getRecords3() {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pre_order/`);
 
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
+            if (!response3.ok) {
+                const message = `An error occurred: ${response3.statusText}`;
                 window.alert(message);
                 return;
             }
 
-            const records = await response.json();
-            setRecords(records);
+            const records3 = await response3.json();
+            setRecords3(records3);
         }
 
-        getRecords();
+        getRecords3();
 
         return;
-    }, [records.length]);
+    }, [records3.length]);
 
+    function recordList() {
+        return records.map((record) => {
+            return (
+                <RecordNewSup
+                    record={record}
+                    // deleteRecord={() => deleteRecord(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
+
+    function recordList2() {
+        return records2.map((record) => {
+            return (
+                <RecordOrders
+                    record={record}
+                    // deleteRecord={() => deleteRecord(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
+
+    function recordList3() {
+        return records3.map((record) => {
+            return (
+                <RecordPreOrders
+                    record={record}
+                    // deleteRecord={() => deleteRecord(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
 
     return (
         <div>
-            <h1>Manage Supplier</h1>
+            <div className="newSupplier">
+                <div className="row">
+                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                        role="alert">
+                        <span className="font-medium">
+                            <h1>New Suppliers!!</h1>
+                        </span>
+                    </div>
+                </div>
+
+                <div className="row">
+                    {recordList()}
+                </div >
+
+                <div className="ribbon"></div>
+                <div className="row btnrow">
+                    <a href="/viewallcus" target="_blank"><button type="button"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
+                        All Suppliers</button></a>
+                </div>
+            </div>
+
+            <br />
+
+            <div className="row">
+
+                <div className="overflow-x-auto relative">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Supplier ID
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Date
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Item ID
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Quantity
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Approved Status
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Order Status
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Details
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {recordList2()}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <br />
+
+            <div className="row">
+
+                    <div className="overflow-x-auto relative">
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item ID
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Supplier ID
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Date
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                       Quantity
+                                    </th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList3()}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
         </div>
     )
 }

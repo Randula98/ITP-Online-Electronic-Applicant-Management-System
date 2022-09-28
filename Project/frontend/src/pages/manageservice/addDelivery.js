@@ -1,9 +1,8 @@
 
 import React from 'react'
 
-export default function addDelivery() {
-  return (
-    <div>
+
+
     const [form, setForm] = useState({
         name: "",
         position: "",
@@ -40,6 +39,8 @@ export default function addDelivery() {
         setForm({ name: "", position: "", level: "" });
         navigate("/");
         }
-        </div>  
+        
+        export default function addDelivery() {
+          return (
   )
 }

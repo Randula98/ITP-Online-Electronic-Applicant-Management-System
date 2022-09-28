@@ -26,17 +26,23 @@ import {
 	CusManagement,
 	ViewAllCus,
 	ViewCus,
-	PurchaseManagement,
 	SalesManagement,
+	SetTargetAdd,
+	SetDiscountAdd,
+	SetPromotionAdd,
+	SetTargetUpdate,
+	SetDiscountUpdate,
+	SetPromotionUpdate,
+	Stockadd,
+	Stockupdate,
+	Stockhome,
+	// PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
-	StockManagement,
-	SupManagement,
 } from "../pages";
-
 
 function App() {
 	return (
@@ -49,6 +55,7 @@ function App() {
 					<Route path="/products" element={<Products />} />
 					<Route path="/brands" element={<Brands />} />
 					<Route path="/services" element={<Services />} />
+					
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 
@@ -78,27 +85,30 @@ function App() {
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
 
-					{/* Purchase Management */}
-					<Route path="/managepurchase" element={<PurchaseManagement />} />
-					
+					{/* Stock Management */}
+					<Route path="/stockadd" element={<Stockadd />} />
+					<Route path="/stockupdate" element={<Stockupdate />} />
+					<Route path="/stockhome" element={<Stockhome />} />
+					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
+
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
+					<Route path="/managesales/settargetadd" element={<SetTargetAdd />} />
+					<Route path="/managesales/setdiscountadd" element={<SetDiscountAdd />} />
+					<Route path="/managesales/setpromotionadd" element={<SetPromotionAdd />} />
+					<Route path="/managesales/settargetupdate" element={<SetTargetUpdate />} />
+					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
+					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
-					
+          
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-
-					{/* Stock Management */}
-					<Route path="/managestocks" element={<StockManagement />} />
-          
-					{/* Supplier Management */}
-					<Route path="/managesup" element={<SupManagement />} />
           
 				</Routes>
 				<Footer />
