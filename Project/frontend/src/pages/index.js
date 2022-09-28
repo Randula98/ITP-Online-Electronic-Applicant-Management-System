@@ -20,11 +20,11 @@ import ViewAllCus from "./managecus/viewallcus";
 import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
 import SetTargetAdd from "./managesales/SetTargetAdd";
-import SetDiscuntAdd from "./managesales/SetDiscountAdd";
-import SetPromotionAdd from "./managesales/SetPromotionAdd";
+import SetDiscountAdd from "./managesales/SetDiscountAdd";
+import SetPromotionAdd from "./managesales/SetPromotionsAdd";
 import SetTargetUpdate from "./managesales/SetTargetUpdate";
 import SetDiscountUpdate from "./managesales/SetDiscountUpdate";
-import SetPromotionUpdate from "./managesales/SetPromotionUpdate";
+import SetPromotionUpdate from "./managesales/SetPromotionsUpdate";
 import ServiceManagement from "./manageservice";
 import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
@@ -58,13 +58,12 @@ export {
 	ViewAllCus,
 	SalesManagement,
 	SetTargetAdd,
-	SetDiscuntAdd,
+	SetDiscountAdd,
 	SetPromotionAdd,
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
 	PurchaseManagement,
-	SalesManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,

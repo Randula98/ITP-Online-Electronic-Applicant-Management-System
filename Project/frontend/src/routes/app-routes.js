@@ -36,13 +36,11 @@ import {
 	Stockupdate,
 	Stockhome,
 	// PurchaseManagement,
-	SalesManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
-	SupManagement,
 } from "../pages";
 
 function App() {

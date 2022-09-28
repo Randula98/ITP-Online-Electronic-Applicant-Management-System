@@ -65,7 +65,7 @@ const RecordPromotions = (props) => (
 );
 
 
-export default function index() {
+export default function SalesManagement() {
   return (
    <div>
        <h1>Manage Sales</h1>

@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native'
+
 import React from 'react'
 import "./page.css";
-export default function SetPromotionsAdd() {
+export default function SetPromotionAdd() {
     return (
 
         <div className="f1">
