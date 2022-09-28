@@ -25,18 +25,16 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
-	StockManagement,
 	Stockadd,
 	Stockupdate,
 	Stockhome,
-	PurchaseManagement,
+	// PurchaseManagement,
 	SalesManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
-	StockManagement,
 	SupManagement,
 } from "../pages";
 
@@ -80,20 +78,18 @@ function App() {
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 
 					{/* Stock Management */}
-					<Route path="/managestocks" element={<StockManagement />} />
 					<Route path="/stockadd" element={<Stockadd />} />
 					<Route path="/stockupdate" element={<Stockupdate />} />
 					<Route path="/stockhome" element={<Stockhome />} />
-					<Route path="/managepurchase" element={<PurchaseManagement />} />
+					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
+
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
-
-
-
+          
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />

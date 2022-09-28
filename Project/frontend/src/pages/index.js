@@ -27,9 +27,8 @@ import UpdatePosition from "./managehr/updateposition";
 import StockManagement from "./managestocks/Stockhome";
 import SupManagement from "./managesup";
 import Stockadd from "./managestocks/Stockadd";
-import Stockhome from "./managestocks/Stockhome";
-import StockManagement from "./managestocks";
 import Stockupdate from "./managestocks/Stockupdate";
+import Stockhome from "./managestocks/Stockhome";
 
 export {
 	About,
@@ -61,7 +60,6 @@ export {
 	StockManagement,
 	SupManagement,
 	Stockadd,
-	Stockhome,
 	Stockupdate,
-	
+	Stockhome,
 };
