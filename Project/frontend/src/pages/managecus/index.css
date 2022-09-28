@@ -1,10 +1,13 @@
 .newCustomers {
-    width: 91%;
-    height: 600px;
+    width: 95%;
+    height: auto;
     margin: 0 auto;
+    margin-top: 0px;
     background-color: #c8c2c243;
     padding: 20px;
-    margin-top: 90px;
+    border: 1px solid black;
+    margin-top: 80px;
+
 }
 
 .cuscard {
@@ -28,10 +31,11 @@
     padding: 20px;
     background-color: #c8c2c243;
 }
-.ribbon{
+
+.ribbon {
     width: 100%;
     height: 450px;
-    
+
 }
 
 .allCustomers {
@@ -42,7 +46,7 @@
     margin-top: 120px;
 }
 
-.list{
+.list {
     width: 100%;
     height: 100%;
     display: grid;
@@ -55,4 +59,34 @@
     margin-top: 10px;
     position: relative;
     float: left;
+}
+
+.viewcus{
+    width: 1000px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 80px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.viewcus img {
+    width:38=90px;
+    height: 390px;
+    padding: 10px;
+}
+
+.viewcus p{
+    padding: 10px;
+    font-size: 40px;
+    transition: 0.75s;
+}
+
+.viewcus p.sm{
+    padding: 10px;
+    font-size: 32px;
+}
+
+.left button{
+    margin-left: 120px;
 }

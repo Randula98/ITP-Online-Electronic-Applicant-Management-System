@@ -17,6 +17,7 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import ViewCus from "./managecus/viewcus";
 import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
 import SetTargetAdd from "./managesales/SetTargetAdd";
@@ -56,6 +57,7 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ViewCus,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -63,7 +65,7 @@ export {
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
-	PurchaseManagement,
+	// PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,

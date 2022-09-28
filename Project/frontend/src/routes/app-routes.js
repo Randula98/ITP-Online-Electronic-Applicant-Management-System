@@ -25,6 +25,7 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ViewCus,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -82,6 +83,7 @@ function App() {
 					{/* Customer Management */}
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
+					<Route path="/viewcus/:id" element={<ViewCus />} />
 
 					{/* Stock Management */}
 					<Route path="/stockadd" element={<Stockadd />} />
