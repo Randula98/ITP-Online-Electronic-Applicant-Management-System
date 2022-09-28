@@ -76,7 +76,7 @@ function App() {
 					{/* Customer Management */}
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
-					<Route path="/viewcus:id" element={<ViewCus />} />
+					<Route path="/viewcus/:id" element={<ViewCus />} />
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />

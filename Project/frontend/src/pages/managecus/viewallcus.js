@@ -9,7 +9,7 @@ const RecordAllCus = (props) => (
             <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
         </a>
         <div className="p-5">
-            <a href="#">
+            <a href={`/viewcus/${props.record._id}`}>
                 <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.fname} {props.record.lname}
                 </h5>
             </a>
@@ -17,7 +17,7 @@ const RecordAllCus = (props) => (
                 {props.record.email}<br />
                 {props.record.contactno}<br />
             </p>
-            <a href={`/viewcustomer/${props.record._id}`} target="_blank" rel="noreferrer"
+            <a href={`/viewcus/${props.record._id}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 View Profile
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
