@@ -17,6 +17,7 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
 import SetTargetAdd from "./managesales/SetTargetAdd";
 import SetDiscuntAdd from "./managesales/SetDiscountAdd";
@@ -24,6 +25,16 @@ import SetPromotionAdd from "./managesales/SetPromotionAdd";
 import SetTargetUpdate from "./managesales/SetTargetUpdate";
 import SetDiscountUpdate from "./managesales/SetDiscountUpdate";
 import SetPromotionUpdate from "./managesales/SetPromotionUpdate";
+import ServiceManagement from "./manageservice";
+import HRManagement from "./managehr";
+import ViewAllEmp from "./managehr/viewallemp";
+import AddPosition from "./managehr/addposition";
+import UpdatePosition from "./managehr/updateposition";
+import StockManagement from "./managestocks/Stockhome";
+import SupManagement from "./managesup";
+import Stockadd from "./managestocks/Stockadd";
+import Stockupdate from "./managestocks/Stockupdate";
+import Stockhome from "./managestocks/Stockhome";
 
 export {
 	About,
@@ -52,5 +63,16 @@ export {
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
-
+	PurchaseManagement,
+	SalesManagement,
+	ServiceManagement,
+	HRManagement,
+	ViewAllEmp,
+	AddPosition,
+	UpdatePosition,
+	StockManagement,
+	SupManagement,
+	Stockadd,
+	Stockupdate,
+	Stockhome,
 };

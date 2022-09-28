@@ -42,18 +42,18 @@ export default function Cardset() {
 
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="#">
+            <a href="/managehr">
               <img className="rounded-t-lg"
                 src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Femployee.jpg?alt=media&token=692215b4-956c-4faa-9619-c38d63657f33"
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="#">
+              <a href="/managehr">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">HR Management
                 </h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the Employees, Salary Details of the Employees and the Employee Positions. Get the report of Employees' Behavior.</p>
-              <a href="#"
+              <a href="/managehr"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -130,12 +130,12 @@ export default function Cardset() {
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="#">
+              <a href="/managestocks">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Stock
                   Management</h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the Stocks and Brands Details. Get a report about the demands of the Items and the Brands.</p>
-              <a href="#"
+              <a href="/managestocks"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -150,18 +150,18 @@ export default function Cardset() {
 
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="#">
+            <a href="/managestocks">
               <img className="rounded-t-lg"
                 src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Forder.png?alt=media&token=fd9bd0c8-4a39-4898-aff9-b07bb7ef6a3d"
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="#">
+              <a href="/managepurchase">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Purchase
                   Management</h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the details of the purchases done by the system. Get a report of Purchase Details.</p>
-              <a href="#"
+              <a href="/managepurchase"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -181,19 +181,19 @@ export default function Cardset() {
         <div className="row">
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="#">
+            <a href="/managepurchase">
               <img className="rounded-t-lg"
                 src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Fdelivery.jpg?alt=media&token=205335fe-4324-42aa-90ff-11858d6c4ba2"
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="#">
+              <a href="/manageservice">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Service
                   Management
                 </h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the details about Services and Deliveries. Get a report of the details of the Services and the Deliveries.</p>
-              <a href="#"
+              <a href="manageservice"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -208,19 +208,20 @@ export default function Cardset() {
           
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="#">
+            <a href="/managesup">
               <img className="rounded-t-lg"
                 src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Fsupply.png?alt=media&token=a2a8fec6-a1c0-4d22-95aa-de1835252fac"
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="#">
+              <a href="/managesup">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Supplier
                   Management
                 </h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the details about the Suppliers and Items supplying by the Suppliers. Get a report of the Suppliers' Behavior.</p>
-              <a href="#"
+
+              <a href="/managesup"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"

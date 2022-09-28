@@ -31,10 +31,19 @@ import {
 	SetPromotionAdd,
 	SetTargetUpdate,
 	SetDiscountUpdate,
-	SetPromotionUpdate
-	
+	SetPromotionUpdate,
+	Stockadd,
+	Stockupdate,
+	Stockhome,
+	// PurchaseManagement,
+	SalesManagement,
+	ServiceManagement,
+	HRManagement,
+	ViewAllEmp,
+	AddPosition,
+	UpdatePosition,
+	SupManagement,
 } from "../pages";
-
 
 function App() {
 	return (
@@ -76,6 +85,13 @@ function App() {
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 
+					{/* Stock Management */}
+					<Route path="/stockadd" element={<Stockadd />} />
+					<Route path="/stockupdate" element={<Stockupdate />} />
+					<Route path="/stockhome" element={<Stockhome />} />
+					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
+
+
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
 					<Route path="/managesales/settargetadd" element={<SetTargetAdd />} />
@@ -85,7 +101,15 @@ function App() {
 					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
 					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
 
-
+					{/* Service Management */}
+					<Route path="/manageservice" element={<ServiceManagement />} />
+          
+					{/* HR Management */}
+					<Route path="/managehr" element={<HRManagement />} />
+					<Route path="/viewallEmp" element={<ViewAllEmp />} />
+					<Route path="/addposition" element={<AddPosition />} />
+					<Route path="/updateposition/:id" element={<UpdatePosition />} />
+          
 				</Routes>
 				<Footer />
 			</Router>
