@@ -42,6 +42,8 @@ import {
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
+	FinanceDash,
+	ReqLoan,
 } from "../pages";
 
 function App() {
@@ -109,7 +111,11 @@ function App() {
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-          
+
+					{/* Finance Management */}
+					<Route path="/managefinance" element={<	FinanceDash />} />
+					<Route path="/reqloan" element={<ReqLoan />} />
+
 				</Routes>
 				<Footer />
 			</Router>

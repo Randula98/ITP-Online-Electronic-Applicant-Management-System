@@ -1,4 +1,7 @@
+
 const express = require("express");
+
+
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -11,12 +14,53 @@ const dbo = require("../../db/conn");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
+//get date
+let date_ob = new Date();
+
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+
+// prints date in YYYY-MM-DD format
+let fulldate = year + "-" + month + "-" + date;
+console.log(fulldate);
+
+
 // This section will help you get a list of all the records.
 loanRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("loan")
 		.find({})
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// get pending loans
+loanRoutes.route("/pendingloans").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("loan")
+		.find({status: "pending"})
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// get approved loans
+loanRoutes.route("/approvedloans").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("loan")
+		.find({status: "approved"})
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -37,12 +81,17 @@ loanRoutes.route("/loan/:id").get(function (req, res) {
 loanRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		loanid: req.body.loanid,
-		loandate: req.body.loandate,
+		loandate: fulldate,
 		duedate: req.body.duedate,
 		amount: req.body.amount,
+		duration: req.body.duration,
 		loanpurpose: req.body.loanpurpose,
-		employeeid: req.body.employeeid,
+		premium: req.body.premium,
+		employeeid: "4a6sd51asd68a1sf6",
+		status: "pending",
+		totalpayamount: req.body.totalpayamount,
+		remaingamount: req.body.remaingamount,
+		remainingmonths: req.body.remainingmonths,
 	};
 	db_connect.collection("loan").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -56,12 +105,17 @@ loanRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			loanid: req.body.loanid,
 			loandate: req.body.loandate,
 			duedate: req.body.duedate,
 			amount: req.body.amount,
+			duration: req.body.duration,
+			premium: req.body.premium,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 			loanpurpose: req.body.loanpurpose,
 			employeeid: req.body.employeeid,
+			status: req.body.status,
+			totalpayamount: req.body.totalpayamount,
+			remaingamount: req.body.remaingamount,
+			remainingmonths: req.body.remainingmonths,
 		},
 	};
 	db_connect.collection("loan").updateOne(myquery, newvalues, function (err, res) {

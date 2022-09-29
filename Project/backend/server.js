@@ -6,6 +6,9 @@ const port = process.env.REACT_APP_BACKEND_PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// import { LocalStorage } from "node-localstorage";
+// global.localStorage = new LocalStorage('./scratch');
+
 //get routes
 app.use("/employee", require("./routes/employee/record"));
 app.use("/position", require("./routes/position/record"));
