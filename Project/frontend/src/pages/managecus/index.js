@@ -208,12 +208,12 @@ export default function CusManagement() {
             </div>
 
             <br />
-            {/* <div className="topCustomers">
+            <div className="topCustomers">
                 <div className="row">
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
-                            <h1>Least Interacted Customers For The Past 3 Months!!</h1>
+                            <h1>Customer Loyalty Levels</h1>
                         </span>
                     </div>
                 </div> 
@@ -224,22 +224,19 @@ export default function CusManagement() {
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" className="py-3 px-6">
-                                        Customer Name
+                                        Type
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Customer Email
+                                        Discount
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Customer Contact No
+                                        Minimum Purchases
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Number of Purchases
+                                        Minimum Payments
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Total Spent Amount
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Action
+                                        Actions
                                     </th>
                                 </tr>
                             </thead>
@@ -247,22 +244,19 @@ export default function CusManagement() {
                                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row"
                                         className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
+                                        Sample
                                     </th>
                                     <td className="py-4 px-6">
-                                        Sliver
+                                        Sample
                                     </td>
                                     <td className="py-4 px-6">
-                                        Laptop
+                                        Sample
                                     </td>
                                     <td className="py-4 px-6">
-                                        $2999
+                                        Sample
                                     </td>
                                     <td className="py-4 px-6">
-                                        $2999
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        <a href="#"><span className="text-red-800">Delete</span></a>
+                                        Sample
                                     </td>
                                 </tr>
                             </tbody>
@@ -271,7 +265,7 @@ export default function CusManagement() {
 
                 </div> 
 
-            </div>*/}
+            </div>
         </div>
     )
 }
