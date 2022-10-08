@@ -7,28 +7,14 @@
     border: 1px solid black;
 }
 
-.cuscard {
-    width: 250px;
-    margin-left: 19px;
-}
-
 .btnrow {
     margin-top: 30px;
     width: 280px;
     margin: 0px auto;
 }
 
-.topCustomers {
-    width: 91%;
-    height: auto;
-    margin: 0px auto;
-    padding: 20px;
-    border: 1px solid black;
-    background-color: #c8c2c243;
-}
-
 a.btnup{
-width: 146.65px;
+    width: 146.65px;
 }
 
 .ribbon{

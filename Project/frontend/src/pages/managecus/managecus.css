@@ -5,14 +5,13 @@
     margin-top: 0px;
     background-color: #c8c2c243;
     padding: 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-top: 80px;
-
 }
 
 .cuscard {
-    width: 250px;
-    margin-left: 15px;
+    width: 240px;
+    margin-left: 16px;
     position: relative;
     float: left;
 }
