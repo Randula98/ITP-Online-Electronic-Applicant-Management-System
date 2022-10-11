@@ -4,18 +4,12 @@ import "./Stock.css";
 export default function Stockadd() {
   return (
     <div>
-
             <br />
-
-
             <center>
                 <h1 className="text-5xl font-extrabold text-white ">Add Stock Item</h1>
             </center>
             <br />
             <br />
-
-
-
             <form className="frame">
                 <div className="mb-6">
                     <div>
@@ -57,10 +51,6 @@ export default function Stockadd() {
                             placeholder="Apple" required="" />
                     </div>
                     <br />
-
-
-
-
                     <div>
                         <label for="visitors" class="block mb-2 text-sm font-medium text-white ">Item Quantity </label>
                         <input type="number" id="qty"
@@ -68,8 +58,6 @@ export default function Stockadd() {
                             placeholder="2" required="" />
                     </div>
                     <br />
-
-
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label className="block mb-2 text-sm font-medium text-white" for="multiple_files">Item Image </label>
@@ -77,9 +65,7 @@ export default function Stockadd() {
                                 className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 id="itemimg" type="file" multiple="" />
                         </div>
-
                     </div>
-
                     <button type="submit"
                         className="text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Add Details</button>
                 </div>
