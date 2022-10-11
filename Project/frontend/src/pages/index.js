@@ -4,6 +4,8 @@ import Contact from "./contact";
 import AdminDash from "./admindash/dash";
 import EmpDash from "./empdash/dash";
 import CusDash from "./cusdash/dash";
+import CusUpdate from "./cusdash/cusupdate";
+import CusDanger from "./cusdash/cusdanger";
 import Home from "./home";
 import Login from "./login/loginselect";
 import Cuslogin from "./login/cuslogin";
@@ -44,6 +46,8 @@ export {
 	Brands,
 	Contact,
 	CusDash,
+	CusUpdate,
+	CusDanger,
 	EmpDash,
 	AdminDash,
 	ErrPage,
