@@ -97,6 +97,8 @@ function App() {
 					<Route path="/stockadd" element={<Stockadd />} />
 					<Route path="/stockupdate" element={<Stockupdate />} />
 					<Route path="/stockhome" element={<Stockhome />} />
+
+					{/* Purchase Management */}
 					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
 
 
