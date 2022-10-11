@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function StockView() {
+export default function EditBrand() {
   return (
     <div>
-
+        
     </div>
   )
 }
+
