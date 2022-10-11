@@ -11,6 +11,8 @@ import {
 	Contact,
 	AdminDash,
 	CusDash,
+	CusUpdate,
+	CusDanger,
 	EmpDash,
 	ErrPage,
 	Home,
@@ -74,8 +76,12 @@ function App() {
 
 					{/* Employee Dashboard */}
 					<Route path="/empdash" element={<EmpDash />} />
+
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
+					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
+					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
+					
 					{/* Admin Dashboard */}
 					<Route path="/admindash" element={<AdminDash />} />
 

@@ -34,9 +34,24 @@
     width: 90%;
     height: 50px;
     margin: 0px auto;
+    margin-top: 10px;
 }
-.cardbutton:first-child{
-    width: 40%;
-    background-color: black;
-    visibility: hidden;
+.btn1{
+    width: 50%;
+    margin-left: 110px;
+}
+
+.cusdanger{
+    width: 50%;
+    height: 350px;
+    margin: 0px auto;
+}
+
+.cusdanger img{
+    width: 300px;
+    border-radius: 5%;
+}
+
+.passform{
+    width: 450px;
 }

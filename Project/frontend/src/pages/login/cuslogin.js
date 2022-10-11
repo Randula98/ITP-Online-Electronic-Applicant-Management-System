@@ -24,7 +24,7 @@ export default function Cuslogin() {
 		if (content.user === true) {
 			alert(content.msg);
 			localStorage.setItem("session", "yes");
-			localStorage.setItem("cusID", jwt_decode(content.token)._id);
+			localStorage.setItem("cusID", jwt_decode(content.token).id);
 			localStorage.setItem("cusFname", jwt_decode(content.token).fname);
 			localStorage.setItem("cusLname", jwt_decode(content.token).lname);
 			localStorage.setItem("cusAddress", jwt_decode(content.token).address);
