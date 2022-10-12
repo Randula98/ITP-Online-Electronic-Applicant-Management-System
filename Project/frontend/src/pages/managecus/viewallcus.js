@@ -34,7 +34,6 @@ const RecordAllCus = (props) => (
 export default function ViewAllCus() {
 
     const [records, setRecords] = useState([]);
-
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
@@ -45,11 +44,9 @@ export default function ViewAllCus() {
                 window.alert(message);
                 return;
             }
-
             const records = await response.json();
             setRecords(records);
         }
-
         getRecords();
 
         return;

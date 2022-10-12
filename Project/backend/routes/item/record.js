@@ -37,11 +37,12 @@ itemRoutes.route("/item/:id").get(function (req, res) {
 itemRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb();
 	let myobj = {
-		itemname: req.body.itemname,
-		supplierID: req.body.supplierID,
-		unitprice: req.body.unitprice,
-		itemtype: req.body.itemtype,
-		unitstock: req.body.unitstock,
+		itemname: req.body.itemname.itemname,
+		// supplierID: req.body.supplierID,
+		unitprice: req.body.unitprice.unitprice,
+		itemtype: req.body.itemtype.itemtype,
+		unitstock: req.body.unitstock.unitstock,
+		brand: req.body.brand.brand,
 		imgurl: req.body.imgurl,
 	};
 	db_connect.collection("item").insertOne(myobj, function (err, res) {
@@ -56,11 +57,12 @@ itemRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			itemname: req.body.itemname,
-			supplierID: req.body.supplierID,
-			unitprice: req.body.unitprice,
-			itemtype: req.body.itemtype,
-			unitstock: req.body.unitstock,
+			itemname: req.body.itemname.itemname,
+			// supplierID: req.body.supplierID,
+			unitprice: req.body.unitprice.unitprice,
+			itemtype: req.body.itemtype.itemtype,
+			unitstock: req.body.unitstock.unitstock,
+			brand: req.body.brand.brand,
 			imgurl: req.body.imgurl,
 		},
 	};
