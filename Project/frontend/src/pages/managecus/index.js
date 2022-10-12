@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./managecus.css";
 
 const RecordNewCus = (props) => (
@@ -53,12 +54,35 @@ const RecordTopCus = (props) => (
     </tr>
 );
 
-
+const RecordLoyaltyLevels = (props) => (
+    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row"
+            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.type}
+        </th>
+        <td className="py-4 px-6">
+            {props.record.color}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.discount}
+        </td>
+        <td className="py-4 px-6">
+            {props.record.payments}
+        </td>
+        <td class="py-4 px-6">
+            <Link className="btn btn-link" to={`/updateLoyalty/${props.record._id}`}><span className="text-red-800"> Edit - </span></Link>
+            <button onClick={() => {
+                props.deleteRecord(props.record._id);
+            }}><span className="text-red-800"> Delete</span></button>
+        </td>
+    </tr>
+);
 
 export default function CusManagement() {
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
+    const [records3, setRecords3] = useState([]);
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -99,15 +123,34 @@ export default function CusManagement() {
         return;
     }, [records2.length]);
 
-    // This method will delete a record
-    // async function deleteRecord(id) {
-    //     await fetch(`http://localhost:5000/${id}`, {
-    //         method: "DELETE"
-    //     });
+    useEffect(() => {
+        async function getRecords3() {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/loyalty`);
 
-    //     const newRecords = records.filter((el) => el._id !== id);
-    //     setRecords(newRecords);
-    // }
+            if (!response3.ok) {
+                const message = `An error occurred: ${response3.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records2 = await response3.json();
+            setRecords3(records2);
+        }
+
+        getRecords3();
+
+        return;
+    }, [records3.length]);
+
+    // This method will delete a record
+    async function deleteRecord(id) {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/loyalty/delete/${id}`, {
+            method: "DELETE"
+        });
+
+        const newRecords = records.filter((el) => el._id !== id);
+        setRecords3(newRecords);
+    }
 
     // This method will map out the records on the table
     function recordList() {
@@ -128,6 +171,18 @@ export default function CusManagement() {
                 <RecordTopCus
                     record={record}
                     // deleteRecord={() => deleteRecord(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
+
+    function recordList3() {
+        return records3.map((record) => {
+            return (
+                <RecordLoyaltyLevels
+                    record={record}
+                    deleteRecord={() => deleteRecord(record._id)}
                     key={record._id}
                 />
             );
@@ -198,7 +253,7 @@ export default function CusManagement() {
                     </div>
 
                 </div>
-                <br/>
+                <br />
                 <div className="row btnrow">
                     <a href="#"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
@@ -216,7 +271,7 @@ export default function CusManagement() {
                             <h1>Customer Loyalty Levels</h1>
                         </span>
                     </div>
-                </div> 
+                </div>
                 <div className="row">
 
                     <div className="overflow-x-auto relative">
@@ -227,10 +282,10 @@ export default function CusManagement() {
                                         Type
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Discount
+                                        Color
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Minimum Purchases
+                                        Discount
                                     </th>
                                     <th scope="col" className="py-3 px-6">
                                         Minimum Payments
@@ -241,29 +296,18 @@ export default function CusManagement() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row"
-                                        className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Sample
-                                    </th>
-                                    <td className="py-4 px-6">
-                                        Sample
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        Sample
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        Sample
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        Sample
-                                    </td>
-                                </tr>
+                                {recordList3()}
                             </tbody>
                         </table>
                     </div>
 
-                </div> 
+                </div>
+                    <br/>
+                <div className="row btnrow">
+                    <a href="#"><button type="button"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                       Add New Customer Loyalty Level</button></a>
+                </div>
 
             </div>
         </div>

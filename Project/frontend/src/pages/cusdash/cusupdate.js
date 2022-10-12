@@ -1,7 +1,8 @@
 /* eslint-disable object-shorthand */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useParams, useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
 
 export default function CusUpdate() {
@@ -15,6 +16,40 @@ export default function CusUpdate() {
 	const [email, setEmail] = useState("");
 	const [imgurl, setImgurl] = useState("");
 	// const navigate = useNavigate();
+
+	const params = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function fetchData() {
+
+			const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+            const id = params.id.toString();
+            const response = await fetch(`${BASE_URL}/customer/customer/${params.id.toString()}`);
+
+            if (!response.ok) {
+                const message = `An error has occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const record = await response.json();
+            if (!record) {
+                window.alert(`Record with id ${id} not found`);
+                navigate("/");
+                return;
+            }
+
+            setFname(record.fname);
+			setLname(record.lname);
+			setAddress(record.address);
+			setContactno(record.contactno);
+			setEmail(record.email);
+        }
+        fetchData();
+
+        return;
+    }, [params.id, navigate]);
 
 	return (
 		<div className="cusupdate">
@@ -55,7 +90,7 @@ export default function CusUpdate() {
 
 											console.log(url);
 
-											const newCustomer = {
+											const editedCustomer = {
 												fname,
 												lname,
 												address,
@@ -64,12 +99,12 @@ export default function CusUpdate() {
 												imgurl: url,
 											};
 
-											const response = await fetch(`${BASE_URL}/customer/add`, {
+											const response = await fetch(`${BASE_URL}/customer/update/${params.id}`, {
 												method: "POST",
 												headers: {
 													"Content-Type": "application/json",
 												},
-												body: JSON.stringify(newCustomer),
+												body: JSON.stringify(editedCustomer),
 											}).catch((err) => {
 												window.alert(err);
 												// return;
@@ -79,14 +114,16 @@ export default function CusUpdate() {
 
 											
 											if(content.success === true){
-												alert("User Registered Successfully");
-												window.location.href = "/login/cuslogin";
+												alert("Profile Updates Successfully");
+												window.location.href = "/cusdash";
 											}
 											else if (content.found === "email") {
 												alert("Email already exist");
+												window.location.href = "/cusdash";
 											}
 											else if (content.found === "contact") {
 												alert("Contact Number already exist");
+												window.location.href = "/cusdash";
 											}
 										})
 										.catch((err) => {
@@ -106,6 +143,7 @@ export default function CusUpdate() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="John"
 											onChange={(e) => setFname({ fname: e.target.value })}
+											value={fname}
 											required
 										/>
 									</div>
@@ -119,6 +157,7 @@ export default function CusUpdate() {
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="Doe"
 											onChange={(e) => setLname({ lname: e.target.value })}
+											value={lname}
 											required
 										/>
 									</div>
@@ -135,6 +174,7 @@ export default function CusUpdate() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="No. 134, Main Road, Colombo"
 										onChange={(e) => setAddress({ address: e.target.value })}
+										value={address}
 										required
 									/>
 								</div>
@@ -150,6 +190,7 @@ export default function CusUpdate() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
 										onChange={(e) => setContactno({ contactno: e.target.value })}
+										value={contactno}
 										required
 									/>
 								</div>
@@ -165,6 +206,7 @@ export default function CusUpdate() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
 										onChange={(e) => setEmail({ email: e.target.value })}
+										value={email}
 										required
 									/>
 								</div>

@@ -40,7 +40,6 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 		type: req.body.type,
 		color: req.body.color,
 		discount: req.body.discount,
-		purchases: req.body.purchases,
 		payments: req.body.payments,
 	};
 	db_connect.collection("loyalty").insertOne(myobj, function (err, res) {
@@ -58,7 +57,6 @@ loyaltyRoutes.route("/update/:id").post(function (req, response) {
 			type: req.body.type,
 			color: req.body.color,
 			discount: req.body.discount,
-			purchases: req.body.purchases,
 			payments: req.body.payments,
 		},
 	};
