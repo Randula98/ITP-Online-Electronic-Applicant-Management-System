@@ -38,7 +38,7 @@ import {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
-	// PurchaseManagement,
+	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
@@ -99,7 +99,7 @@ function App() {
 					<Route path="/stockhome" element={<Stockhome />} />
 
 					{/* Purchase Management */}
-					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
+					<Route path="/managepurchase" element={<PurchaseManagement />} />
 
 
 					{/* Sales Management */}

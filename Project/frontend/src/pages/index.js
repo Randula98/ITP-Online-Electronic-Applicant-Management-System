@@ -71,7 +71,7 @@ export {
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
-	// PurchaseManagement,
+	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
