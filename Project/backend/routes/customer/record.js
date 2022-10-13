@@ -119,6 +119,7 @@ customerRoutes.route("/add").post(function (req, response) {
 // This section will help you update a record by id.
 customerRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
+
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {

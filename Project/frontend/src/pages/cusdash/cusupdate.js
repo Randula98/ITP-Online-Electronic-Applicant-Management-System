@@ -17,6 +17,15 @@ export default function CusUpdate() {
 	const [imgurl, setImgurl] = useState("");
 	// const navigate = useNavigate();
 
+	const [form , setForm] = useState({
+		fname: "",
+		lname: "",
+		address: "",
+		contactno: "",
+		email: "",
+		imgurl: "",
+	});
+
 	const params = useParams();
     const navigate = useNavigate();
 
@@ -45,6 +54,8 @@ export default function CusUpdate() {
 			setAddress(record.address);
 			setContactno(record.contactno);
 			setEmail(record.email);
+
+			setForm(record);
         }
         fetchData();
 
@@ -68,11 +79,15 @@ export default function CusUpdate() {
 						<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 							<form
 								className="space-y-4 md:space-y-6"
-								autocomplete="off"
+								autoComplete="off"
 								onSubmit={async (e) => {
 									e.preventDefault();
 
 									const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+
+									console.log(imgurl.name == null);
+
+									if(address === ""){console.log("address is empty");}
 
 									const storageRef = ref(storage, `customer/${Image.name + v4()}`);
 
@@ -88,7 +103,19 @@ export default function CusUpdate() {
 										.then(async (url) => {
 											setImgurl(url);
 
-											console.log(url);
+											console.log("url " +url);
+
+											console.log("imgurl " +imgurl + " end");
+
+											if(Image.name == null){
+												setImgurl(localStorage.getItem("imgurl"));
+											}
+
+
+											if (imgurl === " ") {
+												console.log("imgurl is null");
+												setImgurl(localStorage.getItem("imgurl"));
+											}
 
 											const editedCustomer = {
 												fname,
@@ -96,8 +123,13 @@ export default function CusUpdate() {
 												address,
 												contactno,
 												email,
+												password: localStorage.getItem("cusPassword"),
+												totalpurchases:localStorage.getItem("cusTotalpurchases"),
+												totalpayments:localStorage.getItem("cusTotalpayments"),
 												imgurl: url,
 											};
+
+											console.log("Image : " + imgurl);
 
 											const response = await fetch(`${BASE_URL}/customer/update/${params.id}`, {
 												method: "POST",
@@ -112,6 +144,12 @@ export default function CusUpdate() {
 											const content = await response.json();
 											console.log(content);
 
+											localStorage.setItem("cusFname", fname);
+											localStorage.setItem("cusLname", lname);
+											localStorage.setItem("cusAddress", address);
+											localStorage.setItem("cusContactno", contactno);
+											localStorage.setItem("cusEmail", email);
+											localStorage.setItem("cusImgurl", url);
 											
 											if(content.success === true){
 												alert("Profile Updates Successfully");
@@ -125,6 +163,8 @@ export default function CusUpdate() {
 												alert("Contact Number already exist");
 												window.location.href = "/cusdash";
 											}
+											alert("Profile Updates Successfully");
+											window.location.href = "/cusdash";
 										})
 										.catch((err) => {
 											console.log(err);
@@ -142,8 +182,8 @@ export default function CusUpdate() {
 											id="fname"
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="John"
-											onChange={(e) => setFname({ fname: e.target.value })}
-											value={fname}
+											onChange={(e) => setFname(e.target.value )}
+											defaultValue={form.fname}
 											required
 										/>
 									</div>
@@ -156,8 +196,8 @@ export default function CusUpdate() {
 											id="lname"
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="Doe"
-											onChange={(e) => setLname({ lname: e.target.value })}
-											value={lname}
+											onChange={(e) => setLname(e.target.value)}
+											defaultValue={form.lname}
 											required
 										/>
 									</div>
@@ -173,8 +213,8 @@ export default function CusUpdate() {
 										id="address"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="No. 134, Main Road, Colombo"
-										onChange={(e) => setAddress({ address: e.target.value })}
-										value={address}
+										onChange={(e) => setAddress(e.target.value )}
+										defaultValue={form.address}
 										required
 									/>
 								</div>
@@ -189,8 +229,8 @@ export default function CusUpdate() {
 										id="contactno"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
-										onChange={(e) => setContactno({ contactno: e.target.value })}
-										value={contactno}
+										onChange={(e) => setContactno( e.target.value )}
+										defaultValue={form.contactno}
 										required
 									/>
 								</div>
@@ -205,8 +245,8 @@ export default function CusUpdate() {
 										id="email"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
-										onChange={(e) => setEmail({ email: e.target.value })}
-										value={email}
+										onChange={(e) => setEmail(e.target.value )}
+										defaultValue={form.email}
 										required
 									/>
 								</div>
@@ -227,19 +267,24 @@ export default function CusUpdate() {
 									<div>
 										<input
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											id="default_size"
+											id="file"
 											type="file"
 											name="image"
 											onChange={(e) => {
 												setImgurl(e.target.files[0]);
 											}}
-											required
+											
 										/>
 									</div>
 								</div>
 								<button
 									type="submit"
 									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+									// onClick={(e) => {
+									// 	if(document.getElementById("file").value === ""){
+											
+									// 	}
+									// }}
 								>
 									Update Profile
 								</button>
