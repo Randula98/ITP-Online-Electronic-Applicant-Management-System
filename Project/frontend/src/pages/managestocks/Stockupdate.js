@@ -1,20 +1,14 @@
 import React from 'react'
 import "./Stock.css";
 export default function Stockupdate() {
-  return (
-    <div>
-
+    return (
+        <div>
             <br />
-
-
             <center>
                 <h1 className="text-5xl font-extrabold text-white ">Update Stock Item</h1>
             </center>
             <br />
             <br />
-
-
-
             <form className="frame">
                 <div className="mb-6">
                     <div>
@@ -57,9 +51,6 @@ export default function Stockupdate() {
                     </div>
                     <br />
 
-
-
-
                     <div>
                         <label for="visitors" className="block mb-2 text-sm font-medium text-white ">Item Quantity </label>
                         <input type="number" id="qty"
@@ -67,7 +58,6 @@ export default function Stockupdate() {
                             placeholder="2" required="" />
                     </div>
                     <br />
-
 
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
@@ -86,5 +76,5 @@ export default function Stockupdate() {
 
         </div>
 
-  )
+    )
 }

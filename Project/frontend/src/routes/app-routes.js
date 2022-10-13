@@ -46,6 +46,11 @@ import {
 	UpdatePosition,
 	FinanceDash,
 	ReqLoan,
+	AddBrand,
+	EditBrand,
+	BrandView,
+	StockView,
+
 } from "../pages";
 
 function App() {
@@ -97,10 +102,14 @@ function App() {
 					<Route path="/stockadd" element={<Stockadd />} />
 					<Route path="/stockupdate" element={<Stockupdate />} />
 					<Route path="/stockhome" element={<Stockhome />} />
+					<Route path="/addstock" element={<Stockadd />} />
+					<Route path="/editbrand/:id" element={<EditBrand />} />
+					<Route path="/brandview" element={<BrandView />} />
+					<Route path="/addbrand" element={<AddBrand />} />
+					<Route path="/stockview" element={<StockView />} />
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />
-
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />

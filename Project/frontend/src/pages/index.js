@@ -40,6 +40,10 @@ import Stockupdate from "./managestocks/Stockupdate";
 import Stockhome from "./managestocks/Stockhome";
 import FinanceDash from "./managefinancial";
 import ReqLoan from "./managefinancial/reqloan";
+import AddBrand from "./managestocks/addbrand";
+import EditBrand from "./managestocks/editbrand";
+import BrandView from "./managestocks/brandview";
+import StockView from "./managestocks/stockview";
 
 export {
 	About,
@@ -84,4 +88,8 @@ export {
 	Stockhome,
 	FinanceDash,
 	ReqLoan,
+	AddBrand,
+	EditBrand,
+	BrandView,
+	StockView
 };

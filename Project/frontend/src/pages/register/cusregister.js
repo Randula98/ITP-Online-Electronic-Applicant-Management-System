@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
-// import { async } from "@firebase/util";
 
 export default function CusRegister() {
 	// const [imageUpload, setImageUpload] = useState(null);
@@ -19,7 +18,6 @@ export default function CusRegister() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [imgurl, setImgurl] = useState("");
 	const [isErr, setIsErr] = useState("");
-	// const navigate = useNavigate();
 
 	// navigate("/login/cuslogin");
 	const checkValidation = (e) => {
