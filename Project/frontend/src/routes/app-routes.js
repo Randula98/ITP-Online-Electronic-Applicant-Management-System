@@ -41,6 +41,7 @@ import {
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
+	SupplierManagement,
 } from "../pages";
 
 function App() {
@@ -107,8 +108,11 @@ function App() {
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-          
-				</Routes>
+
+					{/* supplier Management */}
+					<Route path="/managesup" element={<SupplierManagement />} />
+
+				</Routes>	
 				<Footer />
 			</Router>
 		</>

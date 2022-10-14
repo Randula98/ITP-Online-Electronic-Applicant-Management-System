@@ -35,6 +35,7 @@ import SupManagement from "./managesup";
 import Stockadd from "./managestocks/Stockadd";
 import Stockupdate from "./managestocks/Stockupdate";
 import Stockhome from "./managestocks/Stockhome";
+import SupplierManagement from "./managesup/";
 
 export {
 	About,
@@ -74,4 +75,5 @@ export {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
+	SupplierManagement,
 };
