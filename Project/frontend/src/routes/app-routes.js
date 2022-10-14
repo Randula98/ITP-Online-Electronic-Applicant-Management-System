@@ -11,6 +11,8 @@ import {
 	Contact,
 	AdminDash,
 	CusDash,
+	CusUpdate,
+	CusDanger,
 	EmpDash,
 	ErrPage,
 	Home,
@@ -25,6 +27,7 @@ import {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ViewCus,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -35,13 +38,19 @@ import {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
-	// PurchaseManagement,
+	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
 	SupplierManagement,
+	FinanceDash,
+	ReqLoan,
+	AddBrand,
+	EditBrand,
+	BrandView,
+	StockView,
 } from "../pages";
 
 function App() {
@@ -50,6 +59,7 @@ function App() {
 			<Router>
 				<NavBar />
 				<Routes>
+        
 					{/* Basic Routing */}
 					<Route path="/" element={<Home />} />
 					<Route path="/products" element={<Products />} />
@@ -72,8 +82,12 @@ function App() {
 
 					{/* Employee Dashboard */}
 					<Route path="/empdash" element={<EmpDash />} />
+
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
+					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
+					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
+					
 					{/* Admin Dashboard */}
 					<Route path="/admindash" element={<AdminDash />} />
 
@@ -83,13 +97,20 @@ function App() {
 					{/* Customer Management */}
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
+					<Route path="/viewcus/:id" element={<ViewCus />} />
 
 					{/* Stock Management */}
 					<Route path="/stockadd" element={<Stockadd />} />
 					<Route path="/stockupdate" element={<Stockupdate />} />
 					<Route path="/stockhome" element={<Stockhome />} />
-					{/* <Route path="/managepurchase" element={<PurchaseManagement />} /> */}
+					<Route path="/addstock" element={<Stockadd />} />
+					<Route path="/editbrand/:id" element={<EditBrand />} />
+					<Route path="/brandview" element={<BrandView />} />
+					<Route path="/addbrand" element={<AddBrand />} />
+					<Route path="/stockview" element={<StockView />} />
 
+					{/* Purchase Management */}
+					<Route path="/managepurchase" element={<PurchaseManagement />} />
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
@@ -108,11 +129,15 @@ function App() {
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-
+          
 					{/* supplier Management */}
 					<Route path="/managesup" element={<SupplierManagement />} />
-
-				</Routes>	
+          
+					{/* Finance Management */}
+					<Route path="/managefinance" element={<	FinanceDash />} />
+					<Route path="/reqloan" element={<ReqLoan />} />
+          
+				</Routes>
 				<Footer />
 			</Router>
 		</>

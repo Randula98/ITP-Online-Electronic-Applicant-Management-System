@@ -1,5 +1,6 @@
 // import { async } from "@firebase/util";
 import React from "react";
+import jwt_decode from 'jwt-decode';
 
 export default function Cuslogin() {
 	const [email, setEmail] = React.useState("");
@@ -21,19 +22,19 @@ export default function Cuslogin() {
 		console.log(content);
 
 		if (content.user === true) {
-			alert("Login Success");
+			alert(content.msg);
 			localStorage.setItem("session", "yes");
-			localStorage.setItem("cusID", response._id);
-			localStorage.setItem("cusFname", response.fname);
-			localStorage.setItem("cusLname", response.lname);
-			localStorage.setItem("cusAddress", response.address);
-			localStorage.setItem("cusContactno", response.contactno);
-			localStorage.setItem("cusEmail", response.email);
-			localStorage.setItem("cusPassword", response.password);
-			localStorage.setItem("cusTotalpurchases", response.totalpurchases);
-			localStorage.setItem("cusTotalpayments", response.totalpayments);
-			localStorage.setItem("cusImgurl", response.imgurl);
-			localStorage.setItem("authToken", response.token);
+			localStorage.setItem("cusID", jwt_decode(content.token).id);
+			localStorage.setItem("cusFname", jwt_decode(content.token).fname);
+			localStorage.setItem("cusLname", jwt_decode(content.token).lname);
+			localStorage.setItem("cusAddress", jwt_decode(content.token).address);
+			localStorage.setItem("cusContactno", jwt_decode(content.token).contactno);
+			localStorage.setItem("cusEmail", jwt_decode(content.token).email);
+			localStorage.setItem("cusPassword", jwt_decode(content.token).password);
+			localStorage.setItem("cusTotalpurchases", jwt_decode(content.token).totalpurchases);
+			localStorage.setItem("cusTotalpayments", jwt_decode(content.token).totalpayments);
+			localStorage.setItem("cusImgurl", jwt_decode(content.token).imgurl);
+			localStorage.setItem("authToken", content.token);
 			localStorage.setItem("user", "CUSTOMER");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));

@@ -4,6 +4,8 @@ import Contact from "./contact";
 import AdminDash from "./admindash/dash";
 import EmpDash from "./empdash/dash";
 import CusDash from "./cusdash/dash";
+import CusUpdate from "./cusdash/cusupdate";
+import CusDanger from "./cusdash/cusdanger";
 import Home from "./home";
 import Login from "./login/loginselect";
 import Cuslogin from "./login/cuslogin";
@@ -17,6 +19,7 @@ import EmpRegister from "./register/empregister";
 import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
+import ViewCus from "./managecus/viewcus";
 import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
 import SetTargetAdd from "./managesales/SetTargetAdd";
@@ -36,12 +39,20 @@ import Stockadd from "./managestocks/Stockadd";
 import Stockupdate from "./managestocks/Stockupdate";
 import Stockhome from "./managestocks/Stockhome";
 import SupplierManagement from "./managesup/";
+import FinanceDash from "./managefinancial";
+import ReqLoan from "./managefinancial/reqloan";
+import AddBrand from "./managestocks/addbrand";
+import EditBrand from "./managestocks/editbrand";
+import BrandView from "./managestocks/brandview";
+import StockView from "./managestocks/stockview";
 
 export {
 	About,
 	Brands,
 	Contact,
 	CusDash,
+	CusUpdate,
+	CusDanger,
 	EmpDash,
 	AdminDash,
 	ErrPage,
@@ -57,6 +68,7 @@ export {
 	Services,
 	CusManagement,
 	ViewAllCus,
+	ViewCus,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -76,4 +88,10 @@ export {
 	Stockupdate,
 	Stockhome,
 	SupplierManagement,
+	FinanceDash,
+	ReqLoan,
+	AddBrand,
+	EditBrand,
+	BrandView,
+	StockView
 };
