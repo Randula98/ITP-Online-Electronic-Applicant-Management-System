@@ -44,13 +44,13 @@ import {
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
+	SupplierManagement,
 	FinanceDash,
 	ReqLoan,
 	AddBrand,
 	EditBrand,
 	BrandView,
 	StockView,
-
 } from "../pages";
 
 function App() {
@@ -59,6 +59,7 @@ function App() {
 			<Router>
 				<NavBar />
 				<Routes>
+        
 					{/* Basic Routing */}
 					<Route path="/" element={<Home />} />
 					<Route path="/products" element={<Products />} />
@@ -128,11 +129,14 @@ function App() {
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-
+          
+					{/* supplier Management */}
+					<Route path="/managesup" element={<SupplierManagement />} />
+          
 					{/* Finance Management */}
 					<Route path="/managefinance" element={<	FinanceDash />} />
 					<Route path="/reqloan" element={<ReqLoan />} />
-
+          
 				</Routes>
 				<Footer />
 			</Router>
