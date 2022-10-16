@@ -89,3 +89,12 @@
 .left button{
     margin-left: 120px;
 }
+
+.addloyalty{
+    width: 1000px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 80px;
+    background-color: rgba(70, 67, 67, 0.582);
+}
+
