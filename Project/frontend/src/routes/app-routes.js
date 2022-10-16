@@ -51,6 +51,7 @@ import {
 	EditBrand,
 	BrandView,
 	StockView,
+	AddLoyalty,
 } from "../pages";
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
 					<Route path="/cusdash" element={<CusDash />} />
 					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
 					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
+					<Route path="/cusdash/addloyalty" element={<AddLoyalty />} />
 					
 					{/* Admin Dashboard */}
 					<Route path="/admindash" element={<AdminDash />} />

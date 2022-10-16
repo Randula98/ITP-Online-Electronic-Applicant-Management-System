@@ -1,10 +1,9 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function addloyalty() {
+export default function AddLoyalty() {
   return (
-    <View>
-      <Text>addloyalty</Text>
-    </View>
+    <div className = "addloyalty">
+
+    </div>
   )
 }
