@@ -1,7 +1,45 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-import React from 'react'
 import "./page.css";
 export default function SetDiscountAdd() {
+    const [form, setForm] = useState({
+        itemID: "",
+		precentage: "",
+		remarks: "",
+
+    });
+    const navigate = useNavigate();
+
+    // These methods will update the state properties.
+    function updateForm(value) {
+        return setForm((prev) => {
+            return { ...prev, ...value };
+        });
+    }
+
+    // This function will handle the submission.
+    async function onSubmit(e) {
+        e.preventDefault();
+
+        // When a post request is sent to the create url, we'll add a new record to the database.
+        const newPerson = { ...form };
+
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/position/add`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newPerson),
+        })
+            .catch(error => {
+                window.alert(error);
+                return;
+            });
+
+        setForm({ position: "", basicSalary: "", allowance: "", epf: "", etf: "", bonus: "", deductions: "", });
+        navigate("/managehr");
+    }
     return (
         <div className="f1">
             <div>
@@ -53,7 +91,8 @@ export default function SetDiscountAdd() {
                                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Percentage</label>
                                         <input type="text" name="percentage" id="percentage"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="20%" required=""/>
+                                            placeholder="20%" required=""
+                                            onChange={(e) => updateForm({precentage: e.target.value})}/>
                                     </div>
 
                                     <div>
@@ -75,7 +114,8 @@ export default function SetDiscountAdd() {
                                                 </div>
                                                 <input name="start" type="text"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
-                                                    placeholder="Select date start" />
+                                                    placeholder="Select date start" 
+                                                    onChange={(e) => updateForm({position: e.target.value})}/>
                                             </div>
                                             <span className="mx-4 text-gray-500">to</span>
                                             <div className="relative">

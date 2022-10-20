@@ -157,7 +157,7 @@ export default function SalesManagement() {
 
                 <div className="salesribbon"></div>
                 <div className="row btnrow">
-                    <a href="/viewallcus"><button type="button"
+                    <a href="/managesales/viewallpromo"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
                         All Promotions</button></a>
                 </div>
@@ -209,7 +209,7 @@ export default function SalesManagement() {
                 </div>
                 <br />
                 <div className="row btnrow">
-                    <a href="/addtargets"><button type="button"
+                    <a href="/managesales/settargetadd"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                         Add New Targets</button></a>
                 </div>
