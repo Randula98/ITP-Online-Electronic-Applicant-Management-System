@@ -23,6 +23,20 @@ targetsRoutes.route("/").get(function (req, res) {
 		});
 });
 
+//new 5 targets
+targetsRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("targets")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you get a single record by id
 targetsRoutes.route("/targets/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
@@ -41,8 +55,10 @@ targetsRoutes.route("/add").post(function (req, response) {
 		// position: req.body.position,
 		//level: req.body.level,
 		//targetid : req.body.targetid,
-		empno: req.body.empno,
+		empid: req.body.empid,
+		empname: req.body.empname,
 		noofactions: req.body.noofactions,
+		currentnoofactions: req.body.currentnoofactions,
 		startdate: req.body.startdate,
 		enddate: req.body.enddate,
 	};
@@ -62,8 +78,10 @@ targetsRoutes.route("/update/:id").post(function (req, response) {
 			//position: req.body.position,
 			//level: req.body.level,
 			//targetid : req.body.targetid,
-			empno: req.body.empno,
+			empid: req.body.empid,
+			empname: req.body.empname,
 			noofactions: req.body.noofactions,
+			currentnoofactions: req.body.currentnoofactions,
 			startdate: req.body.startdate,
 			enddate: req.body.enddate,
 		},

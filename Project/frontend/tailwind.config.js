@@ -1,5 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+
+    plugins: [
+        require('flowbite/plugin')
+    ]
+
+}
+
+module.exports = {
 	content: ["./src/**/*.{html,js}"],
 	theme: {
 		extend: {},
@@ -12,13 +20,6 @@ module.exports = {
 	plugins: [require("tw-elements/dist/plugin")],
 };
 
-// module.exports = {
-
-//     plugins: [
-//         require('flowbite/plugin')
-//     ]
-
-// }
 
 // module.exports = {
 

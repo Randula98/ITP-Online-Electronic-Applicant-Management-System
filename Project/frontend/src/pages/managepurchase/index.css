@@ -1,0 +1,21 @@
+.newCustomers {
+    width: 91%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #c8c2c243;
+    padding: 20px;
+    border: 0px solid black;
+
+}
+
+.btnrow {
+    margin-top: 30px;
+    width: 280px;
+    margin: 0px auto;
+}
+
+.btnright{
+    position: relative;
+    float: right;
+    margin-bottom: 60px;
+}

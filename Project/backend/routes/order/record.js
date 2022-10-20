@@ -47,6 +47,8 @@ orderRoutes.route("/update/:id").post(function (req, response) {
 		$set: {
 			supplierid: req.body.supplierid,
 			date: req.body.date,
+			itemid: req.body.itemid,
+			quantity: req.body.quantity,
 			aprrovedstatus: req.body.approvedstatus,
 			orderstatus: req.body.orderstatus,
 			details: req.body.details,

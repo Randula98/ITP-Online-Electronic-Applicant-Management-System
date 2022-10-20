@@ -1,0 +1,46 @@
+.newEmp {
+    width: 91%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #c8c2c243;
+    padding: 20px;
+    margin-top: 80px;   
+}
+
+.btnrow {
+    margin-top: 30px;
+    width: 280px;
+    margin: 0px auto;
+}
+
+.btnrow2 {
+    margin-top: 30px;
+    width: 500px;
+    margin: 0px auto;
+}
+
+.topemp {
+    width: 91%;
+    height: auto;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #c8c2c243;
+}
+
+.btnright{
+    position: relative;
+    float: right;
+    margin-bottom: 60px;
+}
+
+.salary {
+    width: 80%;
+    margin: 0px auto;
+    margin-top: 50px;
+    padding: 20px;  
+    height:1000px;
+}
+
+section{
+    margin-top: 50px;
+}

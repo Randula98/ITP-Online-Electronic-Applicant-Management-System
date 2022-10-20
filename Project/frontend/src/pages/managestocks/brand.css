@@ -1,0 +1,19 @@
+.frame {
+    margin: 0 auto;
+    width: 45%;
+    height: 20%;
+    padding: 40px;
+    background-color: #374151;
+    border-radius: 5px;
+
+}
+
+input[type=text],
+input[type=number],
+input[type=button],
+input[type=file],
+input[type=submit] {
+    background-color: #1F2937;
+    color: white;
+    border-color: #111827;
+}

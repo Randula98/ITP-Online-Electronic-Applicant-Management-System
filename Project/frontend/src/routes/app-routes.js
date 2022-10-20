@@ -11,7 +11,11 @@ import {
 	Contact,
 	AdminDash,
 	CusDash,
+	CusUpdate,
+	CusDanger,
 	EmpDash,
+	EmpUpdate,
+	EmpDanger,
 	ErrPage,
 	Home,
 	Login,
@@ -24,6 +28,33 @@ import {
 	EmpRegister,
 	Services,
 	CusManagement,
+	ViewAllCus,
+	ViewCus,
+	SalesManagement,
+	SetTargetAdd,
+	SetDiscountAdd,
+	SetPromotionAdd,
+	SetTargetUpdate,
+	SetDiscountUpdate,
+	SetPromotionUpdate,
+	ViewAllPromo,
+	Stockadd,
+	Stockupdate,
+	Stockhome,
+	PurchaseManagement,
+	ServiceManagement,
+	HRManagement,
+	ViewAllEmp,
+	AddPosition,
+	UpdatePosition,
+	SupplierManagement,
+	FinanceDash,
+	ReqLoan,
+	AddBrand,
+	EditBrand,
+	BrandView,
+	StockView,
+	AddLoyalty,
 } from "../pages";
 
 function App() {
@@ -32,11 +63,13 @@ function App() {
 			<Router>
 				<NavBar />
 				<Routes>
+        
 					{/* Basic Routing */}
 					<Route path="/" element={<Home />} />
 					<Route path="/products" element={<Products />} />
 					<Route path="/brands" element={<Brands />} />
 					<Route path="/services" element={<Services />} />
+					
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 
@@ -53,8 +86,13 @@ function App() {
 
 					{/* Employee Dashboard */}
 					<Route path="/empdash" element={<EmpDash />} />
+
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
+					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
+					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
+					<Route path="/cusdash/addloyalty" element={<AddLoyalty />} />
+					
 					{/* Admin Dashboard */}
 					<Route path="/admindash" element={<AdminDash />} />
 
@@ -63,6 +101,51 @@ function App() {
 
 					{/* Customer Management */}
 					<Route path="/managecus" element={<CusManagement />} />
+					<Route path="/viewallcus" element={<ViewAllCus />} />
+					<Route path="/viewcus/:id" element={<ViewCus />} />
+
+					{/* Stock Management */}
+					<Route path="/stockadd" element={<Stockadd />} />
+					<Route path="/stockupdate" element={<Stockupdate />} />
+					<Route path="/stockhome" element={<Stockhome />} />
+					<Route path="/addstock" element={<Stockadd />} />
+					<Route path="/editbrand/:id" element={<EditBrand />} />
+					<Route path="/brandview" element={<BrandView />} />
+					<Route path="/addbrand" element={<AddBrand />} />
+					<Route path="/stockview" element={<StockView />} />
+
+					{/* Purchase Management */}
+					<Route path="/managepurchase" element={<PurchaseManagement />} />
+
+					{/* Sales Management */}
+					<Route path="/managesales" element={<SalesManagement />} />
+					<Route path="/managesales/settargetadd" element={<SetTargetAdd />} />
+					<Route path="/managesales/setdiscountadd" element={<SetDiscountAdd />} />
+					<Route path="/managesales/setpromotionadd" element={<SetPromotionAdd />} />
+					<Route path="/managesales/settargetupdate" element={<SetTargetUpdate />} />
+					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
+					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
+					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
+					
+
+					{/* Service Management */}
+					<Route path="/manageservice" element={<ServiceManagement />} />
+          
+					{/* HR Management */}
+					<Route path="/managehr" element={<HRManagement />} />
+					<Route path="/viewallEmp" element={<ViewAllEmp />} />
+					<Route path="/addposition" element={<AddPosition />} />
+					<Route path="/updateposition/:id" element={<UpdatePosition />} />
+					<Route path="/empdash/empupdate/:id" element={<EmpUpdate/>}/> 
+					<Route path="/empdash/empdanger" element={<EmpDanger/>}/> 
+
+					{/* supplier Management */}
+					<Route path="/managesup" element={<SupplierManagement />} />
+          
+					{/* Finance Management */}
+					<Route path="/managefinance" element={<	FinanceDash />} />
+					<Route path="/reqloan" element={<ReqLoan />} />
+          
 				</Routes>
 				<Footer />
 			</Router>

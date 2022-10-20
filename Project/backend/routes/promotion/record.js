@@ -23,6 +23,20 @@ promotionRoutes.route("/").get(function (req, res) {
 		});
 });
 
+//new 3 promos
+promotionRoutes.route("/new3").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("promotion")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(3)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you get a single record by id
 promotionRoutes.route("/promotion/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
@@ -37,8 +51,10 @@ promotionRoutes.route("/promotion/:id").get(function (req, res) {
 promotionRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		typeid: req.body.typeid,
+		promoname: req.body.promoname,
 		precentage: req.body.precentage,
+		promoprice: req.body.promoprice,
+		imgurl: req.body.imgurl,
 		startdate: req.body.startdate,
 		enddate: req.body.enddate,
 	};
@@ -54,8 +70,10 @@ promotionRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			typeid: req.body.typeid,
+			promoname: req.body.promoname,
 			precentage: req.body.precentage,
+			promoprice: req.body.promoprice,
+			imgurl: req.body.imgurl,
 			startdate: req.body.startdate,
 			enddate: req.body.enddate,
 		},
