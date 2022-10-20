@@ -51,8 +51,9 @@ promotionRoutes.route("/promotion/:id").get(function (req, res) {
 promotionRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		typeid: req.body.typeid,
+		promoname: req.body.promoname,
 		precentage: req.body.precentage,
+		promoprice: req.body.promoprice,
 		imgurl: req.body.imgurl,
 		startdate: req.body.startdate,
 		enddate: req.body.enddate,
@@ -69,8 +70,9 @@ promotionRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			typeid: req.body.typeid,
+			promoname: req.body.promoname,
 			precentage: req.body.precentage,
+			promoprice: req.body.promoprice,
 			imgurl: req.body.imgurl,
 			startdate: req.body.startdate,
 			enddate: req.body.enddate,
