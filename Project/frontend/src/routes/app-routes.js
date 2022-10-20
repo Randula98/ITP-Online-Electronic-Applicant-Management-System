@@ -14,6 +14,8 @@ import {
 	CusUpdate,
 	CusDanger,
 	EmpDash,
+	EmpUpdate,
+	EmpDanger,
 	ErrPage,
 	Home,
 	Login,
@@ -131,7 +133,9 @@ function App() {
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-          
+					<Route path="/empdash/empupdate/:id" element={<EmpUpdate/>}/> 
+					<Route path="/empdash/empdanger" element={<EmpDanger/>}/> 
+
 					{/* supplier Management */}
 					<Route path="/managesup" element={<SupplierManagement />} />
           

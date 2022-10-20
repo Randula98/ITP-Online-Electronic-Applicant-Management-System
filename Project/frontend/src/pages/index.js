@@ -3,6 +3,8 @@ import Brands from "./brands";
 import Contact from "./contact";
 import AdminDash from "./admindash/dash";
 import EmpDash from "./empdash/dash";
+import EmpUpdate from "./empdash/empupdate";
+import EmpDanger from "./empdash/empdanger";
 import CusDash from "./cusdash/dash";
 import CusUpdate from "./cusdash/cusupdate";
 import CusDanger from "./cusdash/cusdanger";
@@ -55,6 +57,8 @@ export {
 	CusUpdate,
 	CusDanger,
 	EmpDash,
+	EmpUpdate,
+	EmpDanger,
 	AdminDash,
 	ErrPage,
 	Home,
