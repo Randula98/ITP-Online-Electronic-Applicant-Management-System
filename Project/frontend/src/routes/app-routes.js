@@ -35,6 +35,7 @@ import {
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
+	ViewAllPromo,
 	Stockadd,
 	Stockupdate,
 	Stockhome,
@@ -122,6 +123,8 @@ function App() {
 					<Route path="/managesales/settargetupdate" element={<SetTargetUpdate />} />
 					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
 					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
+					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
+					
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />

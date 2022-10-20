@@ -28,6 +28,7 @@ import SetPromotionAdd from "./managesales/SetPromotionsAdd";
 import SetTargetUpdate from "./managesales/SetTargetUpdate";
 import SetDiscountUpdate from "./managesales/SetDiscountUpdate";
 import SetPromotionUpdate from "./managesales/SetPromotionsUpdate";
+import ViewAllPromo from "./managesales/ViewAllPromo";
 import ServiceManagement from "./manageservice";
 import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
@@ -77,6 +78,7 @@ export {
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
+	ViewAllPromo,
 	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,

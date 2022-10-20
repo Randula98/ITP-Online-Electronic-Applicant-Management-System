@@ -1,7 +1,7 @@
 
 import React from 'react'
 import "./page.css";
-export default function SetPromotionAdd() {
+export default function SetTargetAdd() {
     return (
 
         <div className="f1">
@@ -22,29 +22,56 @@ export default function SetPromotionAdd() {
                                 Set Promotions
                             </h1>
                             <form className="space-y-4 md:space-y-6" action="#">
-                                <div>
 
-                                    <label for="loan_purpose"
+                            <div>
+                                <label for="percentage"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Promotion Name</label>
+                                <input type="text" name="percentage" id="percentage"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Laptop On Sale" required="" />
+                            </div>
 
-                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Item Type</label>
+                            <div>
+                                <label for="percentage"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Promotion Price</label>
+                                <input type="text" name="percentage" id="percentage"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="130000 " required="" />
+                            </div>
 
-                                    <select id="loan_purpose"
-
-                                        className="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                                        <option selected="">Choose an item type</option>
-
-                                        <option value="US">Emergency Loan</option>
-
-                                        <option value="CA">Home Loan</option>
-
-                                        <option value="FR">Medical Emergency Loan</option>
-
-                                        <option value="DE">Wedding Loan</option>
-
-                                    </select>
-
-                                </div>
+                            <div className="grid gap-6 mb-6 md:grid-cols-2">
+									<div>
+										<label
+											htmlFor="confirm-password"
+											className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+										>
+											Upload Promotion Image
+										</label>
+									</div>
+									<div>
+										<label
+											htmlFor="confirm-password"
+											className="block mb-2 text-sm font-medium text-gray-900 dark:text-red-600"
+										>
+											{/* {isErr} */}
+										</label>
+									</div>
+								</div>
+								{/* image */}
+								<div>
+									<div>
+										<input
+											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+											id="default_size"
+											type="file"
+											name="image"
+											// onChange={(e) => {
+											// 	setImgurl(e.target.files[0]);
+											// }}
+											required
+										/>
+									</div>
+								</div>
 
                                 <div>
                                     <label for="percentage"
@@ -70,7 +97,7 @@ export default function SetPromotionAdd() {
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <input name="start" type="text"
+                                            <input name="start" type="date"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
                                                 placeholder="Select date start" />
                                         </div>
@@ -86,7 +113,7 @@ export default function SetPromotionAdd() {
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <input name="end" type="text"
+                                            <input name="end" type="date"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
                                                 placeholder="Select date end" />
                                         </div>
