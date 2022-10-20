@@ -1,4 +1,5 @@
 import React from "react";
+import jwt_decode from 'jwt-decode';
 
 export default function EmpLogin() {
 	const [email, setEmail] = React.useState("");
@@ -22,18 +23,18 @@ export default function EmpLogin() {
 		if (content.user === true) {
 			alert("Login Success");
 			localStorage.setItem("session", "yes");
-			localStorage.setItem("empID", response._id);
-			localStorage.setItem("empFname", response.fname);
-			localStorage.setItem("empLname", response.lname);
-			localStorage.setItem("empContactNo", response.contact);
-			localStorage.setItem("empPosition", response.position);
-			localStorage.setItem("empEmail", response.email);
-			localStorage.setItem("empPassword", response.password);
-			localStorage.setItem("empTotalSales", response.totalsales);
-			localStorage.setItem("empTotalAppoinments", response.totalappoinments);
-			localStorage.setItem("empTotalServices", response.totalservices);
-			localStorage.setItem("empImgurl", response.imgurl);
-			localStorage.setItem("authToken", response.token);
+			localStorage.setItem("empID", jwt_decode(content.token).id);
+			localStorage.setItem("empFname", jwt_decode(content.token).fname);
+			localStorage.setItem("empLname", jwt_decode(content.token).lname);
+			localStorage.setItem("empContactNo", jwt_decode(content.token).contact);
+			localStorage.setItem("empPosition", jwt_decode(content.token).position);
+			localStorage.setItem("empEmail", jwt_decode(content.token).email);
+			localStorage.setItem("empPassword", jwt_decode(content.token).email.password);
+			localStorage.setItem("empTotalSales", jwt_decode(content.token).totalsales);
+			localStorage.setItem("empTotalAppoinments", jwt_decode(content.token).totalappoinments);
+			localStorage.setItem("empTotalServices", jwt_decode(content.token).totalservices);
+			localStorage.setItem("empImgurl", jwt_decode(content.token).imgurl);
+			localStorage.setItem("authToken", content.token);
 			localStorage.setItem("user", "EMPLOYEE");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));

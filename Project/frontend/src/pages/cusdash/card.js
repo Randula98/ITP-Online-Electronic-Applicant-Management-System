@@ -13,7 +13,7 @@ export default function Card() {
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">{localStorage.getItem("cusAddress")}</p>
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">{localStorage.getItem("cusContactno")}</p>
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">{localStorage.getItem("cusEmail")}</p>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">{localStorage.getItem("cusID")}</p>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">{localStorage.getItem("empID")}</p>
                     </div>
                 </a>
                 <a href="#" className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 cuscardx">
