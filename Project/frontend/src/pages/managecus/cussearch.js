@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams, } from "react-router-dom";
 import "./managecus.css";
 
 const RecordAllCus = (props) => (
@@ -32,16 +33,21 @@ const RecordAllCus = (props) => (
     </div>
 );
 
-export default function ViewAllCus() {
-
+export default function CusSearch() {
     const [records, setRecords] = useState([]);
     const [search , setSearch] = useState("");
+
+    const params = useParams();
+
+    const key = params.key.toString();
+
+    //alert(key);
 
     const navigate = useNavigate();
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/search/${key}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -78,6 +84,19 @@ export default function ViewAllCus() {
             );
         });
     }
+
+    // async function searchRecord(e) {
+    //     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/search/${search}`);
+
+    //     if (!response.ok) {
+    //         const message = `An error occurred: ${response.statusText}`;
+    //         window.alert(message);
+    //         return;
+    //     }
+    //     const records = await response.json();
+    //     setRecords(records);
+        
+    // }
 
     function searchRecord(e) {
         const key = search;
