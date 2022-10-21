@@ -50,6 +50,8 @@ import {
 	EditBrand,
 	BrandView,
 	StockView,
+	AddDelivery,
+	AddRepair,
 
 } from "../pages";
 
@@ -122,6 +124,8 @@ function App() {
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
+					<Route PATH="/manageservice/addRepair" element={<AddRepair />} />
+					<Route path="/manageservice/addDelivery" element={<AddDelivery />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />

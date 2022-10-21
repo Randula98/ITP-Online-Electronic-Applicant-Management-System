@@ -44,6 +44,8 @@ import AddBrand from "./managestocks/addbrand";
 import EditBrand from "./managestocks/editbrand";
 import BrandView from "./managestocks/brandview";
 import StockView from "./managestocks/stockview";
+import AddDelivery from "./manageservice/addDelivery";
+import AddRepair from "./manageservice/addRepair";
 
 export {
 	About,
@@ -91,5 +93,7 @@ export {
 	AddBrand,
 	EditBrand,
 	BrandView,
-	StockView
+	StockView,
+	AddDelivery,
+	AddRepair,
 };
