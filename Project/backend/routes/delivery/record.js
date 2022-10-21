@@ -23,6 +23,32 @@ deliveryRoutes.route("/").get(function (req, res) {
 		});
 });
 
+deliveryRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("delivery")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// completed deliveries
+deliveryRoutes.route("/completed").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("delivery")
+		.find({})
+		.filter({ status: "completed" })
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you get a single record by id
 deliveryRoutes.route("/delivery/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
