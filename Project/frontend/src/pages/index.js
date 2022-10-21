@@ -42,6 +42,7 @@ import SupManagement from "./managesup";
 import Stockadd from "./managestocks/Stockadd";
 import Stockupdate from "./managestocks/Stockupdate";
 import Stockhome from "./managestocks/Stockhome";
+import ItemTypes from "./managestocks/itemTypes";
 import SupplierManagement from "./managesup/";
 import FinanceDash from "./managefinancial";
 import ReqLoan from "./managefinancial/reqloan";
@@ -96,6 +97,7 @@ export {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
+	ItemTypes,
 	SupplierManagement,
 	FinanceDash,
 	ReqLoan,

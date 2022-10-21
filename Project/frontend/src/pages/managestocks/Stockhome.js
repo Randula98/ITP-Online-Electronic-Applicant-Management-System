@@ -12,7 +12,7 @@ export default function Stockhome() {
                             <span className="font-medium">
                                 <h1>Latest Item</h1>
                             </span>
-                            
+
                         </div>
                     </div>
 
@@ -155,7 +155,7 @@ export default function Stockhome() {
                         <a href="/stockview"><button type="button"
                             className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                             View All Items</button></a>
-                            
+
                     </div>
                 </div>
                 <br />
@@ -245,7 +245,7 @@ export default function Stockhome() {
                                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                     Brands Name<br />
                                 </p>
-                                
+
                             </div>
                         </div>
                         <div
@@ -261,7 +261,7 @@ export default function Stockhome() {
                                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                     Brands Name<br />
                                 </p>
-                                
+
                             </div>
                         </div>
                         <div
@@ -277,7 +277,7 @@ export default function Stockhome() {
                                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                     Brands Name<br />
                                 </p>
-                                
+
                             </div>
                         </div>
                         <div
@@ -293,7 +293,7 @@ export default function Stockhome() {
                                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                     Brands Name<br />
                                 </p>
-                                
+
                             </div>
                         </div>
                         <div
@@ -309,16 +309,21 @@ export default function Stockhome() {
                                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                     Brands Name<br />
                                 </p>
-                                
+
                             </div>
                         </div>
                     </div>
-                    <br />
                     <div class="ribbonstock"></div>
-                    <div className="row btnrow">
+                    <div className="row stockribbon">
                         <a href="/brandview"><button type="button"
-                            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                            View All Brands</button></a>
+                            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btnbrand">
+                            View All Brands</button>
+                            </a>
+
+                            <a href="/itemtypes"><button type="button"
+                            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btnbrand">
+                            Manage Item Types</button>
+                            </a>
                     </div>
                 </div>
                 <br />
