@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function updateloyalty() {
+export default function ItemTypes() {
   return (
     <div>
-      
+
     </div>
   )
 }

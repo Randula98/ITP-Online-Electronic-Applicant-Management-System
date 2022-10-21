@@ -183,4 +183,15 @@ customerRoutes.route("/login").post(function (req, response) {
 	});
 });
 
+// search by fname
+customerRoutes.route("/search/:key").get(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let myquery = { fname: { $regex: key, $options: "i" } };
+	db_connect.collection("customer").find(myquery).toArray(function (err, result) {
+		if (err) throw err;
+		response.json(result);
+	});
+});
+
 module.exports = customerRoutes;
