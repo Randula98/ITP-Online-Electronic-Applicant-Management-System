@@ -1,7 +1,20 @@
 
-import React from 'react'
+import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+
 import "./page.css";
-export default function SetTargetAdd() {
+export default function SetPromotionAdd() {
+
+    const [promoname, setPromoname] = useState("");
+    const [precentage, setPrecentage] = useState("");
+    const [promoprice, setPromoprice] = useState("");
+    const [imgurl, setImgurl] = useState("");
+    const [startdate, setStartdate] = useState("");
+    const [enddate, setEnddate] = useState("");
+
     return (
 
         <div className="f1">
@@ -21,64 +34,133 @@ export default function SetTargetAdd() {
                                 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Set Promotions
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" autocomplete="off"
+                                onSubmit={async (e) => {
+                                    e.preventDefault();
 
-                            <div>
-                                <label for="percentage"
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Promotion Name</label>
-                                <input type="text" name="percentage" id="percentage"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Laptop On Sale" required="" />
-                            </div>
+                                    const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
-                            <div>
-                                <label for="percentage"
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Promotion Price</label>
-                                <input type="text" name="percentage" id="percentage"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="130000 " required="" />
-                            </div>
+                                    const storageRef = ref(storage, `promotiona/${Image.name + v4()}`);
 
-                            <div className="grid gap-6 mb-6 md:grid-cols-2">
-									<div>
-										<label
-											htmlFor="confirm-password"
-											className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-										>
-											Upload Promotion Image
-										</label>
-									</div>
-									<div>
-										<label
-											htmlFor="confirm-password"
-											className="block mb-2 text-sm font-medium text-gray-900 dark:text-red-600"
-										>
-											{/* {isErr} */}
-										</label>
-									</div>
-								</div>
-								{/* image */}
-								<div>
-									<div>
-										<input
-											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											id="default_size"
-											type="file"
-											name="image"
-											// onChange={(e) => {
-											// 	setImgurl(e.target.files[0]);
-											// }}
-											required
-										/>
-									</div>
-								</div>
+                                    await uploadBytes(storageRef, imgurl)
+                                        .then(() => {
+                                            console.log("uploaded");
+                                        })
+                                        .catch((err) => {
+                                            console.log(err);
+                                        });
+
+                                    await getDownloadURL(storageRef)
+                                        .then(async (url) => {
+                                            setImgurl(url);
+
+                                            console.log(url);
+
+                                            const newPromos = {
+                                                promoname,
+                                                precentage,
+                                                promoprice,
+                                                imgurl: url,
+                                                startdate,
+                                                enddate
+                                            };
+
+                                            const response = await fetch(`${BASE_URL}/promotion/add`, {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                },
+                                                body: JSON.stringify(newPromos),
+                                            }).catch((err) => {
+                                                window.alert(err);
+                                                // return;
+                                            });
+                                            const content = await response.json();
+                                            console.log(content);
+
+
+                                            if (content.success === true) {
+                                                alert("User Registered Successfully");
+                                                window.location.href = "/managesales";
+                                            }
+                                            else if (content.found === "email") {
+                                                alert("Email already exist");
+                                            }
+                                            else if (content.found === "contact") {
+                                                alert("Contact Number already exist");
+                                            }
+
+                                            alert("Promotion Added Successfully");
+                                            window.location.href = "/managesales";
+                                        })
+                                        .catch((err) => {
+                                            console.log(err);
+                                        });
+                                }}>
+
+                                <div>
+                                    <label for="percentage"
+                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Promotion Name</label>
+                                    <input type="text" name="percentage" id="percentage"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Laptop On Sale"
+                                        onChange={(e) => setPromoname(e.target.value)}
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label for="percentage"
+                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Promotion Price</label>
+                                    <input type="text" name="percentage" id="percentage"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="130000"
+                                        onChange={(e) => setPromoprice(e.target.value)} 
+                                        required />
+                                </div>
+
+                                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                                    <div>
+                                        <label
+                                            htmlFor="confirm-password"
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        >
+                                            Upload Promotion Image
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label
+                                            htmlFor="confirm-password"
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-red-600"
+                                        >
+                                            {/* {isErr} */}
+                                        </label>
+                                    </div>
+                                </div>
+                                {/* image */}
+                                <div>
+                                    <div>
+                                        <input
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            id="default_size"
+                                            type="file"
+                                            name="image"
+                                            onChange={(e) => {
+												setImgurl(e.target.files[0]);
+											}}
+                                            required
+                                        />
+                                    </div>
+                                </div>
 
                                 <div>
                                     <label for="percentage"
                                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Percentage</label>
                                     <input type="text" name="percentage" id="percentage"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="20%" required="" />
+                                        placeholder="20%" 
+                                        onChange={(e) => setPrecentage(e.target.value)} 
+                                        required/>
                                 </div>
 
                                 <div>
@@ -99,7 +181,10 @@ export default function SetTargetAdd() {
                                             </div>
                                             <input name="start" type="date"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
-                                                placeholder="Select date start" />
+                                                placeholder="Select date start" 
+                                                onChange={(e) => setStartdate(e.target.value)}
+                                                required
+                                                />
                                         </div>
                                         <span className="mx-4 text-gray-500">to</span>
                                         <div className="relative">
@@ -115,7 +200,9 @@ export default function SetTargetAdd() {
                                             </div>
                                             <input name="end" type="date"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
-                                                placeholder="Select date end" />
+                                                placeholder="Select date end" 
+                                                onChange={(e) => setEnddate(e.target.value)}
+                                                required/>
                                         </div>
                                     </div>
 
