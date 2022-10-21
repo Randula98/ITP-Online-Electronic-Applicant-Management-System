@@ -42,6 +42,7 @@ import {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
+	ItemTypes,
 	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
@@ -115,6 +116,7 @@ function App() {
 					<Route path="/brandview" element={<BrandView />} />
 					<Route path="/addbrand" element={<AddBrand />} />
 					<Route path="/stockview" element={<StockView />} />
+					<Route path="/itemtypes" element={<ItemTypes />} />
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />

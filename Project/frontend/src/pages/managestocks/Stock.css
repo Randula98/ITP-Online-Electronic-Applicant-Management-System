@@ -5,6 +5,12 @@
     margin: 0px auto;
 }
 
+.stockribbon{
+    width: 600px;
+    height: 100px;
+    margin: auto;
+}
+
 .stockviewhead{
     width:9%;
     height: 50px;
@@ -16,15 +22,32 @@
 }
 
 .stockviewbody{
-    width: 80%;
-    height: 500px;
-    background-color: #615d5d1f;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
 .stockaddhead{
     margin-top: 120px;
+}
+
+.brandcard{
+    width: 300px;
+    height: 300px;
+    background-color: #615d5d1f;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.brandcardimg{
+    width: 300px;
+    height: 170px;
+}
+
+a .btnbrand{
+    position: relative;
+    float: left;
+    margin-left:50px ;
 }
