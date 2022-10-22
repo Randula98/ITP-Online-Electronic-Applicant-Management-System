@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+
 import "./brand.css";
 export default function AddBrand() {
+
+  const [bname, setBname] = useState("");
+  const [brandimg, setBrandimg] = useState("");
+
   return (
     <div>
       <center>
@@ -8,17 +17,75 @@ export default function AddBrand() {
       </center>
       <br />
       <br />
+      <form class="frame" onSubmit={async (e) => {
+									e.preventDefault();
 
+									const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
+									const storageRef = ref(storage, `brand/${Image.name + v4()}`);
 
-      <form class="frame">
+									await uploadBytes(storageRef, brandimg)
+										.then(() => {
+											console.log("uploaded");
+										})
+										.catch((err) => {
+											console.log(err);
+										});
+
+									await getDownloadURL(storageRef)
+										.then(async (url) => {
+											setBrandimg(url);
+
+											console.log(url);
+
+											const newBrand = {
+												bname,
+												brandurl: url,
+											};
+
+											const response = await fetch(`${BASE_URL}/brand/add`, {
+												method: "POST",
+												headers: {
+													"Content-Type": "application/json",
+												},
+												body: JSON.stringify(newBrand),
+											}).catch((err) => {
+												window.alert(err);
+												// return;
+											});
+											const content = await response.json();
+											console.log(content);
+
+											
+											if(content.success === true){
+												alert("User Registered Successfully");
+												window.location.href = "/login/cuslogin";
+											}
+											else if (content.found === "email") {
+												alert("Email already exist");
+											}
+											else if (content.found === "contact") {
+												alert("Contact Number already exist");
+											}
+										})
+										.catch((err) => {
+											console.log(err);
+										});					
+
+                    alert("New Brand Registered Successfully");
+										window.location.href = "/brandview";
+								}}
+                >
         <div class="mb-6">
           <div>
             <label for="Item Name" class="block mb-2 text-sm font-medium text-white ">Brand
               Name</label>
             <input type="text" id="bname"
               class="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="I phone" required="" />
+              placeholder="iPhone" 
+              onChange={(e) => setBname(e.target.value )}
+              required
+               />
           </div>
         </div>
         <br />
@@ -27,8 +94,15 @@ export default function AddBrand() {
           <div>
             <label class="block mb-2 text-sm font-medium text-white" for="multiple_files">Item Image </label>
             <input
-              class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              id="itemimg" type="file" multiple="" />
+							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+							id="default_size"
+							type="file"
+							name="image"
+							onChange={(e) => {
+                setBrandimg(e.target.files[0]);
+								}}
+							required
+										/>
           </div>
 
         </div>

@@ -1,4 +1,6 @@
 .f1 {
-    width: 50%;
-    margin: auto;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
 }

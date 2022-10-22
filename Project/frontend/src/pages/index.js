@@ -3,6 +3,8 @@ import Brands from "./brands";
 import Contact from "./contact";
 import AdminDash from "./admindash/dash";
 import EmpDash from "./empdash/dash";
+import EmpUpdate from "./empdash/empupdate";
+import EmpDanger from "./empdash/empdanger";
 import CusDash from "./cusdash/dash";
 import CusUpdate from "./cusdash/cusupdate";
 import CusDanger from "./cusdash/cusdanger";
@@ -20,6 +22,7 @@ import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
 import ViewCus from "./managecus/viewcus";
+import CusSearch from "./managecus/cussearch";
 import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
 import SetTargetAdd from "./managesales/SetTargetAdd";
@@ -28,6 +31,7 @@ import SetPromotionAdd from "./managesales/SetPromotionsAdd";
 import SetTargetUpdate from "./managesales/SetTargetUpdate";
 import SetDiscountUpdate from "./managesales/SetDiscountUpdate";
 import SetPromotionUpdate from "./managesales/SetPromotionsUpdate";
+import ViewAllPromo from "./managesales/ViewAllPromo";
 import ServiceManagement from "./manageservice";
 import HRManagement from "./managehr";
 import ViewAllEmp from "./managehr/viewallemp";
@@ -38,6 +42,8 @@ import SupManagement from "./managesup";
 import Stockadd from "./managestocks/Stockadd";
 import Stockupdate from "./managestocks/Stockupdate";
 import Stockhome from "./managestocks/Stockhome";
+import ItemTypes from "./managestocks/itemTypes";
+import SupplierManagement from "./managesup/";
 import FinanceDash from "./managefinancial";
 import ReqLoan from "./managefinancial/reqloan";
 import AddBrand from "./managestocks/addbrand";
@@ -46,8 +52,9 @@ import BrandView from "./managestocks/brandview";
 import StockView from "./managestocks/stockview";
 import SupAddOrder from "./managesup/addOrder";
 import SupAddSupplier from "./managesup/addSupplier";	
-
-
+import AddDelivery from "./manageservice/addDelivery";
+import AddRepair from "./manageservice/addRepair";
+import AddLoyalty from "./managecus/addloyalty";
 
 export {
 	About,
@@ -57,6 +64,8 @@ export {
 	CusUpdate,
 	CusDanger,
 	EmpDash,
+	EmpUpdate,
+	EmpDanger,
 	AdminDash,
 	ErrPage,
 	Home,
@@ -72,6 +81,7 @@ export {
 	CusManagement,
 	ViewAllCus,
 	ViewCus,
+	CusSearch,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -79,6 +89,7 @@ export {
 	SetTargetUpdate,
 	SetDiscountUpdate,
 	SetPromotionUpdate,
+	ViewAllPromo,
 	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
@@ -90,6 +101,8 @@ export {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
+	ItemTypes,
+	SupplierManagement,
 	FinanceDash,
 	ReqLoan,
 	AddBrand,
@@ -98,4 +111,7 @@ export {
 	StockView,
 	SupAddOrder,
 	SupAddSupplier,
+	AddDelivery,
+	AddRepair,
+	AddLoyalty
 };

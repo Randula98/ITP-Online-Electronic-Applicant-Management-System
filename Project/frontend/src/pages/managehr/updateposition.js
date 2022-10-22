@@ -94,7 +94,7 @@ export default function UpdatePosition() {
                                         <input type="text" id="position" name="position"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             required="" 
-                                            value={form.position}
+                                            defaultValue={form.position}
                                             onChange={(e) => updateForm({ position: e.target.value })} />
                                     </div>
                                     <div className="mb-6">
@@ -104,8 +104,8 @@ export default function UpdatePosition() {
                                         <input type="text" id="basicsal" name="basicsal"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="" required="" 
-                                            value={form.basicSalary}
-                                            onChange={(e) => updateForm({ position: e.target.value })}/>
+                                            defaultValue={form.basicSalary}
+                                            onChange={(e) => updateForm({ basicSalary: e.target.value })}/>
                                     </div>
                                     <div className="mb-6">
                                         <label for="allowances"
@@ -114,8 +114,8 @@ export default function UpdatePosition() {
                                         <input type="text" id="allowances" name="allowances"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="" required="" 
-                                            value={form.allowances}
-                                            onChange={(e) => updateForm({ position: e.target.value })}/>
+                                            defaultValue={form.allowances}
+                                            onChange={(e) => updateForm({ allowances: e.target.value })}/>
                                     </div>
 
                                     <div className="mb-6">
@@ -125,8 +125,8 @@ export default function UpdatePosition() {
                                         <input type="text" id="epf" name="epf"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="" required="" 
-                                            value={form.epf}
-                                            onChange={(e) => updateForm({ position: e.target.value })}/>
+                                            defaultValue={form.epf}
+                                            onChange={(e) => updateForm({ epf: e.target.value })}/>
                                     </div>
 
                                     <div className="mb-6">
@@ -136,8 +136,8 @@ export default function UpdatePosition() {
                                         <input type="text" id="etf" name="etf"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="" required="" 
-                                            value={form.epf}
-                                            onChange={(e) => updateForm({ position: e.target.value })}/>
+                                            defaultValue={form.etf}
+                                            onChange={(e) => updateForm({ etf: e.target.value })}/>
                                     </div>
 
                                     <div className="mb-6">
@@ -147,8 +147,8 @@ export default function UpdatePosition() {
                                         <input type="text" id="bonus" name="bonus"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="" required="" 
-                                            value={form.bonus}
-                                            onChange={(e) => updateForm({ position: e.target.value })}/>
+                                            defaultValue={form.bonus}
+                                            onChange={(e) => updateForm({ bonus: e.target.value })}/>
                                     </div>
 
                                     <div className="mb-6">
@@ -158,8 +158,8 @@ export default function UpdatePosition() {
                                         <input type="text" id="deduction" name="deduction"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="" required="" 
-                                            value={form.deductions}
-                                            onChange={(e) => updateForm({ position: e.target.value })}/>
+                                            defaultValue={form.deductions}
+                                            onChange={(e) => updateForm({ deductions: e.target.value })}/>
                                     </div>
 
                                     <button type="submit"

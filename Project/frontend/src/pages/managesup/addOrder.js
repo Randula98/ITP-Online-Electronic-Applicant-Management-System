@@ -13,7 +13,6 @@ export default function SupAddOrder() {
     approvedstatus: "",
     orderstatus: "",
     details: "",
-
   });
   const navigate = useNavigate();
 
@@ -31,7 +30,7 @@ export default function SupAddOrder() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
 
-    await fetch("http://localhost:5000/record/add", {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -23,6 +23,19 @@ repairRoutes.route("/").get(function (req, res) {
 		});
 });
 
+repairRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("repair")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you get a single record by id
 repairRoutes.route("/repair/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
