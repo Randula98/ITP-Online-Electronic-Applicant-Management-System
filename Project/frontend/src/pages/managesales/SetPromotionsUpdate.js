@@ -142,7 +142,7 @@ export default function SetPromotionUpdate() {
                                                 alert("Contact Number already exist");
                                             }
 
-                                            alert("Promotion Updated Successfully");
+                                            alert("Promotion Update Successfully");
                                             window.location.href = "/managesales";
                                         })
                                         .catch((err) => {
