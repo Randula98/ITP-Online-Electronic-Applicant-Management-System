@@ -36,27 +36,6 @@ const RecordNewCus = (props) => (
     </div>
 );
 
-const RecordTopCus = (props) => (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row"
-            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.fname} {props.record.lname}
-        </th>
-        <td className="py-4 px-6">
-            {props.record.email}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.contactno}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.totalpurchases}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.totalpayments}
-        </td>
-    </tr>
-);
-
 const RecordLoyaltyLevels = (props) => (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
@@ -64,19 +43,21 @@ const RecordLoyaltyLevels = (props) => (
             {props.record.type}
         </th>
         <td className="py-4 px-6">
-            {props.record.color}
-        </td>
-        <td className="py-4 px-6">
             {props.record.discount}
         </td>
         <td className="py-4 px-6">
             {props.record.payments}
         </td>
         <td class="py-4 px-6">
-            <Link className="btn btn-link" to={`/updateLoyalty/${props.record._id}`}><span className="text-red-800"> Edit - </span></Link>
+            <Link className="btn btn-link" to={`/updateLoyalty/${props.record._id}`}>
+            <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Edit</button>
+            </Link>
             <button onClick={() => {
                 props.deleteRecord(props.record._id);
-            }}><span className="text-red-800"> Delete</span></button>
+            }}
+            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                Delete
+            </button>
         </td>
     </tr>
 );
@@ -244,7 +225,7 @@ export default function CusManagement() {
                     <ReactToPrint
                         trigger={() => <button
                             className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                        >Print this out!</button>}
+                        >Get Report Of The Top Customers!</button>}
                         content={() => componentRef.current}
                     />
 
@@ -270,9 +251,6 @@ export default function CusManagement() {
                                 <tr>
                                     <th scope="col" className="py-3 px-6">
                                         Type
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Color
                                     </th>
                                     <th scope="col" className="py-3 px-6">
                                         Discount

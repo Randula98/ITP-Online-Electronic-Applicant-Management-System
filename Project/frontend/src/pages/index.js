@@ -55,6 +55,7 @@ import SupAddSupplier from "./managesup/addSupplier";
 import AddDelivery from "./manageservice/addDelivery";
 import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
+import UpdateLoyalty from "./managecus/updateloyalty";
 
 export {
 	About,
@@ -113,5 +114,6 @@ export {
 	SupAddSupplier,
 	AddDelivery,
 	AddRepair,
-	AddLoyalty
+	AddLoyalty,
+	UpdateLoyalty,
 };
