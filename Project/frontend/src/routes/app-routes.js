@@ -129,8 +129,8 @@ function App() {
 					<Route path="/managesales/setdiscountadd" element={<SetDiscountAdd />} />
 					<Route path="/managesales/setpromotionadd" element={<SetPromotionAdd />} />
 					<Route path="/managesales/settargetupdate" element={<SetTargetUpdate />} />
-					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
-					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
+					<Route path="/managesales/setdiscountupdate/:id" element={<SetDiscountUpdate />} />
+					<Route path="/managesales/setpromotionupdate/:id" element={<SetPromotionUpdate />} />
 					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
 					
 
