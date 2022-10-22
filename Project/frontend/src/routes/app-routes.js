@@ -30,6 +30,7 @@ import {
 	CusManagement,
 	ViewAllCus,
 	ViewCus,
+	CusSearch,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -41,6 +42,7 @@ import {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
+	ItemTypes,
 	PurchaseManagement,
 	ServiceManagement,
 	HRManagement,
@@ -54,7 +56,13 @@ import {
 	EditBrand,
 	BrandView,
 	StockView,
+	SupManagement,
+	SupAddOrder,
+	SupAddSupplier,
+  	AddDelivery,
+	AddRepair,
 	AddLoyalty,
+	UpdateLoyalty,
 } from "../pages";
 
 function App() {
@@ -92,6 +100,7 @@ function App() {
 					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
 					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
 					<Route path="/cusdash/addloyalty" element={<AddLoyalty />} />
+					<Route path="/cusdash/searchcus/:key" element={<CusSearch/>}/>
 					
 					{/* Admin Dashboard */}
 					<Route path="/admindash" element={<AdminDash />} />
@@ -103,6 +112,7 @@ function App() {
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty/>}/>
 
 					{/* Stock Management */}
 					<Route path="/stockadd" element={<Stockadd />} />
@@ -113,6 +123,7 @@ function App() {
 					<Route path="/brandview" element={<BrandView />} />
 					<Route path="/addbrand" element={<AddBrand />} />
 					<Route path="/stockview" element={<StockView />} />
+					<Route path="/itemtypes" element={<ItemTypes />} />
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />
@@ -123,13 +134,15 @@ function App() {
 					<Route path="/managesales/setdiscountadd" element={<SetDiscountAdd />} />
 					<Route path="/managesales/setpromotionadd" element={<SetPromotionAdd />} />
 					<Route path="/managesales/settargetupdate" element={<SetTargetUpdate />} />
-					<Route path="/managesales/setdiscountupdate" element={<SetDiscountUpdate />} />
-					<Route path="/managesales/setpromotionupdate" element={<SetPromotionUpdate />} />
+					<Route path="/managesales/setdiscountupdate/:id" element={<SetDiscountUpdate />} />
+					<Route path="/managesales/setpromotionupdate/:id" element={<SetPromotionUpdate />} />
 					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
 					
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
+					<Route PATH="/manageservice/addRepair" element={<AddRepair />} />
+					<Route path="/manageservice/addDelivery" element={<AddDelivery />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
@@ -145,6 +158,11 @@ function App() {
 					{/* Finance Management */}
 					<Route path="/managefinance" element={<	FinanceDash />} />
 					<Route path="/reqloan" element={<ReqLoan />} />
+
+					{/* Supplier Management */}
+					<Route path="/managesup" element={<SupManagement />} />
+					<Route path="/addOrder" element={<SupAddOrder />} />
+					<Route path="/addSupplier" element={<SupAddSupplier />} />
           
 				</Routes>
 				<Footer />

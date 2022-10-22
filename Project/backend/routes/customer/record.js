@@ -39,7 +39,7 @@ customerRoutes.route("/new5").get(function (req, res) {
 		});
 });
 
-//top customers
+//top 5 customers
 customerRoutes.route("/top5").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
@@ -52,6 +52,22 @@ customerRoutes.route("/top5").get(function (req, res) {
 			res.json(result);
 		});
 });
+
+//top 10 customers
+customerRoutes.route("/top10").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("customer")
+		.find({})
+		.sort({ totalpayments: -1 })
+		.limit(10)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+
 
 // This section will help you get a single record by id
 customerRoutes.route("/customer/:id").get(function (req, res) {
@@ -180,6 +196,17 @@ customerRoutes.route("/login").post(function (req, response) {
 		} else {
 			return response.json({ user: false, msg: "Login Failed", status: "error" });
 		}
+	});
+});
+
+// search by fname
+customerRoutes.route("/search/:key").get(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let myquery = { fname: { $regex: key, $options: "i" } };
+	db_connect.collection("customer").find(myquery).toArray(function (err, result) {
+		if (err) throw err;
+		response.json(result);
 	});
 });
 

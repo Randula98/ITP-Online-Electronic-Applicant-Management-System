@@ -22,6 +22,7 @@ import Services from "./services";
 import CusManagement from "./managecus";
 import ViewAllCus from "./managecus/viewallcus";
 import ViewCus from "./managecus/viewcus";
+import CusSearch from "./managecus/cussearch";
 import PurchaseManagement from "./managepurchase";
 import SalesManagement from "./managesales/";
 import SetTargetAdd from "./managesales/SetTargetAdd";
@@ -41,6 +42,7 @@ import SupManagement from "./managesup";
 import Stockadd from "./managestocks/Stockadd";
 import Stockupdate from "./managestocks/Stockupdate";
 import Stockhome from "./managestocks/Stockhome";
+import ItemTypes from "./managestocks/itemTypes";
 import SupplierManagement from "./managesup/";
 import FinanceDash from "./managefinancial";
 import ReqLoan from "./managefinancial/reqloan";
@@ -48,7 +50,12 @@ import AddBrand from "./managestocks/addbrand";
 import EditBrand from "./managestocks/editbrand";
 import BrandView from "./managestocks/brandview";
 import StockView from "./managestocks/stockview";
+import SupAddOrder from "./managesup/addOrder";
+import SupAddSupplier from "./managesup/addSupplier";	
+import AddDelivery from "./manageservice/addDelivery";
+import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
+import UpdateLoyalty from "./managecus/updateloyalty";
 
 export {
 	About,
@@ -75,6 +82,7 @@ export {
 	CusManagement,
 	ViewAllCus,
 	ViewCus,
+	CusSearch,
 	SalesManagement,
 	SetTargetAdd,
 	SetDiscountAdd,
@@ -94,6 +102,7 @@ export {
 	Stockadd,
 	Stockupdate,
 	Stockhome,
+	ItemTypes,
 	SupplierManagement,
 	FinanceDash,
 	ReqLoan,
@@ -101,5 +110,10 @@ export {
 	EditBrand,
 	BrandView,
 	StockView,
-	AddLoyalty
+	SupAddOrder,
+	SupAddSupplier,
+	AddDelivery,
+	AddRepair,
+	AddLoyalty,
+	UpdateLoyalty,
 };

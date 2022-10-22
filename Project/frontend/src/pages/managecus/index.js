@@ -1,8 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import ReactToPrint from 'react-to-print';
+
 import { Link } from "react-router-dom";
 import "./managecus.css";
+
+import { TopCusPrint } from "./topcusprint";
 
 const RecordNewCus = (props) => (
     <div
@@ -33,27 +36,6 @@ const RecordNewCus = (props) => (
     </div>
 );
 
-const RecordTopCus = (props) => (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row"
-            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.fname} {props.record.lname}
-        </th>
-        <td className="py-4 px-6">
-            {props.record.email}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.contactno}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.totalpurchases}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.totalpayments}
-        </td>
-    </tr>
-);
-
 const RecordLoyaltyLevels = (props) => (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
@@ -61,24 +43,28 @@ const RecordLoyaltyLevels = (props) => (
             {props.record.type}
         </th>
         <td className="py-4 px-6">
-            {props.record.color}
-        </td>
-        <td className="py-4 px-6">
             {props.record.discount}
         </td>
         <td className="py-4 px-6">
             {props.record.payments}
         </td>
         <td class="py-4 px-6">
-            <Link className="btn btn-link" to={`/updateLoyalty/${props.record._id}`}><span className="text-red-800"> Edit - </span></Link>
+            <Link className="btn btn-link" to={`/updateLoyalty/${props.record._id}`}>
+            <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Edit</button>
+            </Link>
             <button onClick={() => {
                 props.deleteRecord(props.record._id);
-            }}><span className="text-red-800"> Delete</span></button>
+            }}
+            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                Delete
+            </button>
         </td>
     </tr>
 );
 
 export default function CusManagement() {
+
+    const componentRef = useRef();
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
@@ -165,17 +151,17 @@ export default function CusManagement() {
         });
     }
 
-    function recordList2() {
-        return records2.map((record) => {
-            return (
-                <RecordTopCus
-                    record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
-                    key={record._id}
-                />
-            );
-        });
-    }
+    // function recordList2() {
+    //     return records2.map((record) => {
+    //         return (
+    //             <RecordTopCus
+    //                 record={record}
+    //                 // deleteRecord={() => deleteRecord(record._id)}
+    //                 key={record._id}
+    //             />
+    //         );
+    //     });
+    // }
 
     function recordList3() {
         return records3.map((record) => {
@@ -224,40 +210,25 @@ export default function CusManagement() {
                     </div>
                 </div>
                 <div className="row">
-
-                    <div className="overflow-x-auto relative">
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" className="py-3 px-6">
-                                        Customer Name
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Customer Email
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Customer Contact No
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Number of Purchases
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Total Spent Amount
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {recordList2()}
-                            </tbody>
-                        </table>
-                    </div>
-
+                    <TopCusPrint ref={componentRef} />
                 </div>
                 <br />
                 <div className="row btnrow">
-                    <a href="#"><button type="button"
+                    {/* <a href="#"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                        Generate Customer Activity Record</button></a>
+                        Generate Customer Activity Record</button></a> */}
+                    {/* <ReactToPrint
+                        trigger={() => <button>Print this out!</button>}
+                        content={() => componentRef.current}
+                    /> */}
+
+                    <ReactToPrint
+                        trigger={() => <button
+                            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                        >Get Report Of The Top Customers!</button>}
+                        content={() => componentRef.current}
+                    />
+
                 </div>
 
             </div>
@@ -282,9 +253,6 @@ export default function CusManagement() {
                                         Type
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Color
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
                                         Discount
                                     </th>
                                     <th scope="col" className="py-3 px-6">
@@ -302,14 +270,15 @@ export default function CusManagement() {
                     </div>
 
                 </div>
-                    <br/>
+                <br />
                 <div className="row btnrow">
                     <a href="/cusdash/addloyalty"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                       Add New Customer Loyalty Level</button></a>
+                        Add New Customer Loyalty Level</button></a>
                 </div>
 
             </div>
+
         </div>
     )
 }

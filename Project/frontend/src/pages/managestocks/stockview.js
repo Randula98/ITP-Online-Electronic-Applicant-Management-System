@@ -9,6 +9,7 @@ export default function StockView() {
       </div>
 
       <div className="stockviewbody">
+        
 
       </div>
     </div>

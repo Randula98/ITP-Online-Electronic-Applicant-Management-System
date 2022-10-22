@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
-import "./index.css";
+import "./supplier.css";
 
 const RecordNewSup = (props) => (
     <div
-        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cuscard">
+        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 supcard">
         <a href="#">
-            <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
+            <img className="rounded-t-lg" src="https://via.placeholder.com/300" alt="" />
         </a>
         <div className="p-5">
             <a href="#">
@@ -15,8 +15,8 @@ const RecordNewSup = (props) => (
                 </h5>
             </a>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {props.record.street} {props.record.city} {props.record.province}<br />
-            {props.record.contactnumber}<br />
+                {props.record.street} {props.record.city} {props.record.province}<br />
+                {props.record.contactnumber}<br />
             </p>
             <a href="#"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 btnup">
@@ -89,7 +89,7 @@ export default function SupplierManagement() {
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/new5`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -184,6 +184,13 @@ export default function SupplierManagement() {
         <div>
             <div className="newSupplier">
                 <div className="row">
+                <a href="/addOrder" target="_blank">
+                    <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
+                    </a>
+
+                    <a href="/addSupplier" target="_blank">
+                    <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Supplier</button>
+                    </a>
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
@@ -206,9 +213,15 @@ export default function SupplierManagement() {
 
             <br />
 
-            <div className="row">
+            <div className="newSupplier"><div className="row">
 
                 <div className="overflow-x-auto relative">
+                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                        role="alert">
+                        <span className="font-medium">
+                            <h1>Order Details</h1>
+                        </span>
+                    </div>
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -241,37 +254,43 @@ export default function SupplierManagement() {
                     </table>
                 </div>
 
-            </div>
+            </div></div>
             <br />
 
-            <div className="row">
+            <div className="newSupplier"><div className="row">
 
-                    <div className="overflow-x-auto relative">
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" className="py-3 px-6">
-                                        Item ID
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Supplier ID
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                        Date
-                                    </th>
-                                    <th scope="col" className="py-3 px-6">
-                                       Quantity
-                                    </th>
-                                   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {recordList3()}
-                            </tbody>
-                        </table>
+                <div className="overflow-x-auto relative">
+                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                        role="alert">
+                        <span className="font-medium">
+                            <h1>Pre-Order Details</h1>
+                        </span>
                     </div>
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="py-3 px-6">
+                                    Item ID
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Supplier ID
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Date
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Quantity
+                                </th>
 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {recordList3()}
+                        </tbody>
+                    </table>
                 </div>
+
+            </div></div>
 
 
         </div>
