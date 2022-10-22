@@ -80,18 +80,15 @@ loanRoutes.route("/loan/:id").get(function (req, res) {
 // This section will help you create a new record.
 loanRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
+
 	let myobj = {
 		loandate: fulldate,
 		duedate: req.body.duedate,
 		amount: req.body.amount,
 		duration: req.body.duration,
 		loanpurpose: req.body.loanpurpose,
-		premium: req.body.premium,
-		employeeid: "4a6sd51asd68a1sf6",
+		employeeid: req.body.employeeid,
 		status: "pending",
-		totalpayamount: req.body.totalpayamount,
-		remaingamount: req.body.remaingamount,
-		remainingmonths: req.body.remainingmonths,
 	};
 	db_connect.collection("loan").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -108,14 +105,24 @@ loanRoutes.route("/update/:id").post(function (req, response) {
 			loandate: req.body.loandate,
 			duedate: req.body.duedate,
 			amount: req.body.amount,
-			duration: req.body.duration,
-			premium: req.body.premium,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+			duration: req.body.duration,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 			loanpurpose: req.body.loanpurpose,
 			employeeid: req.body.employeeid,
-			status: req.body.status,
-			totalpayamount: req.body.totalpayamount,
-			remaingamount: req.body.remaingamount,
-			remainingmonths: req.body.remainingmonths,
+			status: "approved",
+		},
+	};
+	db_connect.collection("loan").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
+});
+
+loanRoutes.route("/approve/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			status: "approved",
 		},
 	};
 	db_connect.collection("loan").updateOne(myquery, newvalues, function (err, res) {
