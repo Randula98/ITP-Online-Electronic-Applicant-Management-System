@@ -56,7 +56,10 @@ import {
 	EditBrand,
 	BrandView,
 	StockView,
-	AddDelivery,
+	SupManagement,
+	SupAddOrder,
+	SupAddSupplier,
+  AddDelivery,
 	AddRepair,
 	AddLoyalty,
 } from "../pages";
@@ -153,6 +156,11 @@ function App() {
 					{/* Finance Management */}
 					<Route path="/managefinance" element={<	FinanceDash />} />
 					<Route path="/reqloan" element={<ReqLoan />} />
+
+					{/* Supplier Management */}
+					<Route path="/managesup" element={<SupManagement />} />
+					<Route path="/addOrder" element={<SupAddOrder />} />
+					<Route path="/addSupplier" element={<SupAddSupplier />} />
           
 				</Routes>
 				<Footer />

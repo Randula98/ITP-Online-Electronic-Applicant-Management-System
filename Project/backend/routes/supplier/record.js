@@ -19,6 +19,20 @@ supplierRoutes.route("/").get(function (req, res) {
 		});
 });
 
+//new 5 customers
+supplierRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("supplier")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 supplierRoutes.route("/supplier/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };

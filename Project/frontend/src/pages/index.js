@@ -50,6 +50,8 @@ import AddBrand from "./managestocks/addbrand";
 import EditBrand from "./managestocks/editbrand";
 import BrandView from "./managestocks/brandview";
 import StockView from "./managestocks/stockview";
+import SupAddOrder from "./managesup/addOrder";
+import SupAddSupplier from "./managesup/addSupplier";	
 import AddDelivery from "./manageservice/addDelivery";
 import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
@@ -107,6 +109,8 @@ export {
 	EditBrand,
 	BrandView,
 	StockView,
+	SupAddOrder,
+	SupAddSupplier,
 	AddDelivery,
 	AddRepair,
 	AddLoyalty
