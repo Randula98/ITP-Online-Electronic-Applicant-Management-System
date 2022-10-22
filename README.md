@@ -1,6 +1,6 @@
 Please go under edit and edit this file as needed for your project
 
-# Project Name - Electronic Applicants Marketing Management System for Synthetic Dealz (PVT) Limited
+# Project Name - Electronic Applicants Marketing Management System for Synthetic Dealz (Pvt) Limited
 # Batch - 02
 
 ### Group Leader - IT21004018 - Mr. Randula Mawaththa (@Randula98)
