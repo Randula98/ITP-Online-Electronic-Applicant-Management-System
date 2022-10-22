@@ -17,6 +17,7 @@ loyaltyRoutes.route("/").get(function (req, res) {
 	db_connect
 		.collection("loyalty")
 		.find({})
+		.sort({ payments: 1 })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -38,7 +39,6 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		type: req.body.type,
-		color: req.body.color,
 		discount: req.body.discount,
 		payments: req.body.payments,
 	};
@@ -55,7 +55,6 @@ loyaltyRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			type: req.body.type,
-			color: req.body.color,
 			discount: req.body.discount,
 			payments: req.body.payments,
 		},

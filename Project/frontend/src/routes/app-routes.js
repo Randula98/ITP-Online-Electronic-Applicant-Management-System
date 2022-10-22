@@ -59,9 +59,10 @@ import {
 	SupManagement,
 	SupAddOrder,
 	SupAddSupplier,
-  AddDelivery,
+  	AddDelivery,
 	AddRepair,
 	AddLoyalty,
+	UpdateLoyalty,
 } from "../pages";
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
 					<Route path="/managecus" element={<CusManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty/>}/>
 
 					{/* Stock Management */}
 					<Route path="/stockadd" element={<Stockadd />} />
