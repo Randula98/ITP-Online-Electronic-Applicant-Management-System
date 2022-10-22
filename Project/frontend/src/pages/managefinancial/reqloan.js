@@ -3,13 +3,13 @@ import { useNavigate } from "react-router";
 
 export default function ReqLoan() {
 
-    const Emergency = "Emergency Loan";
-    const Home = "Home Loan";
-    const Medical = "Medical Loan";
-    const Vehicle = "Vehicle Loan";
-    const Education = "Education Loan";
-    const Personal = "Personal Loan";
-    const Wedding = "Wedding Loan";
+    // const Emergency = "Emergency Loan";
+    // const Home = "Home Loan";
+    // const Medical = "Medical Loan";
+    // const Vehicle = "Vehicle Loan";
+    // const Education = "Education Loan";
+    // const Personal = "Personal Loan";
+    // const Wedding = "Wedding Loan";
 
     const [form, setForm] = useState({
         loandate: "",
