@@ -77,6 +77,30 @@ loanRoutes.route("/loan/:id").get(function (req, res) {
 	});
 });
 
+// This section will help you get a single record by id - approved
+loanRoutes.route("/loan/pending/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) , status: "pending"};
+	db_connect
+		.collection("loan")
+		.findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
+// This section will help you get a single record by id - approved
+loanRoutes.route("/loan/approved/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) , status: "approved"};
+	db_connect
+		.collection("loan")
+		.findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
 // This section will help you create a new record.
 loanRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
@@ -117,11 +141,13 @@ loanRoutes.route("/update/:id").post(function (req, response) {
 	});
 });
 
+//update as approved
 loanRoutes.route("/approve/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
+			loandate: fulldate,
 			status: "approved",
 		},
 	};

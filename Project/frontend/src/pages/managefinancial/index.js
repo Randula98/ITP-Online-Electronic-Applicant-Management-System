@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import "./index.css"
+import "./finance.css"
 
 const RecordPendingLoans = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -19,7 +19,9 @@ const RecordPendingLoans = (props) => (
             <a href={`/viewemployee/${props.record._id}`}><button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View Profile</button></a>
         </td>
         <td class="py-4 px-6">
-            <a href="#"><span class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Approve</span></a>
+            <button onClick={() => {
+                props.updateStatus(props.record._id);
+            }}><span class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Approve</span></button>
             <button onClick={() => {
                 props.deleteRecord(props.record._id);
             }}><span className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Decline</span></button>
@@ -32,9 +34,6 @@ const ApprovedLoansRecord = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <td class="py-4 px-6">
             {props.record.loandate}
-        </td>
-        <td class="py-4 px-6">
-            {props.record.duedate}
         </td>
         <td class="py-4 px-6">
             {props.record.amount}
@@ -59,6 +58,7 @@ const ApprovedLoansRecord = (props) => (
 export default function FinanceDash() {
 
     const [records1, setRecords1] = useState([]);
+    const [records2, setRecords2] = useState([]);
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -83,25 +83,25 @@ export default function FinanceDash() {
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords2() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/approvedloans`);
+            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/approvedloans`);
 
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
+            if (!response2.ok) {
+                const message = `An error occurred: ${response2.statusText}`;
                 window.alert(message);
                 return;
             }
 
-            const records = await response.json();
-            setRecords1(records);
+            const records2 = await response2.json();
+            setRecords2(records2);
         }
 
         getRecords2();
 
         return;
-    }, [records1.length]);
+    }, [records2.length]);
 
 
-    async function deleteRecord(id) {
+    async function deleteRecord1(id) {
         await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/delete/${id}`, {
             method: "DELETE"
         });
@@ -110,7 +110,22 @@ export default function FinanceDash() {
         setRecords1(newRecords);
     }
 
-    
+    async function deleteRecord2(id) {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/delete/${id}`, {
+            method: "DELETE"
+        });
+
+        const newRecords = records2.filter((el) => el._id !== id);
+        setRecords2(newRecords);
+    }
+
+    async function updateStatus(id){
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/approve/${id}`, {
+            method: "POST"
+        });
+
+        window.location.href = "/managefinance"
+    }
 
     // This method will map out the records on the table
     function recordList1() {
@@ -118,7 +133,8 @@ export default function FinanceDash() {
             return (
                 <RecordPendingLoans
                     record={record}
-                    deleteRecord={() => deleteRecord(record._id)}
+                    deleteRecord={() => deleteRecord1(record._id)}
+                    updateStatus={() => updateStatus(record._id)}
                     key={record._id}
                 />
             );
@@ -127,11 +143,11 @@ export default function FinanceDash() {
 
         // This method will map out the records on the table
         function recordList2() {
-            return records1.map((record) => {
+            return records2.map((record) => {
                 return (
                     <ApprovedLoansRecord
                         record={record}
-                        deleteRecord={() => deleteRecord(record._id)}
+                        deleteRecord={() => deleteRecord2(record._id)}
                         key={record._id}
                     />
                 );
@@ -140,7 +156,7 @@ export default function FinanceDash() {
 
     return (
         <><div>
-            <div class="com">
+            <div class="salestable">
                 <div class="row">
                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
@@ -190,7 +206,7 @@ export default function FinanceDash() {
                 </div>
             </div>
         </div>
-            <div class="req">
+            <div class="salestable">
                 <div class="row">
                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
@@ -208,9 +224,6 @@ export default function FinanceDash() {
                                 <tr>
                                     <th scope="col" class="py-3 px-6">
                                         Requested Date
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Due Date
                                     </th>
                                     <th scope="col" class="py-3 px-6">
                                         Loan Amount
@@ -243,7 +256,7 @@ export default function FinanceDash() {
                 </div>
             </div>
 
-            <div class="req">
+            <div class="salestable">
                 <div class="row">
                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
