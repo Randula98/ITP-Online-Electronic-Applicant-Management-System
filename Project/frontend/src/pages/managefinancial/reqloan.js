@@ -3,13 +3,13 @@ import { useNavigate } from "react-router";
 
 export default function ReqLoan() {
 
-    // const Emergency = "Emergency Loan";
-    // const Home = "Home Loan";
-    // const Medical = "Medical Loan";
-    // const Vehicle = "Vehicle Loan";
-    // const Education = "Education Loan";
-    // const Personal = "Personal Loan";
-    // const Wedding = "Wedding Loan";
+    const Emergency = "Emergency Loan";
+    const Home = "Home Loan";
+    const Medical = "Medical Loan";
+    const Vehicle = "Vehicle Loan";
+    const Education = "Education Loan";
+    const Personal = "Personal Loan";
+    const Wedding = "Wedding Loan";
 
     const [form, setForm] = useState({
         loandate: "",
@@ -73,33 +73,23 @@ export default function ReqLoan() {
                                 </h1>
                                 <form class="space-y-4 md:space-y-6" onSubmit={onSubmit}>
 
-                                    {/* <div>
+                                    <div>
                                         <label for="loan_purpose"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select
-                                            an
-                                            option</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                                                Enter Loan Purpose
+                                            </label>
                                         <select id="loan_purpose"
+                                            onChange={(e) => updateForm({ loanpurpose: e.target.value })}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option selected="">Choose a loan purpose</option>
-                                            <option value={Emergency} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Emergency}</option>
-                                            <option value={Home} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Home}</option>
-                                            <option value={Medical} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Medical}</option>
-                                            <option value={Education} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Education}</option>
-                                            <option value={Personal} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Personal}</option>
-                                            <option value={Vehicle} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Vehicle}</option>
-                                            <option value={Wedding} onChange={(e) => updateForm({ loanpurpose: e.target.value })}>{Wedding}</option>
+                                            <option value={Emergency} >{Emergency}</option>
+                                            <option value={Home}>{Home}</option>
+                                            <option value={Medical}>{Medical}</option>
+                                            <option value={Education}>{Education}</option>
+                                            <option value={Personal}>{Personal}</option>
+                                            <option value={Vehicle}>{Vehicle}</option>
+                                            <option value={Wedding}>{Wedding}</option>
                                         </select>
-                                    </div> */}
-
-                                    <div>
-                                        <label for="amount"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Loan Purpose
-                                        </label>
-                                        <input type="text" name="text" id="amount"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Example - Medical Purposes"
-                                            onChange={(e) => updateForm({ loanpurpose: e.target.value })}
-                                            required />
                                     </div>
 
                                     <div>
