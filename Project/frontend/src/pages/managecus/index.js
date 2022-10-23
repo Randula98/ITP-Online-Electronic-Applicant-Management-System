@@ -119,8 +119,8 @@ export default function CusManagement() {
                 return;
             }
 
-            const records2 = await response3.json();
-            setRecords3(records2);
+            const records3 = await response3.json();
+            setRecords3(records3);
         }
 
         getRecords3();
