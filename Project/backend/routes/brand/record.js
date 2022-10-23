@@ -17,6 +17,8 @@ brandRoutes.route("/").get(function (req, res) {
 	db_connect
 		.collection("brand")
 		.find({})
+		.sort({bname:1})
+		.collation({ locale: "en", caseLevel: true })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
