@@ -1,6 +1,7 @@
 // import { async } from "@firebase/util";
 import React from "react";
 import jwt_decode from 'jwt-decode';
+import Swal from 'sweetalert2'
 
 export default function Cuslogin() {
 	const [email, setEmail] = React.useState("");
@@ -22,7 +23,6 @@ export default function Cuslogin() {
 		console.log(content);
 
 		if (content.user === true) {
-			alert(content.msg);
 			localStorage.setItem("session", "yes");
 			localStorage.setItem("cusID", jwt_decode(content.token).id);
 			localStorage.setItem("cusFname", jwt_decode(content.token).fname);
@@ -34,13 +34,18 @@ export default function Cuslogin() {
 			localStorage.setItem("cusTotalpurchases", jwt_decode(content.token).totalpurchases);
 			localStorage.setItem("cusTotalpayments", jwt_decode(content.token).totalpayments);
 			localStorage.setItem("cusImgurl", jwt_decode(content.token).imgurl);
+			localStorage.setItem("cusLoyaltylevel", jwt_decode(content.token).loyaltylevel);
 			localStorage.setItem("authToken", content.token);
 			localStorage.setItem("user", "CUSTOMER");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
 			window.location.href = "/cusdash";
 		} else {
-			alert("Login Failed");
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Check Your Email & Passoword Again!!!',
+			  })
 		}
 	}
 
