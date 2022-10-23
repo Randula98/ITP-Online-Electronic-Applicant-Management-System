@@ -38,11 +38,10 @@ itemRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb();
 	let myobj = {
 		itemname: req.body.itemname.itemname,
-		// supplierID: req.body.supplierID,
 		unitprice: req.body.unitprice.unitprice,
 		itemtype: req.body.itemtype.itemtype,
-		unitstock: req.body.unitstock.unitstock,
 		brand: req.body.brand.brand,
+		unitstock: req.body.unitstock.unitstock,
 		imgurl: req.body.imgurl,
 	};
 	db_connect.collection("item").insertOne(myobj, function (err, res) {
@@ -58,11 +57,10 @@ itemRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			itemname: req.body.itemname.itemname,
-			// supplierID: req.body.supplierID,
 			unitprice: req.body.unitprice.unitprice,
 			itemtype: req.body.itemtype.itemtype,
-			unitstock: req.body.unitstock.unitstock,
 			brand: req.body.brand.brand,
+			unitstock: req.body.unitstock.unitstock,
 			imgurl: req.body.imgurl,
 		},
 	};

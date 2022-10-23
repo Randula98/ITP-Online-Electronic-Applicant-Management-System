@@ -17,6 +17,8 @@ itemtypeRoutes.route("/").get(function (req, res) {
 	db_connect
 		.collection("itemtype")
 		.find({})
+		.sort({type:1})
+		.collation({ locale: "en", caseLevel: true })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);

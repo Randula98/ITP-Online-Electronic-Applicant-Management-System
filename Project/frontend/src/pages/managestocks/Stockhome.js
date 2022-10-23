@@ -30,7 +30,8 @@ const RecordAllBrands = (props) => (
 
 export default function Stockhome() {
     const [records, setRecords] = useState([]);
-  // This method fetches the records from the database.
+  
+// This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/brand/new4`);
