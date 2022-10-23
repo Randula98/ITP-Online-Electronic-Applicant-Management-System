@@ -23,6 +23,20 @@ brandRoutes.route("/").get(function (req, res) {
 		});
 });
 
+// new 4
+brandRoutes.route("/new4").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("brand")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(4)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you get a single record by id
 brandRoutes.route("/brand/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
