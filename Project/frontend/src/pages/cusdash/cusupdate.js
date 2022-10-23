@@ -123,9 +123,9 @@ export default function CusUpdate() {
 												address,
 												contactno,
 												email,
-												password: localStorage.getItem("cusPassword"),
-												totalpurchases:localStorage.getItem("cusTotalpurchases"),
-												totalpayments:localStorage.getItem("cusTotalpayments"),
+												// password: localStorage.getItem("cusPassword"),
+												// totalpurchases:localStorage.getItem("cusTotalpurchases"),
+												// totalpayments:localStorage.getItem("cusTotalpayments"),
 												imgurl: url,
 											};
 
