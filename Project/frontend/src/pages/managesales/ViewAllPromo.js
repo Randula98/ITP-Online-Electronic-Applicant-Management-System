@@ -21,9 +21,9 @@ const RecordAllPromos = (props) => (
             </p>
             <Link className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" to={`/managesales/setpromotionupdate/${props.record._id}`}>Update</Link>
             <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            onClick={() => {
-                props.deleteRecord(props.record._id);
-            }}>Delete</button>
+                onClick={() => {
+                    props.deleteRecord(props.record._id);
+                }}>Delete</button>
         </div>
     </div>
 );
@@ -31,6 +31,9 @@ const RecordAllPromos = (props) => (
 export default function ViewAllPromo() {
 
     const [records, setRecords] = useState([]);
+    const [startdate, setStartdate] = useState("");
+    const [enddate, setEnddate] = useState("");
+
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
@@ -82,6 +85,66 @@ export default function ViewAllPromo() {
                 <br />
                 <a href="/managesales/setpromotionadd"><button type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add New Promotions</button></a>
             </div>
+
+
+            <div date-rangepicker="" class="flex items-center">
+
+                <div className="relative">
+                    <div
+                        className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <input name="start" type="date"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
+                        placeholder="Select date start"
+                        onChange={(e) => setStartdate(e.target.value)}
+                        required
+                    />
+                </div>
+                <span className="mx-4 text-gray-500">to</span>
+                <div className="relative">
+                    <div
+                        className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <input name="end" type="date"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input"
+                        placeholder="Select date end"
+                        onChange={(e) => setEnddate(e.target.value)}
+                        required />
+                </div>
+                &nbsp; &nbsp; &nbsp;
+
+                <button type="submit"
+                    className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dawnload History
+                </button>
+
+            </div>
+            <br></br>
+            <div>
+                <button type="submit"
+                    className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dawnload History
+                </button>
+
+
+
+            </div>
+
+
+
+
 
             <div className="list">
                 {recordList()}

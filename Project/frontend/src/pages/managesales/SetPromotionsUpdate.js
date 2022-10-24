@@ -33,7 +33,7 @@ export default function SetPromotionUpdate() {
 
 			const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
             const id = params.id.toString();
-            const response = await fetch(`${BASE_URL}/promotion/promotion/${params.id.toString()}`);
+            const response = await fetch(`${BASE_URL}/promotion/getRecordByID/${params.id.toString()}`);
 
             if (!response.ok) {
                 const message = `An error has occurred: ${response.statusText}`;
@@ -67,6 +67,68 @@ export default function SetPromotionUpdate() {
         return;
     }, [params.id, navigate]);
 
+    async function onSubmit(e) {
+        e.preventDefault();
+
+        const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+
+        const storageRef = ref(storage, `promotiona/${Image.name + v4()}`);
+
+        await uploadBytes(storageRef, imgurl)
+            .then(() => {
+                console.log("uploaded");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        await getDownloadURL(storageRef)
+            .then(async (url) => {
+                setImgurl(url);
+
+                console.log(url);
+
+                const newPromos = {
+                    promoname,
+                    precentage,
+                    promoprice,
+                    imgurl: url,
+                    startdate,
+                    enddate
+                };
+
+                const response = await fetch(`${BASE_URL}/promotion/update/${params.id}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newPromos),
+                }).catch((err) => {
+                    window.alert(err);
+                    // return;
+                });
+                const content = await response.json();
+                console.log(content);
+
+
+                if (content.success === true) {
+                    alert("User updated Successfully");
+                    window.location.href = "/managesales";
+                }
+                else if (content.found === "email") {
+                    alert("Email already exist");
+                }
+                else if (content.found === "contact") {
+                    alert("Contact Number already exist");
+                }
+
+                alert("Promotion Update Successfully");
+                window.location.href = "/managesales";
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
     return (
 
         <div className="f1">
@@ -87,68 +149,7 @@ export default function SetPromotionUpdate() {
                                 Update Promotion Details
                             </h1>
                             <form className="space-y-4 md:space-y-6" autocomplete="off"
-                                onSubmit={async (e) => {
-                                    e.preventDefault();
-
-                                    const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
-
-                                    const storageRef = ref(storage, `promotiona/${Image.name + v4()}`);
-
-                                    await uploadBytes(storageRef, imgurl)
-                                        .then(() => {
-                                            console.log("uploaded");
-                                        })
-                                        .catch((err) => {
-                                            console.log(err);
-                                        });
-
-                                    await getDownloadURL(storageRef)
-                                        .then(async (url) => {
-                                            setImgurl(url);
-
-                                            console.log(url);
-
-                                            const newPromos = {
-                                                promoname,
-                                                precentage,
-                                                promoprice,
-                                                imgurl: url,
-                                                startdate,
-                                                enddate
-                                            };
-
-                                            const response = await fetch(`${BASE_URL}/promotion/update/${params.id}`, {
-                                                method: "POST",
-                                                headers: {
-                                                    "Content-Type": "application/json",
-                                                },
-                                                body: JSON.stringify(newPromos),
-                                            }).catch((err) => {
-                                                window.alert(err);
-                                                // return;
-                                            });
-                                            const content = await response.json();
-                                            console.log(content);
-
-
-                                            if (content.success === true) {
-                                                alert("User Registered Successfully");
-                                                window.location.href = "/managesales";
-                                            }
-                                            else if (content.found === "email") {
-                                                alert("Email already exist");
-                                            }
-                                            else if (content.found === "contact") {
-                                                alert("Contact Number already exist");
-                                            }
-
-                                            alert("Promotion Update Successfully");
-                                            window.location.href = "/managesales";
-                                        })
-                                        .catch((err) => {
-                                            console.log(err);
-                                        });
-                                }}>
+                                onSubmit={onSubmit}>
 
                                 <div>
                                     <label for="percentage"
@@ -199,6 +200,7 @@ export default function SetPromotionUpdate() {
                                             id="default_size"
                                             type="file"
                                             name="image"
+                                            defaultValue={form.imgurl}
                                             onChange={(e) => {
 												setImgurl(e.target.files[0]);
 											}}
