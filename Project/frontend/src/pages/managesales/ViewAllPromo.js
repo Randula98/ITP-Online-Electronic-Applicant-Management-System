@@ -1,7 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
 import "./sales.css";
+
+
+
+
+
 
 const RecordAllPromos = (props) => (
     <div
@@ -61,7 +68,42 @@ export default function ViewAllPromo() {
         const newRecords = records.filter((el) => el._id !== id);
         setRecords(newRecords);
     }
-
+    //Print Promotion History
+    async function printPdf(e) {
+      
+        e.preventDefault();
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+    
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+    
+        doc.setFontSize(15);
+    
+        const title = "Promotion History Between "+startdate+" and "+enddate;
+        const headers = [["Promotion Id","Promotion Name", "Percentage","Price","Start Date","End Date"]];
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/promotion/getHistory/${startdate}/${enddate}`);
+    
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+        const records = await response.json();
+     
+        const data = records.map(elt=> [elt._id,elt.promoname, elt.precentage,elt.promoprice,elt.startdate.split('T')[0],elt.enddate.split('T')[0]]);
+    
+        let content = {
+          startY: 50,
+          head: headers,
+          body: data
+        };
+    
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("report.pdf")
+    }
     // This method will map out the records on the table
     function recordList() {
         return records.map((record) => {
@@ -127,20 +169,21 @@ export default function ViewAllPromo() {
                 </div>
                 &nbsp; &nbsp; &nbsp;
 
-                <button type="submit"
-                    className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dawnload History
+                <button 
+                onClick={printPdf}
+                className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dawnload History
                 </button>
 
             </div>
             <br></br>
-            <div>
+            {/* <div>
                 <button type="submit"
                     className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dawnload History
                 </button>
 
 
 
-            </div>
+            </div> */}
 
 
 
