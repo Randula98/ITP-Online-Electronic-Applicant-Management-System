@@ -22,10 +22,9 @@
 }
 
 .stockviewbody{
-    width: 100%;
+    width: 95%; 
     height: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    margin: auto;
 }
 
 .stockaddhead{
@@ -62,4 +61,41 @@ a .btnbrand{
     margin-right: auto;
     padding: 20px;
     border-radius: 10px;
+}
+
+.brandribbon{
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    background-color:black;
+    visibility: hidden;
+}
+
+.brandcarditems , .stockviewbody{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.itemcardview{
+    height: 400px;
+}
+
+.itemviewone{
+    width: 80%;
+    height: 500px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(131, 128, 128);
+}
+.one{
+    background-color: blue;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.two{
+    background-color: red;
 }

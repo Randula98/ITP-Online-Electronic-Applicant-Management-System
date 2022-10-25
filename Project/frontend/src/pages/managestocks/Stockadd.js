@@ -24,6 +24,7 @@ export default function Stockadd() {
     const [brand, setBrand] = useState("");
     const [unitstock, setUnitstock] = useState("");
     const [imgurl, setImgurl] = useState("");
+    const [description, setDescription] = useState("");
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -127,6 +128,7 @@ export default function Stockadd() {
                                     brand,
                                     unitstock,
                                     imgurl: url,
+                                    description,
                                 };
 
                                 const response = await fetch(`${BASE_URL}/item/add`, {
@@ -237,8 +239,20 @@ export default function Stockadd() {
                                     }} />
                             </div>
                         </div>
+                        <div>
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Item Description (Press Enter for a newline)</label>
+                            <textarea
+                                id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder=" Color
+                                Specifications
+                                Performance
+                                "
+                                onChange={(e) => setDescription({ description: e.target.value })}
+                                ></textarea>
+                        </div>
+                        <br />
                         <button type="submit"
-                            className="text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Add Details</button>
+                            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Details</button>
                     </div>
                 </form>
             </div>

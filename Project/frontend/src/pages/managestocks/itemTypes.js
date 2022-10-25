@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
 
 const RecorditemTypes = (props) => (
@@ -25,7 +24,7 @@ export default function ItemTypes() {
     type: "",
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function updateForm(value) {
     return setForm((prev) => {

@@ -50,12 +50,16 @@ import AddBrand from "./managestocks/addbrand";
 import EditBrand from "./managestocks/editbrand";
 import BrandView from "./managestocks/brandview";
 import StockView from "./managestocks/stockview";
+import ItemView from "./managestocks/itemview";
+import ItemViewOne from "./managestocks/itemviewone";
+import ItemSearch from "./managestocks/itemsearch";
 import SupAddOrder from "./managesup/addOrder";
 import SupAddSupplier from "./managesup/addSupplier";	
 import AddDelivery from "./manageservice/addDelivery";
 import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
 import UpdateLoyalty from "./managecus/updateloyalty";
+
 
 export {
 	About,
@@ -110,6 +114,9 @@ export {
 	EditBrand,
 	BrandView,
 	StockView,
+	ItemView,
+	ItemViewOne,
+	ItemSearch,
 	SupAddOrder,
 	SupAddSupplier,
 	AddDelivery,

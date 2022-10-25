@@ -56,6 +56,9 @@ import {
 	EditBrand,
 	BrandView,
 	StockView,
+	ItemView,
+	ItemViewOne,
+	ItemSearch,
 	SupManagement,
 	SupAddOrder,
 	SupAddSupplier,
@@ -124,6 +127,9 @@ function App() {
 					<Route path="/addbrand" element={<AddBrand />} />
 					<Route path="/stockview" element={<StockView />} />
 					<Route path="/itemtypes" element={<ItemTypes />} />
+					<Route path="/itemview/:brand" element={<ItemView />} />
+					<Route path="/itemsearch/:name" element={<ItemSearch />} />
+					<Route path="/itemviewone/:id" element={<ItemViewOne />} />
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />
