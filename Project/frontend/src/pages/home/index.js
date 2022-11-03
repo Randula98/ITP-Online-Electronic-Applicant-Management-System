@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 
 import HeroSection from "./HeroSection";
@@ -13,7 +14,7 @@ const Home = () => {
 			<OfferSection />
 			<MobilePhoneSection />
 			<LaptopsSection />
-			<KitchenItemSection />
+			{/* <KitchenItemSection /> */}
 		</div>
 	);
 };

@@ -39,7 +39,17 @@ export default function Cuslogin() {
 			localStorage.setItem("user", "CUSTOMER");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
-			window.location.href = "/cusdash";
+			
+			Swal.fire({
+				icon: 'success',
+				title: 'Successful...',
+				text: 'Login Successful as a Customer!',
+				footer: '<a href="/cusdash">Go to Dashboard</a>'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "/cusdash";
+				}
+			})
 		} else {
 			Swal.fire({
 				icon: 'error',

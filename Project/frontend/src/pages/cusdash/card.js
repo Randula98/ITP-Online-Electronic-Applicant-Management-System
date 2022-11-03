@@ -91,7 +91,7 @@ export default function Card() {
                         </div>
                         <div class="cardbutton mt-0.5">
                             <a href={`/cusdash/cusupdate/${localStorage.getItem("cusID")}`}><button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2">Update Profile</button></a>
-                            <a href="/cusdash/cusdanger"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2">Danger Zone</button></a>
+                            <a href={`/cusdash/cusdanger/${localStorage.getItem("cusID")}`}><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2">Danger Zone</button></a>
                         </div>
                     </div>
                 </a>
