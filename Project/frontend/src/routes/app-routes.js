@@ -101,7 +101,7 @@ function App() {
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
 					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
-					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
+					<Route path="/cusdash/cusdanger/:id" element={<CusDanger />} />
 					<Route path="/cusdash/addloyalty" element={<AddLoyalty />} />
 					<Route path="/cusdash/searchcus/:key" element={<CusSearch/>}/>
 					

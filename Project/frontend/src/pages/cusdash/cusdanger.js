@@ -1,16 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './cusdash.css'
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 export default function CusDanger() {
 
-  //   await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
-  //     method: "DELETE"
-  // });
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
-  // delete customer
+  const params = useParams();
   const navigate = useNavigate();
+
+  async function updatePassword(e) {
+    e.preventDefault();
+    if (password !== password2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Passwords do not match!',
+      })
+      return;
+    }
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/updatepassword/${params.id.toString()}`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              password: password,
+          }),
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Password Updated!',
+        text: 'Your password has been updated successfully!',
+      })
+      navigate("/cusdash");
+  }
 
   async function promptDelete() {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -76,14 +103,24 @@ export default function CusDanger() {
           <img class="object-cover w-250 h-250 rounded-t-lg md:h-200 md:w-100 md:rounded-none md:rounded-l-lg" src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/cusdash%2Fsmartphone-with-danger-sign-with-man-screen-red-background-vector-illustration_123447-3151.jpg?alt=media&token=bab0df09-db7d-45d5-a8ee-f2eb67dc8ebd10" alt="" />
           <div class="flex flex-col justify-between p-4 leading-normal w-150 passform">
 
-            <form>
+            <form onSubmit={updatePassword}>
               <div class="mb-6">
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Enter New Password</label>
-                <input type="password" id="password" class="w-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                <input
+                  type="password"
+                  id="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  class="w-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required />
               </div>
               <div class="mb-6">
                 <label for="repassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Re-Enter password</label>
-                <input type="repassword" id="repassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                <input
+                  type="password"
+                  id="repassword"
+                  onChange={(e) => setPassword2(e.target.value)}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required />
               </div>
               <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Password</button>
             </form>
