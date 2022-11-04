@@ -1,5 +1,6 @@
 // import { async } from "@firebase/util";
 import React from "react";
+import Swal from 'sweetalert2'
 
 export default function Adminlogin() {
 	const [email, setEmail] = React.useState("");
@@ -21,7 +22,6 @@ export default function Adminlogin() {
 		console.log(content);
 
 		if (content.user === true) {
-			alert("Login Success");
 			localStorage.setItem("session", "yes");
 			localStorage.setItem("adminID", response._id);
 			localStorage.setItem("empEmail", response.email);
@@ -30,9 +30,22 @@ export default function Adminlogin() {
 			localStorage.setItem("user", "ADMIN");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
-			window.location.href = "/admindash";
+
+			Swal.fire({
+				icon: 'success',
+				title: 'Successful...',
+				text: 'Login Successful as an Admin!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "/admindash";
+				}
+			})
 		} else {
-			alert("Login Failed");
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Check your email and password again!',
+			})
 		}
 	}
 
@@ -53,9 +66,9 @@ export default function Adminlogin() {
 								<h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 									Sign in to your account
 								</h1>
-								<form className="space-y-4 md:space-y-6" 
-									  onSubmit={adminLogin}
-									  autocomplete="off">
+								<form className="space-y-4 md:space-y-6"
+									onSubmit={adminLogin}
+									autocomplete="off">
 									<div>
 										<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 											Your email

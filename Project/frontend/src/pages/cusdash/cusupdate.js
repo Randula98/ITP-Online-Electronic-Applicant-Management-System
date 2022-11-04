@@ -4,6 +4,7 @@ import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
+import Swal from 'sweetalert2'
 
 export default function CusUpdate() {
 	// const [imageUpload, setImageUpload] = useState(null);
@@ -123,9 +124,9 @@ export default function CusUpdate() {
 												address,
 												contactno,
 												email,
-												password: localStorage.getItem("cusPassword"),
-												totalpurchases:localStorage.getItem("cusTotalpurchases"),
-												totalpayments:localStorage.getItem("cusTotalpayments"),
+												// password: localStorage.getItem("cusPassword"),
+												// totalpurchases:localStorage.getItem("cusTotalpurchases"),
+												// totalpayments:localStorage.getItem("cusTotalpayments"),
 												imgurl: url,
 											};
 
@@ -163,8 +164,16 @@ export default function CusUpdate() {
 												alert("Contact Number already exist");
 												window.location.href = "/cusdash";
 											}
-											alert("Profile Updates Successfully");
-											window.location.href = "/cusdash";
+											Swal.fire({
+												icon: 'success',
+												title: 'Successful...',
+												text: 'Profile Updated Successfully!',
+												footer: '<a href="/cusdash">Go to Dashboard</a>'
+											}).then((result) => {
+												if (result.isConfirmed) {
+													window.location.href = "/cusdash";
+												}
+											})
 										})
 										.catch((err) => {
 											console.log(err);

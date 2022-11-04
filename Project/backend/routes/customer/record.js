@@ -73,7 +73,9 @@ customerRoutes.route("/top10").get(function (req, res) {
 customerRoutes.route("/customer/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("customer").findOne(myquery, function (err, result) {
+	db_connect
+	.collection("customer")
+	.findOne(myquery, function (err, result) {
 		if (err) throw err;
 		res.json(result);
 	});
@@ -82,7 +84,9 @@ customerRoutes.route("/customer/:id").get(function (req, res) {
 customerRoutes.route("/email/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { email: req.params.id };
-	db_connect.collection("customer").findOne(myquery, function (err, result) {
+	db_connect
+		.collection("customer")
+		.findOne(myquery, function (err, result) {
 		if (err) throw err;
 		res.json(result);
 	});
@@ -119,6 +123,7 @@ customerRoutes.route("/add").post(function (req, response) {
 						totalpurchases: 0,
 						totalpayments: 0,
 						imgurl: req.body.imgurl,
+						loyaltylevel: "0",
 					};
 					console.log(req.body.imgurl);
 					db_connect.collection("customer").insertOne(myobj, function (err, res) {
@@ -144,9 +149,9 @@ customerRoutes.route("/update/:id").post(function (req, response) {
 			address: req.body.address,
 			contactno: req.body.contactno,
 			email: req.body.email,
-			password: req.body.password,
-			totalpurchases: req.body.totalpurchases,
-			totalpayments: req.body.totalpayments,
+			// password: req.body.password,
+			// totalpurchases: req.body.totalpurchases,
+			// totalpayments: req.body.totalpayments,
 			imgurl: req.body.imgurl,
 		},
 	};
@@ -154,6 +159,74 @@ customerRoutes.route("/update/:id").post(function (req, response) {
 		if (err) throw err;
 		response.json(res);
 	});
+});
+
+// update customers total purchases and payments
+customerRoutes.route("/updatepurchases/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let currentpurchases = parseInt(req.body.currentpurchases);
+	let currentpayments = parseInt(req.body.currentpayments);
+	let purchases = Number(req.body.purchases);
+	let payments = Number(req.body.payments);
+
+	if (isNaN(currentpurchases)) currentpurchases = 0;
+	if (isNaN(currentpayments)) currentpayments = 0;
+
+	console.log("currentpurchases: " + currentpurchases);
+	console.log("currentpayments: " + currentpayments);
+	console.log("purchases: " + purchases);
+	console.log("payments: " + payments);
+
+	let newpurchases = (currentpurchases + purchases);
+	let newpayments = (currentpayments + payments);
+
+	console.log(newpurchases);
+	console.log(newpayments);
+
+	let newvalues = {
+		$set: {
+			totalpurchases: newpurchases,
+			totalpayments: newpayments,
+		},
+	};
+	db_connect.collection("customer").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	}
+	);
+});
+
+// update customer loyalty level
+customerRoutes.route("/updatelevel/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			loyaltylevel: req.body.loyaltylevel,
+		},
+	};
+	db_connect.collection("customer").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	}
+	);
+});
+
+//update customer password 
+customerRoutes.route("/updatepassword/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			password: req.body.password,
+		},
+	};
+	db_connect.collection("customer").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	}
+	);
 });
 
 // This section will help you delete a record
@@ -188,6 +261,7 @@ customerRoutes.route("/login").post(function (req, response) {
 					totalpurchases: result.totalpurchases,
 					totalpayments: result.totalpayments,
 					imgurl: result.imgurl,
+					loyaltylevel: result.loyaltylevel,
 				},
 				"secretkey"
 			);
