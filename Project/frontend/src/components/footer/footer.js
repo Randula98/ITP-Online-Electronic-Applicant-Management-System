@@ -8,71 +8,71 @@ export default class footer extends Component {
 				<footer className="bg-white dark:bg-gray-900">
 					<div className="grid grid-cols-2 gap-8 py-8 px-6 md:grid-cols-4">
 						<div>
-							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Company</h2>
+							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Top Brands</h2>
 							<ul className="text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a href="#" className=" hover:underline">
-										About
+									<a href="/branditemview/Apple" className=" hover:underline">
+										Apple
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Careers
+									<a href="/branditemview/Singer" className="hover:underline">
+										Singer
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Brand Center
+									<a href="/branditemview/MSI" className="hover:underline">
+										MSI
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Blog
+									<a href="/branditemview/Philips" className="hover:underline">
+										Philips
 									</a>
 								</li>
 							</ul>
 						</div>
 						<div>
-							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Help center</h2>
+							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Top Item Categorys</h2>
 							<ul className="text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Discord Server
+									<a href="/typeitemview/Laptops" className="hover:underline">
+										Laptops
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Twitter
+									<a href="/typeitemview/Mobile-Phones" className="hover:underline">
+										Mobile Phones
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Facebook
+									<a href="/typeitemview/Televisions" className="hover:underline">
+										Televisions
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Contact Us
+									<a href="/typeitemview/Washing-Machines" className="hover:underline">
+										Washing Machines
 									</a>
 								</li>
 							</ul>
 						</div>
 						<div>
-							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Legal</h2>
+							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Quick Navigation</h2>
 							<ul className="text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Privacy Policy
+									<a href="/services" className="hover:underline">
+										Services
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Licensing
+									<a href="/promotions" className="hover:underline">
+										Promitions
 									</a>
 								</li>
 								<li className="mb-4">
-									<a href="#" className="hover:underline">
-										Terms &amp; Conditions
+									<a href="/discounts" className="hover:underline">
+										Discounts
 									</a>
 								</li>
 							</ul>
@@ -105,7 +105,7 @@ export default class footer extends Component {
 					</div>
 					<div className="py-6 px-4 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
 						<span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-							© 2022 <a href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
+							© 2022 <a href="#">Fireflies™ & Vikings™</a> (Join Collabration). All Rights Reserved.
 						</span>
 						<div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
 							<a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">

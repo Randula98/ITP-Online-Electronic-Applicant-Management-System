@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate} from "react-router-dom";
 import "./navbar.css";
 
 // import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
+
+	const [search, setSearch] = useState("");
 
 	const logout = () => {
 		localStorage.removeItem("session");
@@ -23,6 +26,13 @@ export default function NavBar() {
 		localStorage.removeItem("user");
 		window.location.href = "/";
 	};
+
+	async function searchItems(e){
+		e.preventDefault();
+		const key = search;
+		console.log(key);
+		window.location.href = `/searchresults/${key}`;
+	}
 
 	return (
 		<nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -259,7 +269,7 @@ export default function NavBar() {
 						</>
 					)}
 
-					<form>
+					<form onSubmit={searchItems}>
 						<label
 							htmlFor="default-search"
 							className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
@@ -272,6 +282,7 @@ export default function NavBar() {
 								id="default-search"
 								className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								placeholder="Search Items"
+								onChange={(e) => setSearch(e.target.value)}
 								required=""
 							/>
 							<button
