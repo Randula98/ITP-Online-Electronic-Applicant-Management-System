@@ -18,6 +18,7 @@
 .header {
 	width: 550px;
 	margin: 0px auto;
+	margin-top: 20px;
 }
 
 .header-bar {
@@ -35,4 +36,5 @@
 .slidings {
 	width: 90%;
 	margin: 0px auto;
+	height: 400px;
 }

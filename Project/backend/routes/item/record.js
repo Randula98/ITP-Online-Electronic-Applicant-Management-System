@@ -23,6 +23,33 @@ itemRoutes.route("/").get(function (req, res) {
 		});
 });
 
+//get 5 random items
+itemRoutes.route("/random").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("item")
+		.aggregate([{ $sample: { size: 9 } }])
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get 5 random items by item type
+itemRoutes.route("/random/:itemtype").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("item")
+		.aggregate([
+			{ $match: { itemtype: req.params.itemtype } },
+			{ $sample: { size: 9 } },
+		])
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // get latest 5 items
 itemRoutes.route("/new5").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
@@ -70,6 +97,8 @@ itemRoutes.route("/itemtype/:itemtype").get(function (req, res) {
 	db_connect
 		.collection("item")
 		.find(myquery)
+		.sort({ itemname: 1 })
+		.collation({ locale: "en", caseLevel: true })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -112,10 +141,12 @@ itemRoutes.route("/count/brand/:brand/itemtype/:itemtype").get(function (req, re
 itemRoutes.route("/item/:id").get(function (req, res) {
 	let db_connect = dbo.getDb();
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("synthetic").findOne(myquery, function (err, result) {
-		if (err) throw err;
-		res.json(result);
-	});
+	db_connect
+		.collection("item")
+		.findOne(myquery, function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 // This section will help you create a new record.

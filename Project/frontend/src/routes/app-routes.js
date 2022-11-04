@@ -23,6 +23,9 @@ import {
 	Emplogin,
 	Adminlogin,
 	Products,
+	TypeViewItems,
+	BrandViewItems,
+	OneItemView,
 	Register,
 	CusRegister,
 	EmpRegister,
@@ -78,7 +81,10 @@ function App() {
 					{/* Basic Routing */}
 					<Route path="/" element={<Home />} />
 					<Route path="/products" element={<Products />} />
+					<Route path="/typeitemview/:key" element={<TypeViewItems />} />
 					<Route path="/brands" element={<Brands />} />
+					<Route path="/branditemview/:key" element={<BrandViewItems />} />
+					<Route path="/oneitemview/:id" element={<OneItemView />} />
 					<Route path="/services" element={<Services />} />
 					
 					<Route path="/about" element={<About />} />

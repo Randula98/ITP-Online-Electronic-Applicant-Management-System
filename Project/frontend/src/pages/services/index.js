@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Services() {
 
-	  const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	if(localStorage.getItem("session") === null) {
 		Swal.fire({

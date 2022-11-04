@@ -1,18 +1,17 @@
-
 .btnrow {
     margin-top: 30px;
     width: 280px;
     margin: 0px auto;
 }
 
-.stockribbon{
+.stockribbon {
     width: 600px;
     height: 100px;
     margin: auto;
 }
 
-.stockviewhead{
-    width:9%;
+.stockviewhead {
+    width: 9%;
     height: 50px;
     background-color: #615d5d1f;
     border-radius: 10px;
@@ -21,38 +20,49 @@
     margin-top: 120px;
 }
 
-.stockviewbody{
-    width: 95%; 
+.stockviewbody {
+    width: 95%;
     height: 100%;
     margin: auto;
 }
 
-.stockaddhead{
+.stockaddhead {
     margin-top: 120px;
 }
 
-.brandcard{
+.brandcard {
     width: 300px;
     height: 300px;
     background-color: #615d5d1f;
     border-radius: 10px;
     margin-top: 20px;
     margin-left: 30px;
+
 }
 
-.brandcardimg{
+.brandcardimg {
     width: 200px;
-    margin: auto;
     height: 180px;
+    text-align: center;
+    padding: 20px;
 }
 
-a .btnbrand{
+.brandcardimg img {
+    display: block;
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-25%,-50%);
+    overflow: hidden;
+}
+
+a .btnbrand {
     position: relative;
     float: left;
-    margin-left:50px ;
+    margin-left: 50px;
 }
 
-.addItemType{
+.addItemType {
     width: 50%;
     height: 240px;
     background-color: rgba(53, 52, 52, 0.175);
@@ -63,24 +73,25 @@ a .btnbrand{
     border-radius: 10px;
 }
 
-.brandribbon{
+.brandribbon {
     width: 50%;
     height: 100px;
     margin: auto;
-    background-color:black;
+    background-color: black;
     visibility: hidden;
 }
 
-.brandcarditems , .stockviewbody{
+.brandcarditems,
+.stockviewbody {
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
 
-.itemcardview{
-    height: 400px;
+.itemcardview {
+    height: 380px;
 }
 
-.itemviewone{
+.itemviewone {
     width: 80%;
     height: 500px;
     margin-top: 100px;
@@ -88,7 +99,8 @@ a .btnbrand{
     margin-right: auto;
     background-color: rgb(131, 128, 128);
 }
-.one{
+
+.one {
     background-color: blue;
     width: 50%;
     height: 100%;
@@ -96,6 +108,6 @@ a .btnbrand{
     float: left;
 }
 
-.two{
+.two {
     background-color: red;
 }
