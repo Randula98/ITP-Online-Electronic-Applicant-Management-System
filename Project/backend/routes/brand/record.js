@@ -49,6 +49,17 @@ brandRoutes.route("/brand/:id").get(function (req, res) {
 	});
 });
 
+// get brandurl by bname
+brandRoutes.route("/brandurl/:bname").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { bname: req.params.bname };
+	db_connect.collection("brand").findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
+
 // This section will help you create a new record.
 brandRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");

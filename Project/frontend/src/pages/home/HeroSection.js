@@ -29,25 +29,19 @@ export function HeroSection() {
 				</div>
 				<div className="carousel-inner relative w-full overflow-hidden">
 					<div className="carousel-item active relative float-left w-full">
-						<img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" className="block w-full" alt="..." />
-						<div className="carousel-caption hidden md:block absolute text-center">
-							<h5 className="text-xl">First slide label</h5>
-							<p>Some representative placeholder content for the first slide.</p>
-						</div>
+						<img
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2FAdvertiesment%202.png?alt=media&token=160fab3d-58ad-429d-b2a0-233fd811c4cc"
+							className="block w-full" alt="..." />
 					</div>
 					<div className="carousel-item relative float-left w-full">
-						<img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg" className="block w-full" alt="..." />
-						<div className="carousel-caption hidden md:block absolute text-center">
-							<h5 className="text-xl">Second slide label</h5>
-							<p>Some representative placeholder content for the second slide.</p>
-						</div>
+						<img
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2FAdvertiesment%203.png?alt=media&token=96b49321-b61f-40c4-b05c-4e15e0c48638"
+							className="block w-full" alt="..." />
 					</div>
 					<div className="carousel-item relative float-left w-full">
-						<img src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg" className="block w-full" alt="..." />
-						<div className="carousel-caption hidden md:block absolute text-center">
-							<h5 className="text-xl">Third slide label</h5>
-							<p>Some representative placeholder content for the third slide.</p>
-						</div>
+						<img
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2FAdvertisement%201.png?alt=media&token=593af167-7290-4d74-b5fb-9ec67e5688df"
+							className="block w-full" alt="..." />
 					</div>
 				</div>
 				<button

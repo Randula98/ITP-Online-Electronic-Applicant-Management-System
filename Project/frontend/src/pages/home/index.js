@@ -15,6 +15,7 @@ const Home = () => {
 			<MobilePhoneSection />
 			<LaptopsSection />
 			{/* <KitchenItemSection /> */}
+			<br/>
 		</div>
 	);
 };

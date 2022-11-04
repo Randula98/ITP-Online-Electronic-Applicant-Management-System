@@ -15,6 +15,9 @@ import Emplogin from "./login/emplogin";
 import Adminlogin from "./login/adminlogin";
 import ErrPage from "./errorpage";
 import Products from "./products";
+import TypeViewItems from "./products/typeviewitems";
+import BrandViewItems from "./brands/brandviewitems";
+import OneItemView from "./products/oneitemview";
 import Register from "./register/regselect";
 import CusRegister from "./register/cusregister";
 import EmpRegister from "./register/empregister";
@@ -61,6 +64,7 @@ import AddLoyalty from "./managecus/addloyalty";
 import UpdateLoyalty from "./managecus/updateloyalty";
 
 
+
 export {
 	About,
 	Brands,
@@ -79,6 +83,9 @@ export {
 	Emplogin,
 	Adminlogin,
 	Products,
+	TypeViewItems,
+	BrandViewItems,
+	OneItemView,
 	Register,
 	CusRegister,
 	EmpRegister,
