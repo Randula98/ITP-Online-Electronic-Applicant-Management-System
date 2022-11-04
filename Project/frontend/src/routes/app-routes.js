@@ -69,6 +69,7 @@ import {
 	AddRepair,
 	AddLoyalty,
 	UpdateLoyalty,
+	SearchResults,
 } from "../pages";
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
 					<Route path="/branditemview/:key" element={<BrandViewItems />} />
 					<Route path="/oneitemview/:id" element={<OneItemView />} />
 					<Route path="/services" element={<Services />} />
+					<Route path="/searchresults/:key" element={<SearchResults/>}/>
 					
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
