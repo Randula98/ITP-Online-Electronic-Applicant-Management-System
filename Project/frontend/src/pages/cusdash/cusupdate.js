@@ -78,6 +78,7 @@ export default function CusUpdate() {
 					<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-l xl:p-0 dark:bg-gray-800 dark:border-gray-700 cusregform">
 						<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 							<form
+								
 								className="space-y-4 md:space-y-6"
 								autoComplete="off"
 								onSubmit={async (e) => {
@@ -170,6 +171,8 @@ export default function CusUpdate() {
 											console.log(err);
 										});					
 								}}
+
+
 							>
 								{/* name  */}
 								<div className="grid gap-6 mb-6 md:grid-cols-2">

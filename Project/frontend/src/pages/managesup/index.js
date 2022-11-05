@@ -6,8 +6,8 @@ import "./supplier.css";
 const RecordNewSup = (props) => (
     <div
         className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 supcard">
-        <a href="#">
-            <img className="rounded-t-lg" src="https://via.placeholder.com/300" alt="" />
+        <a href={`/viewsup/${props.record._id}`}>
+            <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
         </a>
         <div className="p-5">
             <a href="#">
@@ -18,7 +18,7 @@ const RecordNewSup = (props) => (
                 {props.record.street} {props.record.city} {props.record.province}<br />
                 {props.record.contactnumber}<br />
             </p>
-            <a href="#"
+            <a href={`/viewsup/${props.record._id}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 btnup">
                 View Details
                 <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -48,7 +48,7 @@ const RecordOrders = (props) => (
             {props.record.quantity}
         </td>
         <td class="py-4 px-6">
-            {props.record.aprrovedstatus}
+            {props.record.approvedstatus}
         </td>
         <td class="py-4 px-6">
             {props.record.orderstatus}
@@ -182,15 +182,33 @@ export default function SupplierManagement() {
 
     return (
         <div>
+            
             <div className="newSupplier">
-                <div className="row">
-                <a href="/addOrder" target="_blank">
-                    <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
+            <div className="addbtn">
+            <a href="/addOrder" target="_blank">
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
                     </a>
 
                     <a href="/addSupplier" target="_blank">
-                    <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Supplier</button>
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Supplier</button>
                     </a>
+
+                    <a href="/addPreOrder" target="_blank">
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Pre-Order</button>
+                    </a>
+            </div>
+                <div className="row">
+                    {/* <a href="/addOrder" target="_blank">
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
+                    </a>
+
+                    <a href="/addSupplier" target="_blank">
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Supplier</button>
+                    </a>
+
+                    <a href="/addPreOrder" target="_blank">
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Pre-Order</button>
+                    </a> */}
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
@@ -205,7 +223,7 @@ export default function SupplierManagement() {
 
                 <div className="ribbon"></div>
                 <div className="row btnrow">
-                    <a href="/viewallcus" target="_blank"><button type="button"
+                    <a href="/viewallsup" target="_blank"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
                         All Suppliers</button></a>
                 </div>

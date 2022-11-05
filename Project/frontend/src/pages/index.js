@@ -56,6 +56,10 @@ import AddDelivery from "./manageservice/addDelivery";
 import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
 import UpdateLoyalty from "./managecus/updateloyalty";
+import ViewAllSup from "./managesup/viewallsup";
+import ViewSup from "./managesup/viewsup";
+import AddPreOrder from "./managesup/addPreOrder";
+import UpdateSupplier from "./managesup/updateSupplier";
 
 export {
 	About,
@@ -116,4 +120,8 @@ export {
 	AddRepair,
 	AddLoyalty,
 	UpdateLoyalty,
+	ViewAllSup,
+	ViewSup,
+	AddPreOrder,
+	UpdateSupplier,
 };
