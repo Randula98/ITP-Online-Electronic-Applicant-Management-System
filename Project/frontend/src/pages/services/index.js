@@ -1,15 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 
-export default class Services extends Component {
-	render() {
-		return (
-			<div>
-				<br />
-				<br />
-				<br />
-				<br />
-				<h1>Services</h1>
-			</div>
-		);
+export default function Services() {
+
+	const navigate = useNavigate();
+
+	if(localStorage.getItem("session") === null) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'You have to login as a customer!'
+		}).then((result) => {
+			navigate("/login/cuslogin");
+		})
 	}
+
+
+	return (
+		<div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<h1>Services</h1>
+		</div>
+	);
 }

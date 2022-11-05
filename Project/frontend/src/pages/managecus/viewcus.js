@@ -92,6 +92,7 @@ export default function ViewCus() {
           <p class="text-lg sm">{form.email} </p>
           <p class="text-lg sm">Total&#160;Purchases&#160;Done&#160;-{form.totalpurchases} </p>
           <p class="text-lg sm">Total&#160;Spent&#160;Amount&#160;-{form.totalpayments} </p>
+          <p class="text-lg sm">Loyalty&#160;Level&#160;-&#160;{form.loyaltylevel} </p>
 
         </div>
 

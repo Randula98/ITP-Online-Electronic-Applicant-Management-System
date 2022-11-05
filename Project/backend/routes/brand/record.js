@@ -17,6 +17,22 @@ brandRoutes.route("/").get(function (req, res) {
 	db_connect
 		.collection("brand")
 		.find({})
+		.sort({bname:1})
+		.collation({ locale: "en", caseLevel: true })
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// new 4
+brandRoutes.route("/new4").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("brand")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(4)
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -32,6 +48,17 @@ brandRoutes.route("/brand/:id").get(function (req, res) {
 		res.json(result);
 	});
 });
+
+// get brandurl by bname
+brandRoutes.route("/brandurl/:bname").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { bname: req.params.bname };
+	db_connect.collection("brand").findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
 
 // This section will help you create a new record.
 brandRoutes.route("/add").post(function (req, response) {

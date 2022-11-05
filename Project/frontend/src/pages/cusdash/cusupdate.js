@@ -4,6 +4,7 @@ import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
+import Swal from 'sweetalert2'
 
 export default function CusUpdate() {
 	// const [imageUpload, setImageUpload] = useState(null);
@@ -78,6 +79,7 @@ export default function CusUpdate() {
 					<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-l xl:p-0 dark:bg-gray-800 dark:border-gray-700 cusregform">
 						<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 							<form
+								
 								className="space-y-4 md:space-y-6"
 								autoComplete="off"
 								onSubmit={async (e) => {
@@ -123,9 +125,9 @@ export default function CusUpdate() {
 												address,
 												contactno,
 												email,
-												password: localStorage.getItem("cusPassword"),
-												totalpurchases:localStorage.getItem("cusTotalpurchases"),
-												totalpayments:localStorage.getItem("cusTotalpayments"),
+												// password: localStorage.getItem("cusPassword"),
+												// totalpurchases:localStorage.getItem("cusTotalpurchases"),
+												// totalpayments:localStorage.getItem("cusTotalpayments"),
 												imgurl: url,
 											};
 
@@ -163,13 +165,23 @@ export default function CusUpdate() {
 												alert("Contact Number already exist");
 												window.location.href = "/cusdash";
 											}
-											alert("Profile Updates Successfully");
-											window.location.href = "/cusdash";
+											Swal.fire({
+												icon: 'success',
+												title: 'Successful...',
+												text: 'Profile Updated Successfully!',
+												footer: '<a href="/cusdash">Go to Dashboard</a>'
+											}).then((result) => {
+												if (result.isConfirmed) {
+													window.location.href = "/cusdash";
+												}
+											})
 										})
 										.catch((err) => {
 											console.log(err);
 										});					
 								}}
+
+
 							>
 								{/* name  */}
 								<div className="grid gap-6 mb-6 md:grid-cols-2">

@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import './Stock.css'
+import { useNavigate, useParams } from "react-router-dom";
 
-const RecordAllBrands = (props) => (
+const RecordItems = (props) => (
   <div
-    className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 brandcard">
+    className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 brandcard itemcardview">
     <div className="brandcardimg">
-      <a href={`/itemview/${props.record.bname}`}>
-        <img className="rounded-t-lg" src={props.record.brandurl} alt="" />
+      <a href={`/itemviewone/${props.record.bname}`}>
+        <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
       </a>
     </div>
     <div className="p-5">
-      <a href={`/itemview/${props.record.bname}`}>
-        <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.bname}
+      <a href={`/itemviewone/${props.record.bname}`}>
+        <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.itemname}
         </h5>
       </a>
 
@@ -28,17 +27,18 @@ const RecordAllBrands = (props) => (
   </div>
 );
 
-
-export default function StockView() {
-
-  const [records, setRecords] = useState([]);
-
+export default function ItemSearch() {
   const navigate = useNavigate();
 
-  // This method fetches the records from the database.
+  const [records, setRecords] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const params = useParams();
+  const key = params.name.toString();
+
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/brand/`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/item/search/${key}`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -53,21 +53,10 @@ export default function StockView() {
     return;
   }, [records.length]);
 
-  // This method will delete a record
-  // async function deleteRecord(id) {
-  //   await fetch(`${process.env.REACT_APP_BACKEND_URL}/brand/delete/${id}`, {
-  //     method: "DELETE"
-  //   });
-
-  //   const newRecords = records.filter((el) => el._id !== id);
-  //   setRecords(newRecords);
-  // }
-
-  // This method will map out the records on the table
   function recordList() {
     return records.map((record) => {
       return (
-        <RecordAllBrands
+        <RecordItems
           record={record}
           //deleteRecord={() => deleteRecord(record._id)}
           key={record._id}
@@ -76,8 +65,6 @@ export default function StockView() {
     });
   }
 
-
-  const [search, setSearch] = useState("");
 
   function searchRecord(e) {
     const key = search;
@@ -89,9 +76,7 @@ export default function StockView() {
 
   return (
     <div>
-      <div className="stockviewhead">
-        <a href="/addstock"><button type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Stocks</button></a>
-      </div>
+      <br /><br /><br />
       <div className="row searchRow">
         <form onSubmit={searchRecord}>
           <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -109,7 +94,7 @@ export default function StockView() {
           </div>
         </form>
       </div>
-
+      <h2>Search Results For "{key}"</h2>
       <div className="brandcarditems">
         {recordList()}
 

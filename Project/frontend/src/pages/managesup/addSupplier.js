@@ -4,6 +4,7 @@ import { storage } from "../../firebase";
 //import { db } from "../../firebase";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import Swal from "sweetalert2";
 
 
 
@@ -53,6 +54,11 @@ export default function SupAddSupplier() {
     //     navigate("/managesup");
     // }
 
+    // Swal.fire({
+    //     icon: 'success',
+    //     title: 'Successfull',
+    //     text: 'New Supplier Added'
+    // })
 
     return (
         <div>
@@ -112,10 +118,18 @@ export default function SupAddSupplier() {
                                                 },
 
                                                 body: JSON.stringify(newSupplier),
+
+                                                
                                             }).catch((err) => {
                                                 window.alert(err);
 
                                             });
+
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Successfull',
+                                                text: 'New Supplier Added'
+                                            })
 
                                             const content = await response.json();
                                             console.log(content);
@@ -130,6 +144,8 @@ export default function SupAddSupplier() {
                                             else if (content.found === "contactnumber") {
                                                 alert("Contact Number already exists");
                                             }
+
+                                            window.location.href = "/managesup";
 
                                         })
                                         .catch((err) => {

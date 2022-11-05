@@ -7,10 +7,13 @@
     background-color: #c8c2c243;
     padding: 20px;
     /* border: 1px solid black; */
+    margin-top: 80px;
 }
 
+
+
 .newSupplier:first-child{
-    margin-top: 120px;
+    margin-top: 150px;
     height:630px;
 }
 
@@ -36,3 +39,17 @@ a.btnup{
     margin-left: 27px;
 }
 
+.allSuppliers {
+    width: 95%;
+    height: auto;
+    margin: 0px auto;
+    padding: 20px;
+    margin-top: 120px;
+}
+
+.addbtn {
+    float: right;
+    margin-top: -80px;
+    /* margin-right: 20px; */
+    /* padding: 20px; */
+}

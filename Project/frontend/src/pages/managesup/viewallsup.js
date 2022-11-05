@@ -1,26 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./managecus.css";
+import "./supplier.css";
 
 const RecordAllCus = (props) => (
     <div
-        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscardlistall">
-        <div className="newcusimage">
-            <a href={`/viewcus/${props.record._id}`}>
-                <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
-            </a>
-        </div>
+        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscardlist">
+        <a href="#">
+            <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
+        </a>
         <div className="p-5">
-            <a href={`/viewcus/${props.record._id}`}>
-                <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.fname} {props.record.lname}
+            <a href={`/viewsup/${props.record._id}`}>
+                <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.supplierfname} {props.record.supplierlname}
                 </h5>
             </a>
             <p className="mb-3 font-normal text-gray-400 dark:text-gray-700">
-                {props.record.email}<br />
-                {props.record.contactno}<br />
+                {props.record.street} {props.record.city} <br />
+                {props.record.province}<br />
+                {props.record.contactnumber}<br />
             </p>
-            <a href={`/viewcus/${props.record._id}`} target="_blank" rel="noreferrer"
+            <a href={`/viewsup/${props.record._id}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 View Profile
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -34,7 +33,7 @@ const RecordAllCus = (props) => (
     </div>
 );
 
-export default function ViewAllCus() {
+export default function ViewAllSup() {
 
     const [records, setRecords] = useState([]);
     const [search , setSearch] = useState("");
@@ -43,7 +42,7 @@ export default function ViewAllCus() {
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -90,9 +89,9 @@ export default function ViewAllCus() {
     }
 
     return (
-        <div className="allCustomers">
+        <div className="allSuppliers">
             <div className="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300" role="alert">
-                <span className="font-large text-2xl" >All Customers Registered In The System</span>
+                <span className="font-large text-2xl" >All Suppliers Registered In The System</span>
             </div>
             <div className="row searchRow">
                 <form onSubmit={searchRecord}>
@@ -104,7 +103,7 @@ export default function ViewAllCus() {
                         <input type="search" 
                         id="default-search" 
                         className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                        placeholder="Enter Customer's First Name... " 
+                        placeholder="Enter Supplier's First Name... " 
                         onChange={(e) => setSearch(e.target.value)}
                         required="" />
                         <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>

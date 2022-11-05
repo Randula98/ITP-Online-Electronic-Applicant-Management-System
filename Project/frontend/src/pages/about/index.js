@@ -8,7 +8,14 @@ export default class About extends Component {
 				<br />
 				<br />
 				<br />
-				<h1>About</h1>
+				<h1>About Us</h1>
+
+				<div>
+					<p>
+
+					</p>
+
+				</div>
 			</div>
 		);
 	}
