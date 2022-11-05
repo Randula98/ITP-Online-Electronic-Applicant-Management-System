@@ -63,6 +63,8 @@ import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
 import UpdateLoyalty from "./managecus/updateloyalty";
 import SearchResults from "./home/searchresults";
+import Cart from "./cart";
+import CardAdd from "./cart/cardAdd";
 
 export {
 	About,
@@ -130,4 +132,6 @@ export {
 	AddLoyalty,
 	UpdateLoyalty,
 	SearchResults,
+	Cart,
+	CardAdd,
 };
