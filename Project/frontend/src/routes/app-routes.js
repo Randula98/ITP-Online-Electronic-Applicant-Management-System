@@ -23,6 +23,9 @@ import {
 	Emplogin,
 	Adminlogin,
 	Products,
+	TypeViewItems,
+	BrandViewItems,
+	OneItemView,
 	Register,
 	CusRegister,
 	EmpRegister,
@@ -56,6 +59,9 @@ import {
 	EditBrand,
 	BrandView,
 	StockView,
+	ItemView,
+	ItemViewOne,
+	ItemSearch,
 	SupManagement,
 	SupAddOrder,
 	SupAddSupplier,
@@ -67,6 +73,9 @@ import {
 	ViewSup,
 	AddPreOrder,
 	UpdateSupplier,
+	SearchResults,
+	Cart,
+	CardAdd,
 } from "../pages";
 
 function App() {
@@ -79,11 +88,17 @@ function App() {
 					{/* Basic Routing */}
 					<Route path="/" element={<Home />} />
 					<Route path="/products" element={<Products />} />
+					<Route path="/typeitemview/:key" element={<TypeViewItems />} />
 					<Route path="/brands" element={<Brands />} />
+					<Route path="/branditemview/:key" element={<BrandViewItems />} />
+					<Route path="/oneitemview/:id" element={<OneItemView />} />
 					<Route path="/services" element={<Services />} />
+					<Route path="/searchresults/:key" element={<SearchResults/>}/>
 					
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/cart" element={<Cart />} />
+					<Route path="/card/:key" element={<CardAdd />} />
 
 					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
@@ -102,7 +117,7 @@ function App() {
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
 					<Route path="/cusdash/cusupdate/:id" element={<CusUpdate />} />
-					<Route path="/cusdash/cusdanger" element={<CusDanger />} />
+					<Route path="/cusdash/cusdanger/:id" element={<CusDanger />} />
 					<Route path="/cusdash/addloyalty" element={<AddLoyalty />} />
 					<Route path="/cusdash/searchcus/:key" element={<CusSearch/>}/>
 					
@@ -128,6 +143,9 @@ function App() {
 					<Route path="/addbrand" element={<AddBrand />} />
 					<Route path="/stockview" element={<StockView />} />
 					<Route path="/itemtypes" element={<ItemTypes />} />
+					<Route path="/itemview/:brand" element={<ItemView />} />
+					<Route path="/itemsearch/:name" element={<ItemSearch />} />
+					<Route path="/itemviewone/:id" element={<ItemViewOne />} />
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />

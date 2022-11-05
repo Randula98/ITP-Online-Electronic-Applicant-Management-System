@@ -17,7 +17,7 @@ loyaltyRoutes.route("/").get(function (req, res) {
 	db_connect
 		.collection("loyalty")
 		.find({})
-		.sort({ payments: 1 })
+		.sort({ discount: 1 })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -39,8 +39,8 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		type: req.body.type,
-		discount: req.body.discount,
-		payments: req.body.payments,
+		discount: Number(req.body.discount),
+		payments: Number(req.body.payments),
 	};
 	db_connect.collection("loyalty").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -55,8 +55,8 @@ loyaltyRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			type: req.body.type,
-			discount: req.body.discount,
-			payments: req.body.payments,
+			discount: Number(req.body.discount),
+			payments: Number(req.body.payments),
 		},
 	};
 	db_connect.collection("loyalty").updateOne(myquery, newvalues, function (err, res) {
@@ -76,4 +76,28 @@ loyaltyRoutes.route("/delete/:id").delete((req, response) => {
 	});
 });
 
+// get the relevant loyalty type
+loyaltyRoutes.route("/getLoyaltyType/:payments").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	//let myquery = { payments: { $lt: Number(req.params.payments) } };
+	// db_connect
+	// 	.collection("loyalty")
+	// 	.findOne(myquery, function (err, result) {
+	// 		if (err) throw err;
+	// 		res.json(result);
+	// 	});
+	let number = Number(req.params.payments);
+
+	db_connect
+		.collection("loyalty")
+		.find({ payments: { $lte: number } })
+		.sort({ payments: -1 })
+		.limit(1)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		}
+	);
+
+});
 module.exports = loyaltyRoutes;

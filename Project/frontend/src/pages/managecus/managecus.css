@@ -60,6 +60,22 @@
     float: left;
 }
 
+.cuscardlistall{
+    width: 280px;
+    margin-left: 10px;
+    margin-top: 20px;
+    position: relative;
+    float: left;
+}
+
+
+.cuscardlistall img{
+    height: 100%;
+    width: 100%;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
 .viewcus{
     width: 1000px;
     height: 500px;
@@ -121,4 +137,16 @@
     background-color: rgba(98, 95, 95, 0.725);
     border-radius: 30px;
     padding: 20px;
+}
+
+.newcusimage{
+    width: 238px;
+    height: 238px;
+}
+
+.newcusimage img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 25%;
 }

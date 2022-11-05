@@ -5,10 +5,12 @@ import "./managecus.css";
 
 const RecordAllCus = (props) => (
     <div
-        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscardlist">
-        <a href="#">
-            <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
-        </a>
+        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscardlistall">
+        <div className="newcusimage">
+            <a href={`/viewcus/${props.record._id}`}>
+                <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
+            </a>
+        </div>
         <div className="p-5">
             <a href={`/viewcus/${props.record._id}`}>
                 <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.fname} {props.record.lname}

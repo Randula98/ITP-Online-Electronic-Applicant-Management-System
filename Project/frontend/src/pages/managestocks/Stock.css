@@ -1,18 +1,17 @@
-
 .btnrow {
     margin-top: 30px;
     width: 280px;
     margin: 0px auto;
 }
 
-.stockribbon{
+.stockribbon {
     width: 600px;
     height: 100px;
     margin: auto;
 }
 
-.stockviewhead{
-    width:9%;
+.stockviewhead {
+    width: 9%;
     height: 50px;
     background-color: #615d5d1f;
     border-radius: 10px;
@@ -21,33 +20,94 @@
     margin-top: 120px;
 }
 
-.stockviewbody{
-    width: 100%;
+.stockviewbody {
+    width: 95%;
     height: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    margin: auto;
 }
 
-.stockaddhead{
+.stockaddhead {
     margin-top: 120px;
 }
 
-.brandcard{
+.brandcard {
     width: 300px;
     height: 300px;
     background-color: #615d5d1f;
     border-radius: 10px;
     margin-top: 20px;
     margin-left: 30px;
+
 }
 
-.brandcardimg{
-    width: 300px;
-    height: 170px;
+.brandcardimg {
+    width: 200px;
+    height: 180px;
+    text-align: center;
+    padding: 20px;
 }
 
-a .btnbrand{
+.brandcardimg img {
+    display: block;
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-25%,-50%);
+    overflow: hidden;
+}
+
+a .btnbrand {
     position: relative;
     float: left;
-    margin-left:50px ;
+    margin-left: 50px;
+}
+
+.addItemType {
+    width: 50%;
+    height: 240px;
+    background-color: rgba(53, 52, 52, 0.175);
+    margin-top: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.brandribbon {
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    background-color: black;
+    visibility: hidden;
+}
+
+.brandcarditems,
+.stockviewbody {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.itemcardview {
+    height: 380px;
+}
+
+.itemviewone {
+    width: 80%;
+    height: 500px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(131, 128, 128);
+}
+
+.one {
+    background-color: blue;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.two {
+    background-color: red;
 }

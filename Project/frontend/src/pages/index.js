@@ -15,6 +15,9 @@ import Emplogin from "./login/emplogin";
 import Adminlogin from "./login/adminlogin";
 import ErrPage from "./errorpage";
 import Products from "./products";
+import TypeViewItems from "./products/typeviewitems";
+import BrandViewItems from "./brands/brandviewitems";
+import OneItemView from "./products/oneitemview";
 import Register from "./register/regselect";
 import CusRegister from "./register/cusregister";
 import EmpRegister from "./register/empregister";
@@ -50,6 +53,9 @@ import AddBrand from "./managestocks/addbrand";
 import EditBrand from "./managestocks/editbrand";
 import BrandView from "./managestocks/brandview";
 import StockView from "./managestocks/stockview";
+import ItemView from "./managestocks/itemview";
+import ItemViewOne from "./managestocks/itemviewone";
+import ItemSearch from "./managestocks/itemsearch";
 import SupAddOrder from "./managesup/addOrder";
 import SupAddSupplier from "./managesup/addSupplier";	
 import AddDelivery from "./manageservice/addDelivery";
@@ -60,6 +66,9 @@ import ViewAllSup from "./managesup/viewallsup";
 import ViewSup from "./managesup/viewsup";
 import AddPreOrder from "./managesup/addPreOrder";
 import UpdateSupplier from "./managesup/updateSupplier";
+import SearchResults from "./home/searchresults";
+import Cart from "./cart";
+import CardAdd from "./cart/cardAdd";
 
 export {
 	About,
@@ -79,6 +88,9 @@ export {
 	Emplogin,
 	Adminlogin,
 	Products,
+	TypeViewItems,
+	BrandViewItems,
+	OneItemView,
 	Register,
 	CusRegister,
 	EmpRegister,
@@ -114,6 +126,9 @@ export {
 	EditBrand,
 	BrandView,
 	StockView,
+	ItemView,
+	ItemViewOne,
+	ItemSearch,
 	SupAddOrder,
 	SupAddSupplier,
 	AddDelivery,
@@ -124,4 +139,7 @@ export {
 	ViewSup,
 	AddPreOrder,
 	UpdateSupplier,
+	SearchResults,
+	Cart,
+	CardAdd,
 };
