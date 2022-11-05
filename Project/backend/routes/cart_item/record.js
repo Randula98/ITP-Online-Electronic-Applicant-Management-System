@@ -37,15 +37,31 @@ recordRoutes.route("/cart_item/:id").get(function (req, res) {
 recordRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		itemId: req.body.itemId,
-		cartId: req.body.cartId,
-		quantity: req.body.quantity,
-		totPrice: req.body.totPrice,
+		cartid: req.body.cartid,
+		itemid: req.body.itemid,
+		brand: req.body.brand,
+		itemname: req.body.itemname,
+		itemtype: req.body.itemtype,
+		unitprice: Number(req.body.unitprice),
+		quantity: Number(req.body.quantity),
 	};
 	db_connect.collection("cart_item").insertOne(myobj, function (err, res) {
 		if (err) throw err;
 		response.json(res);
 	});
+});
+
+// get items by cart id
+recordRoutes.route("/getitems/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { cartid: req.params.id };
+	db_connect
+		.collection("cart_item")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 // This section will help you update a record by id.
@@ -54,10 +70,13 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			itemId: req.body.itemId,
-			cartId: req.body.cartId,
-			quantity: req.body.quantity,
-			totPrice: req.body.totPrice,
+			cartid: req.body.cartid,
+			itemid: req.body.itemid,
+			brand: req.body.brand,
+			itemname: req.body.itemname,
+			itemtype: req.body.itemtype,
+			unitprice: Number(req.body.unitprice),
+			quantity: Number(req.body.quantity),
 		},
 	};
 	db_connect.collection("cart-item").updateOne(myquery, newvalues, function (err, res) {
@@ -70,7 +89,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 recordRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
-	db_connect.collection("cart-item").deleteOne(myquery, function (err, obj) {
+	db_connect.collection("cart_item").deleteOne(myquery, function (err, obj) {
 		if (err) throw err;
 		console.log("1 document deleted");
 		response.json(obj);

@@ -164,23 +164,10 @@ customerRoutes.route("/update/:id").post(function (req, response) {
 // update customers total purchases and payments
 customerRoutes.route("/updatepurchases/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
-	let myquery = { _id: ObjectId(req.params.id) };
-	let currentpurchases = parseInt(req.body.currentpurchases);
-	let currentpayments = parseInt(req.body.currentpayments);
-	let purchases = Number(req.body.purchases);
-	let payments = Number(req.body.payments);
+	let myquery = { _id: ObjectId(req.params.id)};
 
-	if (isNaN(currentpurchases)) currentpurchases = 0;
-	if (isNaN(currentpayments)) currentpayments = 0;
-
-	console.log("currentpurchases: " + currentpurchases);
-	console.log("currentpayments: " + currentpayments);
-	console.log("purchases: " + purchases);
-	console.log("payments: " + payments);
-
-	let newpurchases = (currentpurchases + purchases);
-	let newpayments = (currentpayments + payments);
-
+	let newpurchases = Number(req.body.purchases);
+	let newpayments = Number(req.body.payments);
 	console.log(newpurchases);
 	console.log(newpayments);
 

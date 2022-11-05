@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 // import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
-	const navigate = useNavigate();
+	//const navigate = useNavigate();
 
 	const [search, setSearch] = useState("");
 
@@ -24,6 +23,7 @@ export default function NavBar() {
 		localStorage.removeItem("cusImgurl");
 		localStorage.removeItem("authToken");
 		localStorage.removeItem("user");
+		localStorage.removeItem("cusCartID");
 		window.location.href = "/";
 	};
 
