@@ -5,7 +5,7 @@ const RecordNewDelivery = (props) => (
 
     <div
         className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cuscard">
-        <a href="#">
+        <a href={`/manageservice/viewdel/${props.record._id}`}>
             <img className="rounded-t-lg" src="https://via.placeholder.com/300" alt="" />
         </a>
         <div className="p-5">
@@ -14,10 +14,11 @@ const RecordNewDelivery = (props) => (
                 </h5>
             </a>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {props.record.itemname}<br />
                 {props.record.date}<br />
                 {props.record.customerid}<br />
             </p>
-            <a href="#"
+            <a href={`/manageservice/viewdel/${props.record._id}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 vbtn">
                 View Details
                 <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -36,8 +37,8 @@ const RecordNewRepairs = (props) => (
 
     <div
         class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cuscard">
-        <a href="#">
-            <img class="rounded-t-lg" src="https://via.placeholder.com/300" alt="" />
+        <a href={`/manageservice/viewrep/${props.record._id}`}>
+            <img class="rounded-t-lg" src={props.record.imgurl} alt="" />
         </a>
         <div class="p-5">
             <a href="#">
@@ -49,7 +50,7 @@ const RecordNewRepairs = (props) => (
                 {props.record.customerid}<br />
 
             </p>
-            <a href="#"
+            <a href={`/manageservice/viewrep/${props.record._id}`} target="_blank" rel="noreferrer"
                 class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800B vbtn">
                 View Details
                 <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -242,13 +243,16 @@ export default function ServiceManagement() {
     return (
         <div>
             <div className="newRepairs">
-                <div className="row">
+                <div className="addbtn">
                     <a href="/manageservice/addDelivery" target="_blank">
-                <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Deliveries</button>
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Deliveries</button>
                     </a>
                     <a href="/manageservice/addRepair" target="_blank">
-                <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Repairs</button>
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Repairs</button>
                     </a>
+
+                </div>
+                <div className="row">
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
                         <span className="font-medium">
@@ -260,15 +264,15 @@ export default function ServiceManagement() {
                 <div className="row">
                     {recordList()}
                 </div >
-
+                <br />
                 <div className="supRibbon"></div>
                 <div className="row btnrow">
-                    <a href="/viewallcus" target="_blank"><button type="button"
+                    <a href="/manageservice/viewalldel" target="_blank"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
                         All Deliveries</button></a>
                 </div>
             </div>
-
+            <br />
             <div className="newRepairs">
                 <div className="row">
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
@@ -285,7 +289,7 @@ export default function ServiceManagement() {
 
                 <div className="supRibbon"></div>
                 <div className="row btnrow">
-                    <a href="/viewallcus" target="_blank"><button type="button"
+                    <a href="/manageservice/viewallrep" target="_blank"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
                         All Repairs</button></a>
 

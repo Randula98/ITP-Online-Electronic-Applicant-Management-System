@@ -49,7 +49,7 @@ orderRoutes.route("/update/:id").post(function (req, response) {
 			date: req.body.date,
 			itemid: req.body.itemid,
 			quantity: req.body.quantity,
-			aprrovedstatus: req.body.approvedstatus,
+			approvedstatus: req.body.approvedstatus,
 			orderstatus: req.body.orderstatus,
 			details: req.body.details,
 		},

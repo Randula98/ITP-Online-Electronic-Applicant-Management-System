@@ -1,7 +1,7 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-import React from 'react'
-
-export default function addPreOrder() {
+export default function AddPreOrder() {
 
   const [form, setForm] = useState({
     itemid: "",

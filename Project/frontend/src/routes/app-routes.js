@@ -66,10 +66,21 @@ import {
 	SupAddOrder,
 	SupAddSupplier,
   	AddDelivery,
-	AddRepair,
+	// AddRepair,
 	AddLoyalty,
 	UpdateLoyalty,
+	ViewAllDel,
+	ViewDel,
+	ViewAllRep,
+	ViewRep,
+	AddRepair,
+	ViewAllSup,
+	ViewSup,
+	AddPreOrder,
+	UpdateSupplier,
 	SearchResults,
+	Cart,
+	CardAdd,
 } from "../pages";
 
 function App() {
@@ -91,6 +102,8 @@ function App() {
 					
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/cart" element={<Cart />} />
+					<Route path="/card/:key" element={<CardAdd />} />
 
 					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
@@ -155,8 +168,13 @@ function App() {
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
-					<Route PATH="/manageservice/addRepair" element={<AddRepair />} />
+					{/* <Route PATH="/manageservice/addRepair" element={<AddRepair />} /> */}
 					<Route path="/manageservice/addDelivery" element={<AddDelivery />} />
+					<Route path="/manageservice/viewalldel" element={<ViewAllDel />} />
+					<Route path="/manageservice/viewdel/:id" element={<ViewDel />} />
+					<Route path="/manageservice/viewallrep" element={<ViewAllRep />} />
+					<Route path="/manageservice/viewrep/:id" element={<ViewRep />} />
+					<Route path="/manageservice/addrepair" element={<AddRepair />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
@@ -177,6 +195,10 @@ function App() {
 					<Route path="/managesup" element={<SupManagement />} />
 					<Route path="/addOrder" element={<SupAddOrder />} />
 					<Route path="/addSupplier" element={<SupAddSupplier />} />
+					<Route path="/viewallsup" element={<ViewAllSup />} />
+					<Route path="/viewsup/:id" element={<ViewSup />} />
+					<Route path="/addPreOrder" element={<AddPreOrder />} />
+					<Route path="/updateSupplier/:id" element={<UpdateSupplier />} />
           
 				</Routes>
 				<Footer />

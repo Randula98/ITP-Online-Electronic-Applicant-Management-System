@@ -1,0 +1,82 @@
+.cartcontainer{
+    width: 90%;
+    min-height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    background-color: rgb(185, 182, 182);
+}
+
+.cartbody{
+    background-color: rgb(185, 182, 182);
+    min-height: 150px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cartfooter{
+    min-height: 300px;
+    width: 100%;
+}
+
+.oneleftcart {
+    width: 45%;
+    height: 280px;
+    position: relative;
+    float: left;
+    margin-left: 20px;
+    background-color: rgba(204, 200, 200, 0.393);
+}
+
+.cartfoot{
+    width: 100%;
+    height: 100%;
+}
+
+.cartoneitem{
+    width: 90%;
+    min-height: 100px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.checkoutsection{
+    width: 90%;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+button.checkbtn{
+    width: 100%;
+    cursor: pointer;
+}
+
+a.conshop{
+    text-decoration: none;
+    color: blue;
+    margin-top: 20px;
+}
+
+a.conshop:hover{
+    color: red;
+}
+
+.cardbanner{
+    margin-top: 5px;
+}
+
+.checkimage{
+    width: 100%;
+    height: 130px;
+    background-color: aqua;
+    margin-top: 10px;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/cartimage%2FMale%20couriers%20delivering%20parcels.jpg?alt=media&token=7636389c-87ad-40ac-b5b8-d8662111ec91);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
