@@ -34,6 +34,16 @@ loyaltyRoutes.route("/loyalty/:id").get(function (req, res) {
 	});
 });
 
+//get record by type
+loyaltyRoutes.route("/getloyalty/:type").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { type: req.params.type };
+	db_connect.collection("loyalty").findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
 // This section will help you create a new record.
 loyaltyRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");

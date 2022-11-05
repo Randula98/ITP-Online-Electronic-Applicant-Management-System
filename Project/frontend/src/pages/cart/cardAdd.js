@@ -1,72 +1,55 @@
-import React, { useState } from "react";
+import React from "react";
+import Swal from 'sweetalert2';
 // import { useNavigate } from "react-router";
+import jwt_decode from 'jwt-decode';
+import { v4 } from "uuid";
 import "./card.css";
-
-const RecordCard = (props) => (
-    <option value={props.record.bname}>{props.record.bname}</option>
-);
-
 
 export default function CardAdd() {
 
-    // const [records, setRecords] = useState([]);
-
-    // const [cardnumber, setCardnumber] = useState("");
-    // const [cvc, setCvc] = useState("");
-    // const [expdate, setExpdate] = useState("");
+    const [cardno, setCardno] = React.useState("");
+    const [cardcvc, setCvc] = React.useState("");
 
 
-    // // This method fetches the records from the database.
-    // useEffect(() => {
-    //     async function getRecords() {
-    //         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/card`);
-
-    //         if (!response.ok) {
-    //             const message = `An error occurred: ${response.statusText}`;
-    //             window.alert(message);
-    //             return;
-    //         }
-    //         const records = await response.json();
-    //         setRecords(records);
-    //     }
-    //     getRecords();
-
-    //     return;
-    // }, [records.length]);
-
-    // function recordList() {
-    //     return records.map((record) => {
-    //         return (
-    //             <RecordCard
-    //                 record={record}
-    //                 //deleteRecord={() => deleteRecord(record._id)}
-    //                 key={record._id}
-    //             />
-    //         );
-    //     });
-    // }
-
+    async function handleSubmit() {
+        localStorage.setItem("cusCartID" , (jwt_decode(localStorage.getItem("authToken")).fname + v4()));
+        if (cardno.length === 16 && cardcvc.length === 3 && cardno.match(/^[0-9]+$/) && cardcvc.match(/^[0-9]+$/)) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Payment Successful',
+                text: 'Your Order is Placed Now!!',
+                footer: '<a href="/">Keep Exploring</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/";
+                }
+            })
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Card Details',
+                text: 'Please check the card details!',
+            })
+        }
+    }
 
     return (
         <div>
             <div className="cardaddhead">
-                <br />
                 <center>
                     <h1 className="text-5xl font-extrabold text-grey-400">Add Credit\Debit Card</h1>
                 </center>
                 <br />
-                <br />
-                <form className="frame"
-                    autocomplete="off"
-                >
+                <div className="frame">
                     <div className="mb-6">
                         <div>
                             <label for="Card Number" class="block mb-2 text-sm font-medium text-white ">Card Number</label>
                             <input type="text" id="inumber"
                                 className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="6614 1234 5678 9012"
-                                required=""
-                                // onChange={(e) => setCardnumber({ cardnumber: e.target.value })}
+                                required
+                                onChange={(e) => setCardno(e.target.value)}
                             />
                         </div>
                         <br />
@@ -76,27 +59,48 @@ export default function CardAdd() {
                             <input type="text" id="cvc"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="123"
-                                required=""
-                                // onChange={(e) => setCvc({ cvc: e.target.value })}
+                                required
+                                onChange={(e) => setCvc(e.target.value)}
                             />
                         </div>
                         <br />
-
-                        <div>
-                            <label for="Expiry Date" class="block mb-2 text-sm font-medium text-white ">Expiry Date</label>
-                            <input type="date" id="expdate"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="12/2021"
-                                required=""
-                                // onChange={(e) => setExpdate({ cvc: e.target.value })}
-                            />
+                        <div class="grid md:grid-cols-2 md:gap-6">
+                            <div class="relative z-0 mb-6 w-full group">
+                                <label for="Cvc" class="block mb-2 text-sm font-medium text-white ">Expiration Year</label>
+                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>2022</option>
+                                    <option value="US">2023</option>
+                                    <option value="CA">2024</option>
+                                    <option value="FR">2025</option>
+                                    <option value="DE">2026</option>
+                                    <option value="DE">2027</option>
+                                </select>
+                            </div>
+                            <div class="relative z-0 mb-6 w-full group">
+                                <label for="Cvc" class="block mb-2 text-sm font-medium text-white ">Expiration Month</label>
+                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>01</option>
+                                    <option value="US">02</option>
+                                    <option value="CA">03</option>
+                                    <option value="FR">04</option>
+                                    <option value="DE">05</option>
+                                    <option value="DE">06</option>
+                                    <option value="FR">07</option>
+                                    <option value="DE">08</option>
+                                    <option value="DE">09</option>
+                                    <option value="FR">10</option>
+                                    <option value="DE">11</option>
+                                    <option value="DE">12</option>
+                                </select>
+                            </div>
                         </div>
-                        <br />
 
-                        <button type="submit"
+                        <button
+                            onClick={handleSubmit}
+                            type="submit"
                             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Add Details</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )

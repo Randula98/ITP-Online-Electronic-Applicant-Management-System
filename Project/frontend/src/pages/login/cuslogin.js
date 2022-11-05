@@ -2,6 +2,7 @@
 import React from "react";
 import jwt_decode from 'jwt-decode';
 import Swal from 'sweetalert2'
+import { v4 } from "uuid";
 
 export default function Cuslogin() {
 	const [email, setEmail] = React.useState("");
@@ -36,9 +37,11 @@ export default function Cuslogin() {
 			localStorage.setItem("cusImgurl", jwt_decode(content.token).imgurl);
 			localStorage.setItem("cusLoyaltylevel", jwt_decode(content.token).loyaltylevel);
 			localStorage.setItem("authToken", content.token);
+			localStorage.setItem("cusCartID" , (jwt_decode(content.token).fname + v4()));
 			localStorage.setItem("user", "CUSTOMER");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
+			alert(localStorage.getItem("cusCartID"));
 			
 			Swal.fire({
 				icon: 'success',

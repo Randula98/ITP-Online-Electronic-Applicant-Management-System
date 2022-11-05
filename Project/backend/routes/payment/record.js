@@ -37,7 +37,6 @@ paymentRoutes.route("/payment/:id").get(function (req, res) {
 paymentRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		paymentid: req.body.paymentid,
 		orderid: req.body.orderid,
 		cardnumber: req.body.cardnumber,
 		expireyear: req.body.expireyear,
@@ -55,7 +54,6 @@ paymentRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			paymentid: req.body.paymentid,
 			orderid: req.body.orderid,
 			cardnumber: req.body.cardnumber,
 			expireyear: req.body.expireyear,
