@@ -66,9 +66,14 @@ import {
 	SupAddOrder,
 	SupAddSupplier,
   	AddDelivery,
-	AddRepair,
+	// AddRepair,
 	AddLoyalty,
 	UpdateLoyalty,
+	ViewAllDel,
+	ViewDel,
+	ViewAllRep,
+	ViewRep,
+	AddRepair,
 	ViewAllSup,
 	ViewSup,
 	AddPreOrder,
@@ -163,8 +168,13 @@ function App() {
 
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
-					<Route PATH="/manageservice/addRepair" element={<AddRepair />} />
+					{/* <Route PATH="/manageservice/addRepair" element={<AddRepair />} /> */}
 					<Route path="/manageservice/addDelivery" element={<AddDelivery />} />
+					<Route path="/manageservice/viewalldel" element={<ViewAllDel />} />
+					<Route path="/manageservice/viewdel/:id" element={<ViewDel />} />
+					<Route path="/manageservice/viewallrep" element={<ViewAllRep />} />
+					<Route path="/manageservice/viewrep/:id" element={<ViewRep />} />
+					<Route path="/manageservice/addrepair" element={<AddRepair />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />

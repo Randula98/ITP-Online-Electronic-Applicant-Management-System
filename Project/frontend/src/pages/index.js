@@ -59,9 +59,14 @@ import ItemSearch from "./managestocks/itemsearch";
 import SupAddOrder from "./managesup/addOrder";
 import SupAddSupplier from "./managesup/addSupplier";	
 import AddDelivery from "./manageservice/addDelivery";
-import AddRepair from "./manageservice/addRepair";
+// import AddRepair from "./manageservice/addRepair";
 import AddLoyalty from "./managecus/addloyalty";
 import UpdateLoyalty from "./managecus/updateloyalty";
+import ViewAllDel from "./manageservice/viewalldel";
+import ViewDel from "./manageservice/viewdel";
+import ViewAllRep from "./manageservice/viewallrep";
+import ViewRep from "./manageservice/viewrep";
+import AddRepair from "./manageservice/addRepair";
 import ViewAllSup from "./managesup/viewallsup";
 import ViewSup from "./managesup/viewsup";
 import AddPreOrder from "./managesup/addPreOrder";
@@ -132,9 +137,14 @@ export {
 	SupAddOrder,
 	SupAddSupplier,
 	AddDelivery,
-	AddRepair,
+	// AddRepair,
 	AddLoyalty,
 	UpdateLoyalty,
+	ViewAllDel,
+	ViewDel,
+	ViewAllRep,
+	ViewRep,
+	AddRepair,
 	ViewAllSup,
 	ViewSup,
 	AddPreOrder,
