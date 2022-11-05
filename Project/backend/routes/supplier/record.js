@@ -19,7 +19,7 @@ supplierRoutes.route("/").get(function (req, res) {
 		});
 });
 
-//new 5 customers
+//new 5 supplier
 supplierRoutes.route("/new5").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
@@ -46,13 +46,13 @@ supplierRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
 		//supplierid: req.body.supplierid,
-		supplierfname: req.body.supplierfname,
-		supplierlname: req.body.supplierlname,
-		street: req.body.street,
-		city: req.body.city,
-		province: req.body.province,
-		contactnumber: req.body.contactnumber,
-		email: req.body.email,
+		supplierfname: req.body.supplierfname.supplierfname,
+		supplierlname: req.body.supplierlname.supplierlname,
+		street: req.body.street.street,
+		city: req.body.city.city,
+		province: req.body.province.province,
+		contactnumber: req.body.contactnumber.contactnumber,
+		email: req.body.email.email,
 		imgurl: req.body.imgurl,
 	};
 	db_connect.collection("supplier").insertOne(myobj, function (err, res) {
@@ -67,13 +67,13 @@ supplierRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			//supplierid: req.body.supplierid,
-			supplierfname: req.body.supplierfname,
-			supplierlname: req.body.supplierlname,
-			street: req.body.street,
-			city: req.body.city,
-			province: req.body.province,
-			contactnumber: req.body.contactnumber,
-			email: req.body.email,
+			supplierfname: req.body.supplierfname.supplierfname,
+			supplierlname: req.body.supplierlname.supplierlname,
+			street: req.body.street.street,
+			city: req.body.city.city,
+			province: req.body.province.province,
+			contactnumber: req.body.contactnumber.contactnumber,
+			email: req.body.email.email,
 			imgurl: req.body.imgurl,
 		},
 	};

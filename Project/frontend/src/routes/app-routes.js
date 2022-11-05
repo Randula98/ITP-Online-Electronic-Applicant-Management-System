@@ -69,6 +69,10 @@ import {
 	AddRepair,
 	AddLoyalty,
 	UpdateLoyalty,
+	ViewAllSup,
+	ViewSup,
+	AddPreOrder,
+	UpdateSupplier,
 	SearchResults,
 	Cart,
 	CardAdd,
@@ -181,6 +185,10 @@ function App() {
 					<Route path="/managesup" element={<SupManagement />} />
 					<Route path="/addOrder" element={<SupAddOrder />} />
 					<Route path="/addSupplier" element={<SupAddSupplier />} />
+					<Route path="/viewallsup" element={<ViewAllSup />} />
+					<Route path="/viewsup/:id" element={<ViewSup />} />
+					<Route path="/addPreOrder" element={<AddPreOrder />} />
+					<Route path="/updateSupplier/:id" element={<UpdateSupplier />} />
           
 				</Routes>
 				<Footer />
