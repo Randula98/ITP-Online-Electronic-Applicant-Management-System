@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 // import { useNavigate } from "react-router-dom";
@@ -27,7 +27,7 @@ export default function NavBar() {
 		window.location.href = "/";
 	};
 
-	async function searchItems(e){
+	async function searchItems(e) {
 		e.preventDefault();
 		const key = search;
 		console.log(key);
@@ -89,6 +89,15 @@ export default function NavBar() {
 					{/* customer menu */}
 					{localStorage.getItem("user") === "CUSTOMER" ? (
 						<>
+							<a href="/cart">
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 mx-10"
+								>
+									View Cart
+								</button>
+							</a>
+
 							<a href="/cusdash">
 								<button
 									type="button"
