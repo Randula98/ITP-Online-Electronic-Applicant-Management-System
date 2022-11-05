@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 
 export default function AddDelivery() {
 
   const [form, setForm] = useState({
     itemid: "",
+    itemname: "",
 		stars: "",
 		remarks: "",
 		customerid: "",
@@ -21,6 +23,8 @@ export default function AddDelivery() {
     });
   }
 
+  const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -28,7 +32,7 @@ export default function AddDelivery() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
 
-    await fetch("http://localhost:5000/record/add", {
+    await fetch(`${BASE_URL}/delivery/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,13 +44,19 @@ export default function AddDelivery() {
         return;
       });
 
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfull',
+        text: 'New Delivery Added',
+      })
+
     setForm({ itemid: "", stars: "", remarks: "", customerid: "", date: "", status: "" });
-    navigate("/");
+    navigate("/manageservice");
   }
   return (
     <div>
-      <div class="f2">
-        <section class="bg-gray-50 dark:bg-gray-900" />
+      <div className="f2">
+        <section className="bg-gray-50 dark:bg-gray-900" />
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <br />
           <br />
@@ -76,7 +86,18 @@ export default function AddDelivery() {
                     <input type="text" name="itemID" id="itemID" placeholder="Enter Item ID"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required=""
-                      onChange={(e) => updateForm({ itemID: e.target.value })} />
+                      onChange={(e) => updateForm({ itemid: e.target.value })} />
+
+                  </div>
+
+                  <div>
+                    <label for="Item Name"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item
+                      Name</label>
+                    <input type="text" name="itemName" id="itemName" placeholder="Enter Item Name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required=""
+                      onChange={(e) => updateForm({ itemname: e.target.value })} />
 
                   </div>
 
@@ -87,7 +108,7 @@ export default function AddDelivery() {
                     <input type="text" name="cID" id="cID" placeholder="Enter Customer ID"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required=""
-                      onChange={(e) => updateForm({ cID: e.target.value })} />
+                      onChange={(e) => updateForm({ customerid: e.target.value })} />
 
                   </div>
 
@@ -100,7 +121,7 @@ export default function AddDelivery() {
                     <input type="date" name="Ddate" id="rdate" placeholder=""
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required=""
-                      onChange={(e) => updateForm({ Ddate: e.target.value })} />
+                      onChange={(e) => updateForm({ date: e.target.value })} />
 
                   </div>
 

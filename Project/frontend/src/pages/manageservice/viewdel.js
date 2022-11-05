@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./managecus.css"
+import "./serdash.css"
 
-export default function ViewCus() {
+export default function ViewDel() {
 
   const [form, setForm] = useState({
-    fname: "",
-    lname: "",
-    contactno: "",
-    address: "",
-    email: "",
-    totalpurchases: "",
-    totalamount: "",
-    records: [],
+    itemname: "",
+    itemid: "",
+    stars: "",
+    remarks: "",
+    customerid: "",
+    date: "",
+    status: "",
+
   });
   const params = useParams();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function ViewCus() {
       const record = await response.json();
       if (!record) {
         window.alert(`Record with id ${id} not found`);
-        navigate("/viewallcus");
+        navigate("/viewalldeliveries");
         return;
       }
 
@@ -43,12 +43,12 @@ export default function ViewCus() {
   }, [params.id, navigate]);
 
   async function deleteRecord(id) {
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
-        method: "DELETE"
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/delivery/delete/${id}`, {
+      method: "DELETE"
     });
 
-    navigate("/viewallcus");
-}
+    navigate("/viewalldeliveries");
+  }
 
   // This method will delete a record
   // async function deleteRecord(id) {
@@ -74,24 +74,25 @@ export default function ViewCus() {
   // }
   return (
     <div>
-      <div class="viewcus dark:bg-gray-700 grid grid-cols-8 gap-4 hover:bg-gray-500 left">
-        <div class="col-span-3"><img src={form.imgurl} alt="" />
-          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update Profile</button>
+      <div className="viewcus dark:bg-gray-700 grid grid-cols-8 gap-4 hover:bg-gray-500 left">
+        <div className="col-span-3">
+          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update Delivery</button>
           <button onClick={() => {
-                deleteRecord(form._id);
-            }}
-            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-            >Delete Profile</button>
+            deleteRecord(form._id);
+          }}
+            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >Delete Delivery</button>
         </div>
 
-        <div class="">
-          <p class="text-lg"><b>{form.fname}&#160;{form.lname}</b></p>
+        <div className="">
+          <p className="text-lg"><b>{form.itemname}</b></p>
           <br />
-          <p class="text-lg sm">{form.contactno} </p>
-          <p class="text-lg sm">{form.address} </p>
-          <p class="text-lg sm">{form.email} </p>
-          <p class="text-lg sm">Total&#160;Purchases&#160;Done&#160;-{form.totalpurchases} </p>
-          <p class="text-lg sm">Total&#160;Spent&#160;Amount&#160;-{form.totalpayments} </p>
+          <p className="text-lg"><b>{form.itemid}</b></p>
+          <p className="text-lg sm">{form.stars} </p>
+          <p className="text-lg sm">{form.remarks} </p>
+          <p className="text-lg sm">{form.customerid} </p>
+          <p className="text-lg sm">{form.date} </p>
+          <p className="text-lg sm">{form.status} </p>
 
         </div>
 
