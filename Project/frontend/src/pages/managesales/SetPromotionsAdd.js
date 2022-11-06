@@ -70,7 +70,8 @@ export default function SetPromotionAdd() {
                     alert("Contact Number already exist");
                 }
 
-                alert("Promotion Added Successfully");
+                //alert("Promotion Added Successfully");
+                document.getElementById("response_alert").innerHTML = "Promotion Added Successfully"
                 window.location.href = "/managesales";
             })
             .catch((err) => {
@@ -93,6 +94,10 @@ export default function SetPromotionAdd() {
                         <div
                             className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                {/* <div id= "response_alert" className = "alert alert-success">
+                                  
+
+                                </div> */}
                                 <h1
                                     className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                     Set Promotions
@@ -215,6 +220,11 @@ export default function SetPromotionAdd() {
 
 
                                     </div>
+
+                                    <div id= "response_alert" className = "alert alert-success">
+                                  
+
+                                </div>
                                     <button type="submit"
                                         className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Save
                                     </button>
