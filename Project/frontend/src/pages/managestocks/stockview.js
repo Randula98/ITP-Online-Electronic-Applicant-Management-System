@@ -110,6 +110,7 @@ export default function StockView() {
         </form>
       </div>
 
+      <br/>
       <div className="brandcarditems">
         {recordList()}
 

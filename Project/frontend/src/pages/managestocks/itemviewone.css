@@ -150,3 +150,10 @@
     overflow: hidden;
     border-radius: 25%;
 }
+
+.itemdetails{
+    padding: 30px;
+    width: 650px;
+    height: 500px;
+    background-color: rgba(255, 228, 196, 0.089);
+}

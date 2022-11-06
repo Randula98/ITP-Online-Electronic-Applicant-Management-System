@@ -173,13 +173,13 @@ itemRoutes.route("/update/:id").post(function (req, response) {
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = {
 		$set: {
-			itemname: req.body.itemname.itemname,
-			unitprice: Number(req.body.unitprice.unitprice),
-			itemtype: req.body.itemtype.itemtype,
-			brand: req.body.brand.brand,
-			unitstock: Number(req.body.unitstock.unitstock),
+			itemname: req.body.itemname,
+			unitprice: Number(req.body.unitprice),
+			itemtype: req.body.itemtype,
+			brand: req.body.brand,
+			unitstock: Number(req.body.unitstock),
 			imgurl: req.body.imgurl,
-			description: req.body.description.description,
+			description: req.body.description,
 		},
 	};
 	db_connect.collection("item").updateOne(myquery, newvalues, function (err, res) {
