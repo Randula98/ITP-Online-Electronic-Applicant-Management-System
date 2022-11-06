@@ -107,9 +107,6 @@ export default function ItemView() {
           </div>
         </form>
       </div>
-
-      
-
       <div className="brandcarditems">
         {recordList()}
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import Swal from 'sweetalert2'
 import { v4 } from "uuid";
 import "./Stock.css";
 
@@ -14,6 +15,8 @@ const RecordItemType = (props) => (
 );
 
 export default function Stockadd() {
+
+    const navigate = useNavigate();
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
@@ -92,7 +95,6 @@ export default function Stockadd() {
     return (
         <div>
             <div className="stockaddhead">
-                <br />
                 <center>
                     <h1 className="text-5xl font-extrabold text-grey-400">Add Stock Item</h1>
                 </center>
@@ -144,9 +146,13 @@ export default function Stockadd() {
                                 const content = await response.json();
                                 console.log(content);
 
-                                alert("Item Added Successfully");
+                                Swal.fire(
+                                    'Success!!',
+                                    'New Item Added Successfully',
+                                    'success'
+                                )
 
-                                window.location.href = "/stockhome";
+                                navigate("/stockhome");
 
                                 // if(content.success === true){
                                 //     alert("User Registered Successfully");
@@ -248,7 +254,7 @@ export default function Stockadd() {
                                 Performance
                                 "
                                 onChange={(e) => setDescription({ description: e.target.value })}
-                                ></textarea>
+                            ></textarea>
                         </div>
                         <br />
                         <button type="submit"

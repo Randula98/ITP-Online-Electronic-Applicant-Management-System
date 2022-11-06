@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 import './Stock.css'
 
 const RecordAllBrands = (props) => (
@@ -51,12 +52,47 @@ export default function BrandView() {
 
   // This method will delete a record
   async function deleteRecord(id) {
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/brand/delete/${id}`, {
-      method: "DELETE"
-    });
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+        cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+      },
+      buttonsStyling: false
+    })
 
-    const newRecords = records.filter((el) => el._id !== id);
-    setRecords(newRecords);
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this! You will the brand name!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/brand/delete/${id}`, {
+          method: "DELETE"
+        });
+    
+        const newRecords = records.filter((el) => el._id !== id);
+        setRecords(newRecords);
+
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'This Brand has been deleted.',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'This Brand is Not Deleted:)',
+          'info'
+        )
+      }
+    })
   }
 
   // This method will map out the records on the table
