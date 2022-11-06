@@ -1,0 +1,57 @@
+.flex-container {
+    display: flex;
+    padding: 20px;
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px solid rgba(78, 77, 77, 0.479);
+    float: left;
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+    background: rgb(226, 220, 220);
+    text-align: center;
+    border: 1px solid rgb(219, 213, 213);
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: rgba(185, 182, 182, 0.479);
+
+
+}
+
+.flex-child:first-child {
+    margin-right: 20px;
+
+    float: left;
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+    background: rgba(78, 77, 77, 0.479);
+    text-align: center;
+    border: 1px solid #c7c8c9;
+    background-color: rgba(185, 182, 182, 0.479);
+    align-content: center;
+
+}
+
+.para {
+    padding: 100px;
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+
+.map {
+    padding: 100px 100px 50px 120px;
+    align-self: center;
+
+}
+
+.abt {
+    text-align: center;
+    padding: 50px;
+}
+
+.color {
+    background-color: rgba(198, 201, 201, 0.856);
+}
