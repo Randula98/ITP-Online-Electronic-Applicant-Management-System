@@ -74,6 +74,9 @@ import UpdateSupplier from "./managesup/updateSupplier";
 import SearchResults from "./home/searchresults";
 import Cart from "./cart";
 import CardAdd from "./cart/cardAdd";
+import ViewCusProf from "./managepurchase/viewcusprof";
+import ViewCartItems from "./managepurchase/viewcartitems";
+import AllCompletedOrders from "./managepurchase/allcompletedorders";
 
 export {
 	About,
@@ -152,4 +155,7 @@ export {
 	SearchResults,
 	Cart,
 	CardAdd,
+	ViewCusProf,
+	ViewCartItems,
+	AllCompletedOrders,
 };

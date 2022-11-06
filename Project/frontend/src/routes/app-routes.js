@@ -81,6 +81,11 @@ import {
 	SearchResults,
 	Cart,
 	CardAdd,
+	CardUpdate,
+	CardView,
+	ViewCusProf,
+	ViewCartItems,
+	AllCompletedOrders
 } from "../pages";
 
 function App() {
@@ -103,7 +108,7 @@ function App() {
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/cart" element={<Cart />} />
-					<Route path="/card/:key" element={<CardAdd />} />
+					<Route path="/card" element={<CardAdd />} />
 
 					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
@@ -154,6 +159,9 @@ function App() {
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />
+					<Route path="/viewcusprof/:id" element={<ViewCusProf />} />
+					<Route path="/viewcartitems/:id" element={<ViewCartItems />} />
+					<Route path="/allcompletedorders" element={<AllCompletedOrders />} />
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />

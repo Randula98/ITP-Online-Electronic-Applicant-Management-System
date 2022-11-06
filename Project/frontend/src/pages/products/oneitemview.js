@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
@@ -17,7 +18,40 @@ export default function OneItemView() {
 
   async function addToCart(e) {
     e.preventDefault();
-    alert("Added")
+    
+    const cartitem = {
+      cartid: localStorage.getItem("cusCartID"),
+      itemid: form._id,
+      brand: form.brand,
+      itemname: form.itemname,
+      itemtype: form.itemtype,
+      unitprice: form.unitprice,
+      quantity: 1,
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cart_item/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartitem),
+    }).catch((err) => {
+      alert(err);
+    });
+
+    const content = await response.json();
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Successful',
+      text: 'New Item Added To The Cart!',
+      footer: '<a href="/cart">Go to Cart!</a>'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/brands");
+      }
+    })
+
   }
 
   const [form, setForm] = useState({
@@ -83,7 +117,7 @@ export default function OneItemView() {
 
           <br />
           <div class="p-4 text-xl text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300 itemrows" role="alert">
-            <span class="font-medium"><a href = {`/branditemview/${form.brand}`}>{form.brand}</a> ◾ <a href = {`/typeitemview/${form.itemtype}`}>{form.itemtype}</a></span>
+            <span class="font-medium"><a href={`/branditemview/${form.brand}`}>{form.brand}</a> ◾ <a href={`/typeitemview/${form.itemtype}`}>{form.itemtype}</a></span>
           </div>
 
           <br />
