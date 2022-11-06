@@ -148,7 +148,7 @@ export default function Cart() {
             ) {
                 swalWithBootstrapButtons.fire(
                     'Item Saved',
-                    'Your Item is Saved in the Card :)',
+                    'Your Item is Saved in the Cart! :)',
                     'info'
                 )
             }
@@ -166,9 +166,12 @@ export default function Cart() {
     async function checkout() {
 
         const newcus = {
-            purchases:Number(localStorage.getItem("cusCurrentpurchases")) + 1,
-            payments:Number(localStorage.getItem("cusCurrentpayments")) + totalcost,
+            purchases:Number(localStorage.getItem("cusTotalpurchases")) + Number(1),
+            payments:Number(localStorage.getItem("cusTotalpayments")) + Number(totalcost),
         }
+
+        alert(newcus.purchases)
+        alert(newcus.payments)
 
         //update customer total purchase and payments
         const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/updatepurchases/${localStorage.getItem("cusID")}`, {
