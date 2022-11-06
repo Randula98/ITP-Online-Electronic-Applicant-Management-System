@@ -33,6 +33,19 @@ recordRoutes.route("/cart_item/:id").get(function (req, res) {
 	});
 });
 
+//get record by cartid
+recordRoutes.route("/cart/:cartid").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { cartid: req.params.cartid };
+	db_connect
+		.collection("cart_item")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // This section will help you create a new record.
 recordRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");

@@ -66,6 +66,156 @@ recordRoutes.route("/add").post(function (req, response) {
 	});
 });
 
+//change record status to accepted
+recordRoutes.route("/accept/:id").post(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = { $set: { status: "accepted" } };
+	db_connect.collection("cart")
+		.updateOne(myquery, newvalues, function (
+			err,
+			result
+		) {
+			if (err) throw err;
+			res.json(result);
+		}
+		);
+});
+
+//change record status to sent to delivery
+recordRoutes.route("/send/:id").post(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = { $set: { status: "sent to delivery" } };
+	db_connect.collection("cart").updateOne(myquery, newvalues, function (
+		err,
+		result
+	) {
+		if (err) throw err;
+		res.json(result);
+	}
+	);
+});
+
+//get penting records
+recordRoutes.route("/pending").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { status: "pending" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// get pending records by customer id
+recordRoutes.route("/pending/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { customerid: req.params.id, status: "pending" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get accepted records
+recordRoutes.route("/accepted").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { status: "accepted" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get accepted records by customer id
+recordRoutes.route("/accepted/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: req.params.id, status: "accepted" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get sent to delivery records
+recordRoutes.route("/sent").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { status: "sent to delivery" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get sent to delivery records by customer id
+recordRoutes.route("/sent/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { customerid: req.params.id, status: "sent to delivery" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get top 5 purchases by totalprice
+recordRoutes.route("/top5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("cart")
+		.find({})
+		.sort({ totalprice: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get delivered records
+recordRoutes.route("/delivered").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { status: "delivered" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get delivered records by customer id
+recordRoutes.route("/delivered/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { customerid: req.params.id, status: "delivered" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+
 // change status to delivered
 recordRoutes.route("/delivered/:id").put(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
@@ -78,6 +228,34 @@ recordRoutes.route("/delivered/:id").put(function (req, res) {
 		if (err) throw err;
 		res.json(result);
 	});
+});
+
+// change status to completed
+recordRoutes.route("/completed/:id").put(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = { $set: { status: "completed" } };
+	db_connect.collection("cart").updateOne(myquery, newvalues, function (
+		err,
+		result
+	) {
+		if (err) throw err;
+		res.json(result);
+	}
+	);
+});
+
+//get completed records
+recordRoutes.route("/completed").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { status: "completed" };
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 // This section will help you update a record by id.

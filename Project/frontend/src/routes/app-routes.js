@@ -81,6 +81,11 @@ import {
 	SearchResults,
 	Cart,
 	CardAdd,
+	CardUpdate,
+	CardView,
+	ViewCusProf,
+	ViewCartItems,
+	AllCompletedOrders
 } from "../pages";
 
 function App() {
@@ -154,6 +159,9 @@ function App() {
 
 					{/* Purchase Management */}
 					<Route path="/managepurchase" element={<PurchaseManagement />} />
+					<Route path="/viewcusprof/:id" element={<ViewCusProf />} />
+					<Route path="/viewcartitems/:id" element={<ViewCartItems />} />
+					<Route path="/allcompletedorders" element={<AllCompletedOrders />} />
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
