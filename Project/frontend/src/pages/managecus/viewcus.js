@@ -44,11 +44,11 @@ export default function ViewCus() {
 
   async function deleteRecord(id) {
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
-        method: "DELETE"
+      method: "DELETE"
     });
 
     navigate("/viewallcus");
-}
+  }
 
   // This method will delete a record
   // async function deleteRecord(id) {
@@ -78,10 +78,10 @@ export default function ViewCus() {
         <div class="col-span-3"><img src={form.imgurl} alt="" />
           <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update Profile</button>
           <button onClick={() => {
-                deleteRecord(form._id);
-            }}
+            deleteRecord(form._id);
+          }}
             class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-            >Delete Profile</button>
+          >Delete Profile</button>
         </div>
 
         <div class="">

@@ -43,7 +43,7 @@ import {
 	SetPromotionUpdate,
 	ViewAllPromo,
 	Stockadd,
-	Stockupdate,
+	StockUpdate,
 	Stockhome,
 	ItemTypes,
 	PurchaseManagement,
@@ -81,8 +81,8 @@ import {
 	SearchResults,
 	Cart,
 	CardAdd,
-	CardUpdate,
-	CardView,
+	// CardUpdate,
+	// CardView,
 	ViewCusProf,
 	ViewCartItems,
 	AllCompletedOrders
@@ -145,7 +145,7 @@ function App() {
 
 					{/* Stock Management */}
 					<Route path="/stockadd" element={<Stockadd />} />
-					<Route path="/stockupdate" element={<Stockupdate />} />
+					<Route path="/stockupdate/:id" element={<StockUpdate />} />
 					<Route path="/stockhome" element={<Stockhome />} />
 					<Route path="/addstock" element={<Stockadd />} />
 					<Route path="/editbrand/:id" element={<EditBrand />} />
