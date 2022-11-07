@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import ReactToPrint from 'react-to-print';
+
 // import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import "./supplier.css";
+
+import { DeliveredItemsPrint } from "./delivereditemsprint";
+
 
 const RecordNewSup = (props) => (
     <div
@@ -186,6 +191,7 @@ const RecordDeliveredOrders = (props) => (
 
 
 export default function SupplierManagement() {
+    const componentRef = useRef();
 
     const [records, setRecords] = useState([]);
     const [records4, setRecords4] = useState([]);
@@ -428,7 +434,7 @@ export default function SupplierManagement() {
             }
         })
 
-    } 
+    }
 
     async function setDelivered(id) {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -475,7 +481,7 @@ export default function SupplierManagement() {
             }
         })
 
-    } 
+    }
 
     function recordList() {
         return records.map((record) => {
@@ -544,17 +550,17 @@ export default function SupplierManagement() {
         <div>
             <div className="newSupplier">
                 <div className="addbtn">
-                    <a href="/addOrder" target="_blank">
+                    {/* <a href="/addOrder" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
-                    </a>
+                    </a> */}
 
                     <a href="/addSupplier" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Supplier</button>
                     </a>
 
-                    <a href="/addPreOrder" target="_blank">
+                    {/* <a href="/addPreOrder" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Pre-Order</button>
-                    </a>
+                    </a> */}
                 </div>
                 <div className="row">
                     {/* <a href="/addOrder" target="_blank">
@@ -760,8 +766,17 @@ export default function SupplierManagement() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {recordList5()}
+                                <DeliveredItemsPrint ref={componentRef} />
                             </tbody>
+                            <br />
+                            <div className="row btnrow">
+                                <ReactToPrint
+                                    trigger={() => <button
+                                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                    >Get Report Of The Delivered Items!</button>}
+                                    content={() => componentRef.current}
+                                />
+                            </div>
                         </table>
                     </div>
 
