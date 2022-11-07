@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 import "./supplier.css"
 
 export default function ViewSup() {
@@ -43,11 +44,45 @@ export default function ViewSup() {
     }, [params.id, navigate]);
 
     async function deleteRecord(id) {
-        await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/delete/${id}`, {
-            method: "DELETE"
-        });
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
 
-        navigate("/viewallsup");
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this! You will the Supplier Details!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/delete/${id}`, {
+                    method: "DELETE"
+                });
+                navigate("/viewallsup");
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Supplier Profile has been deleted.',
+                    'success'
+                )
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Supplier Profile is Not Deleted:)',
+                    'info'
+                )
+            }
+        })
     }
 
     // This method will delete a record
@@ -76,18 +111,16 @@ export default function ViewSup() {
         <div>
             <div className="viewcus dark:bg-gray-700 grid grid-cols-8 gap-4 hover:bg-gray-500 left">
                 <div className="col-span-3"><img src={form.imgurl} alt="" />
-                <a href={`/updateSupplier/${form._id}`} target="_blank">
-                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update Supplier Details</button>
+                    <a href={`/updateSupplier/${form._id}`} target="_blank" rel="noreferrer">
+                        <button
+                            type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 btnsupup">
+                            Update Supplier Details</button>
+                    </a>
 
-                </a>
-                    <button onClick={() => {
-                        deleteRecord(form._id);
-                    }}
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                    >Remove Supplier</button>
                 </div>
 
-                <div className="">
+                <div className="supdetails">
                     <p className="text-lg"><b>{form.supplierfname}&nbsp;{form.supplierlname}</b></p>
                     <br />
                     <p className="text-lg sm">{form.street} </p>
@@ -97,7 +130,13 @@ export default function ViewSup() {
                     <p className="text-lg sm">{form.email} </p>
                     {/* <p className="text-lg sm">Total&#160;Items&#160;Supplied&#160;-{form.totalpurchases} </p> */}
                     {/* <p className="text-lg sm">Total&#160;Spent&#160;Amount&#160;-{form.totalpayments} </p> */}
-
+                    <br />
+                    <br />
+                    <button onClick={() => {
+                        deleteRecord(form._id);
+                    }}
+                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >Remove Supplier</button>
                 </div>
 
 

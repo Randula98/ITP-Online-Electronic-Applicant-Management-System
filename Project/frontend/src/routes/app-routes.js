@@ -85,7 +85,8 @@ import {
 	// CardView,
 	ViewCusProf,
 	ViewCartItems,
-	AllCompletedOrders
+	AllCompletedOrders,
+	SupSearch,
 } from "../pages";
 
 function App() {
@@ -201,12 +202,13 @@ function App() {
 
 					{/* Supplier Management */}
 					<Route path="/managesup" element={<SupManagement />} />
-					<Route path="/addOrder" element={<SupAddOrder />} />
+					<Route path="/addOrder/:id" element={<SupAddOrder />} />
 					<Route path="/addSupplier" element={<SupAddSupplier />} />
 					<Route path="/viewallsup" element={<ViewAllSup />} />
 					<Route path="/viewsup/:id" element={<ViewSup />} />
 					<Route path="/addPreOrder" element={<AddPreOrder />} />
 					<Route path="/updateSupplier/:id" element={<UpdateSupplier />} />
+					<Route path="/searchsup/:key" element={<SupSearch />} />
           
 				</Routes>
 				<Footer />
