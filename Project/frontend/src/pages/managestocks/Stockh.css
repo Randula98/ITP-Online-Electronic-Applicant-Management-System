@@ -62,8 +62,12 @@
 
 .brandhcardimg{
     width: 200px;
-    margin: auto;
-    height: 200px;
+
+    height: 140px;
+
+    margin-top: 80px;
+
+    margin-left: 50px;
 }
 
 a .btnbrand{
