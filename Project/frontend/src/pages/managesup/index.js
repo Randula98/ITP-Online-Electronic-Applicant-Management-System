@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import ReactToPrint from 'react-to-print';
+
 // import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 import "./supplier.css";
+
+import { DeliveredItemsPrint } from "./delivereditemsprint";
+
 
 const RecordNewSup = (props) => (
     <div
@@ -32,59 +38,166 @@ const RecordNewSup = (props) => (
     </div >
 );
 
-const RecordOrders = (props) => (
+const RecordNewOrders = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
             class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.supplierid}
+            {props.record.date}
         </th>
         <td class="py-4 px-6">
-            {props.record.date}
+            {props.record.brand}
         </td>
         <td class="py-4 px-6">
-            {props.record.itemid}
+            {props.record.itemname}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemtype}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.unitprice}
         </td>
         <td class="py-4 px-6">
             {props.record.quantity}
         </td>
         <td class="py-4 px-6">
-            {props.record.approvedstatus}
-        </td>
-        <td class="py-4 px-6">
-            {props.record.orderstatus}
-        </td>
-        <td class="py-4 px-6">
-            {props.record.details}
+            <button
+                onClick={() => { props.setAccept(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Accept
+            </button>
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline
+            </button>
         </td>
 
     </tr>
 );
 
-const RecordPreOrders = (props) => (
+const RecordAcceptedOrders = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
             class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.itemid}
+            {props.record.date}
         </th>
         <td class="py-4 px-6">
-            {props.record.supplierid}
+            {props.record.brand}
         </td>
         <td class="py-4 px-6">
-            {props.record.date}
+            {props.record.itemname}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemtype}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.unitprice}
         </td>
         <td class="py-4 px-6">
             {props.record.quantity}
         </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => { props.setSent(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Sent To Delivery
+            </button>
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline
+            </button>
+        </td>
 
     </tr>
 );
+
+const RecordSentOrders = (props) => (
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row"
+            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.date}
+        </th>
+        <td class="py-4 px-6">
+            {props.record.brand}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemname}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemtype}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.unitprice}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.quantity}
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => { props.setDelivered(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Order Delivered
+            </button>
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline
+            </button>
+        </td>
+
+    </tr>
+);
+
+const RecordDeliveredOrders = (props) => (
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row"
+            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.date}
+        </th>
+        <td class="py-4 px-6">
+            {props.record.brand}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemname}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.itemtype}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.unitprice}
+        </td>
+        <td class="py-4 px-6">
+            {props.record.quantity}
+        </td>
+        <td class="py-4 px-6">
+
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline
+            </button>
+        </td>
+
+    </tr>
+);
+
 
 export default function SupplierManagement() {
+    const componentRef = useRef();
 
     const [records, setRecords] = useState([]);
-    const [records2, setRecords2] = useState([]);
-    const [records3, setRecords3] = useState([]);
-
+    const [records4, setRecords4] = useState([]);
+    const [records5, setRecords5] = useState([]);
+    const [records6, setRecords6] = useState([]);
+    const [records7, setRecords7] = useState([]);
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -104,52 +217,277 @@ export default function SupplierManagement() {
         getRecords();
 
         return;
-    }, [records2.length]);
+    }, [records.length]);
 
     useEffect(() => {
-        async function getRecords2() {
-            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/`);
+        async function getRecords4() {
+            const response4 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/pendingorders`);
 
-            if (!response2.ok) {
-                const message = `An error occurred: ${response2.statusText}`;
+            if (!response4.ok) {
+                const message = `An error occurred: ${response4.statusText}`;
                 window.alert(message);
                 return;
             }
 
-            const records2 = await response2.json();
-            setRecords2(records2);
+            const records4 = await response4.json();
+            setRecords4(records4);
         }
 
-        getRecords2();
+        getRecords4();
 
         return;
-    }, [records2.length]);
+    }, [records4.length]);
 
     useEffect(() => {
-        async function getRecords3() {
-            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pre_order/`);
+        async function getRecords5() {
+            const response5 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/accepted`);
 
-            if (!response3.ok) {
-                const message = `An error occurred: ${response3.statusText}`;
+            if (!response5.ok) {
+                const message = `An error occurred: ${response5.statusText}`;
                 window.alert(message);
                 return;
             }
 
-            const records3 = await response3.json();
-            setRecords3(records3);
+            const records5 = await response5.json();
+            setRecords5(records5);
         }
 
-        getRecords3();
+        getRecords5();
 
         return;
-    }, [records3.length]);
+    }, [records5.length]);
+
+    useEffect(() => {
+        async function getRecords6() {
+            const response6 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/sent`);
+
+            if (!response6.ok) {
+                const message = `An error occurred: ${response6.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records6 = await response6.json();
+            setRecords6(records6);
+        }
+
+        getRecords6();
+
+        return;
+    }, [records6.length]);
+
+    useEffect(() => {
+        async function getRecords7() {
+            const response7 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/order/recieved`);
+
+            if (!response7.ok) {
+                const message = `An error occurred: ${response7.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records7 = await response7.json();
+            setRecords7(records7);
+        }
+
+        getRecords7();
+
+        return;
+    }, [records7.length]);
+
+    async function deleteRecord(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this! You will lose the order!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/order/delete/${id}`, {
+                    method: "DELETE"
+                });
+
+                const newRecords = records.filter((el) => el._id !== id);
+                setRecords(newRecords);
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Placed Order has been deleted.',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Placed Order Not Deleted:)',
+                    'info'
+                )
+            }
+        })
+    }
+
+    async function setAccept(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "After Accepting the order will redirect to the Accepted Section!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Confirm it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/order/accept/${id}`, {
+                    method: "POST"
+                });
+
+                swalWithBootstrapButtons.fire(
+                    'Success!',
+                    'Customer Order has been Accepted.!',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Customer Order Status Not Changed:)',
+                    'info'
+                )
+            }
+        })
+
+    }
+
+    async function setSent(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "After Accepting the order will redirect to the Sent To Delivery Section!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Confirm it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/order/sent/${id}`, {
+                    method: "POST"
+                });
+
+                swalWithBootstrapButtons.fire(
+                    'Success!',
+                    'Order has been Sent To Delivery Section.!',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Order Status Not Changed:)',
+                    'info'
+                )
+            }
+        })
+
+    }
+
+    async function setDelivered(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "After Accepting the order will redirect to the Sent To Recieved Section!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Confirm it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/order/recieved/${id}`, {
+                    method: "POST"
+                });
+
+                swalWithBootstrapButtons.fire(
+                    'Success!',
+                    'Order has been Sent To Recieved Section.!',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Order Status Not Changed:)',
+                    'info'
+                )
+            }
+        })
+
+    }
 
     function recordList() {
         return records.map((record) => {
             return (
                 <RecordNewSup
                     record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
                     key={record._id}
                 />
             );
@@ -157,11 +495,12 @@ export default function SupplierManagement() {
     }
 
     function recordList2() {
-        return records2.map((record) => {
+        return records4.map((record) => {
             return (
-                <RecordOrders
+                <RecordNewOrders
                     record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    setAccept={() => setAccept(record._id)}
                     key={record._id}
                 />
             );
@@ -169,11 +508,38 @@ export default function SupplierManagement() {
     }
 
     function recordList3() {
-        return records3.map((record) => {
+        return records5.map((record) => {
             return (
-                <RecordPreOrders
+                <RecordAcceptedOrders
                     record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    setSent={() => setSent(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
+
+    function recordList4() {
+        return records6.map((record) => {
+            return (
+                <RecordSentOrders
+                    record={record}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    setDelivered={() => setDelivered(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
+
+    function recordList5() {
+        return records7.map((record) => {
+            return (
+                <RecordDeliveredOrders
+                    record={record}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    setDelivered={() => setDelivered(record._id)}
                     key={record._id}
                 />
             );
@@ -182,21 +548,20 @@ export default function SupplierManagement() {
 
     return (
         <div>
-            
             <div className="newSupplier">
-            <div className="addbtn">
-            <a href="/addOrder" target="_blank">
+                <div className="addbtn">
+                    {/* <a href="/addOrder" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
-                    </a>
+                    </a> */}
 
                     <a href="/addSupplier" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Supplier</button>
                     </a>
 
-                    <a href="/addPreOrder" target="_blank">
+                    {/* <a href="/addPreOrder" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Pre-Order</button>
-                    </a>
-            </div>
+                    </a> */}
+                </div>
                 <div className="row">
                     {/* <a href="/addOrder" target="_blank">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Order</button>
@@ -229,86 +594,196 @@ export default function SupplierManagement() {
                 </div>
             </div>
 
-            <br />
+            <div className="newSupplier">
+                <div className="row">
 
-            <div className="newSupplier"><div className="row">
-
-                <div className="overflow-x-auto relative">
-                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-                        role="alert">
-                        <span className="font-medium">
-                            <h1>Order Details</h1>
-                        </span>
+                    <div className="overflow-x-auto relative">
+                        <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                            role="alert">
+                            <span className="font-medium">
+                                <h1>New Requested Orders</h1>
+                            </span>
+                        </div>
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="py-3 px-6">
+                                        Ordered Date
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Brand
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Type
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Unit Price
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Requested Quantity
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList2()}
+                            </tbody>
+                        </table>
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="py-3 px-6">
-                                    Supplier ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Date
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Item ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Quantity
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Approved Status
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Order Status
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Details
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {recordList2()}
-                        </tbody>
-                    </table>
+
                 </div>
+            </div>
 
-            </div></div>
-            <br />
+            <div className="newSupplier">
+                <div className="row">
 
-            <div className="newSupplier"><div className="row">
-
-                <div className="overflow-x-auto relative">
-                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-                        role="alert">
-                        <span className="font-medium">
-                            <h1>Pre-Order Details</h1>
-                        </span>
+                    <div className="overflow-x-auto relative">
+                        <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                            role="alert">
+                            <span className="font-medium">
+                                <h1>Accepted Orders</h1>
+                            </span>
+                        </div>
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="py-3 px-6">
+                                        Ordered Date
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Brand
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Type
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Unit Price
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Requested Quantity
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList3()}
+                            </tbody>
+                        </table>
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="py-3 px-6">
-                                    Item ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Supplier ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Date
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Quantity
-                                </th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {recordList3()}
-                        </tbody>
-                    </table>
                 </div>
+            </div>
 
-            </div></div>
+            <div className="newSupplier">
+                <div className="row">
+
+                    <div className="overflow-x-auto relative">
+                        <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                            role="alert">
+                            <span className="font-medium">
+                                <h1>Orders Sent To Suppliers</h1>
+                            </span>
+                        </div>
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="py-3 px-6">
+                                        Ordered Date
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Brand
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Type
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Unit Price
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Requested Quantity
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList4()}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div className="newSupplier">
+                <div className="row">
+
+                    <div className="overflow-x-auto relative">
+                        <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                            role="alert">
+                            <span className="font-medium">
+                                <h1>Recieved Orders</h1>
+                            </span>
+                        </div>
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            {/* <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="py-3 px-6">
+                                        Ordered Date
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Brand
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Item Type
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Unit Price
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Requested Quantity
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead> */}
+                            <tbody>
+                                <DeliveredItemsPrint ref={componentRef} />
+                            </tbody>
+                            <br />
+                            <div className="row btnrow">
+                                <ReactToPrint
+                                    trigger={() => <button
+                                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                    >Get Report Of The Delivered Items!</button>}
+                                    content={() => componentRef.current}
+                                />
+                            </div>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <br />
 
 
         </div>

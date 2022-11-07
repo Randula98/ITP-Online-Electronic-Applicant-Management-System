@@ -3,14 +3,15 @@
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
     background-color: #c8c2c243;
     padding: 20px;
     /* border: 1px solid black; */
-    margin-top: 80px;
+    margin-top: 0px;
 }
 
-
+.newSupplier:first-child{
+    margin-top: 0px;
+}
 
 .newSupplier:first-child{
     margin-top: 150px;
@@ -37,6 +38,7 @@ a.btnup{
     position: relative;
     float:left;
     margin-left: 27px;
+    min-height: 430px;
 }
 
 .allSuppliers {
@@ -44,12 +46,31 @@ a.btnup{
     height: auto;
     margin: 0px auto;
     padding: 20px;
-    margin-top: 120px;
+    margin-top: 80px;
 }
 
 .addbtn {
     float: right;
     margin-top: -80px;
-    /* margin-right: 20px; */
-    /* padding: 20px; */
+}
+
+.supdetails{
+    background-color: rgba(0, 255, 255, 0.082);
+    width: 500px;
+    height: 90%;
+    padding: 20px;
+    margin-top:20px;
+    border-radius: 10px;
+    transition: 0.5s;
+    color: aliceblue;
+}
+
+.supdetails:hover{
+    color: rgba(0, 0, 0, 0.87);
+    transition: 0.5s;
+}
+
+button.btnsupup{
+    margin-top:8px;
+    margin-right: 10px;
 }

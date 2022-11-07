@@ -85,7 +85,10 @@ import {
 	// CardView,
 	ViewCusProf,
 	ViewCartItems,
-	AllCompletedOrders
+	AllCompletedOrders,
+	SupSearch,
+	SearchRep,
+	UpdateRep,
 } from "../pages";
 
 function App() {
@@ -173,7 +176,6 @@ function App() {
 					<Route path="/managesales/setpromotionupdate/:id" element={<SetPromotionUpdate />} />
 					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
 					
-
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
 					{/* <Route PATH="/manageservice/addRepair" element={<AddRepair />} /> */}
@@ -183,6 +185,8 @@ function App() {
 					<Route path="/manageservice/viewallrep" element={<ViewAllRep />} />
 					<Route path="/manageservice/viewrep/:id" element={<ViewRep />} />
 					<Route path="/manageservice/addrepair" element={<AddRepair />} />
+					<Route path="/manageservice/searchrep/:key" element={<SearchRep />} />
+					<Route path="/manageservice/updaterep/:id" element={<UpdateRep />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
@@ -201,12 +205,13 @@ function App() {
 
 					{/* Supplier Management */}
 					<Route path="/managesup" element={<SupManagement />} />
-					<Route path="/addOrder" element={<SupAddOrder />} />
+					<Route path="/addOrder/:id" element={<SupAddOrder />} />
 					<Route path="/addSupplier" element={<SupAddSupplier />} />
 					<Route path="/viewallsup" element={<ViewAllSup />} />
 					<Route path="/viewsup/:id" element={<ViewSup />} />
 					<Route path="/addPreOrder" element={<AddPreOrder />} />
 					<Route path="/updateSupplier/:id" element={<UpdateSupplier />} />
+					<Route path="/searchsup/:key" element={<SupSearch />} />
           
 				</Routes>
 				<Footer />

@@ -15,8 +15,7 @@ const RecordAllRep = (props) => (
                 </h5>
             </a>
             <p className="mb-3 font-normal text-gray-400 dark:text-gray-700">
-                {props.record.customerid}<br />
-                {props.record.date}<br />
+                {props.record.repairdate}<br />
             </p>
             <a href={`/manageservice/viewrep/${props.record._id}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -84,7 +83,7 @@ export default function ViewAllRep() {
         console.log("Search Function");
         console.log(key);
         // alert(key);
-        navigate(`/cusdash/searchcus/${key}`);
+        navigate(`/manageservice/searchrep/${key}`);
     }
 
     return (
@@ -102,9 +101,9 @@ export default function ViewAllRep() {
                         <input type="search" 
                         id="default-search" 
                         className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                        placeholder="Enter Customer's First Name... " 
+                        placeholder="Enter Repair / Service Name... " 
                         onChange={(e) => setSearch(e.target.value)}
-                        required="" />
+                        required />
                         <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
                 </form>

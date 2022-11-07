@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { storage } from "../../firebase";
 //import { db } from "../../firebase";
 import { v4 } from "uuid";
@@ -8,18 +8,50 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Swal from 'sweetalert2'
 import './serv.css'
 
+export default function UpdateRep() {
 
-
-export default function AddRepair() {
-
+    const params = useParams();
     const navigate = useNavigate();
 
-    const [customerid, setcustomerid] = useState("");
-    const [repairdate, setrepairdate] = useState("");
     const [itemname, setitemname] = useState("");
     const [description, setdescription] = useState("");
     const [imgurl, setimgurl] = useState("");
-    const [status, setstatus] = useState("");
+
+    const [form , setForm] = useState({
+        itemname: "",
+        description: "",
+        imgurl: ""
+    })
+
+    useEffect(() => {
+        async function fetchData() {
+    
+          const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
+          const id = params.id.toString();
+          const response = await fetch(`${BASE_URL}/repair/repair/${params.id.toString()}`)
+    
+          if (!response.ok) {
+            const message = `An error has occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+          }
+    
+          const record = await response.json();
+          if (!record) {
+            window.alert(`Record with id ${id} not found`);
+            navigate("/");
+            return;
+          }
+    
+          setdescription(record.description);
+        setitemname(record.itemname);
+    
+          setForm(record);
+        }
+        fetchData();
+    
+        return;
+      }, [params.id, navigate]);
 
     return (
         <div>
@@ -37,7 +69,7 @@ export default function AddRepair() {
                             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <h1
                                     className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                    Add New Service / Repair Item
+                                    Update New Service / Repair Details
                                 </h1>
 
                                 <form onSubmit={async (e) => {
@@ -62,15 +94,12 @@ export default function AddRepair() {
                                             const cid = localStorage.getItem("cusID");
 
                                             const adddRepair = {
-                                                customerid:cid,
-                                                repairdate,
                                                 itemname,
                                                 description,
-                                                imgurl:url,
-                                                status,
+                                                imgurl: url,
                                             };
 
-                                            const response = await fetch(`${BASE_URL}/repair/add`, {
+                                            const response = await fetch(`${BASE_URL}/repair/update/${params.id}`, {
                                                 method: "POST",
                                                 headers: {
                                                     "Content-Type": "application/json",
@@ -98,22 +127,23 @@ export default function AddRepair() {
 
                                             Swal.fire({
                                                 icon: 'success',
-                                                title: 'Successfully Added',
-                                                text: 'Your Servie / Repair Item has been added successfully!',
+                                                title: 'Successfully Updated',
+                                                text: 'Your Servie / Repair Item has been Updated successfully!',
                                                 footer: '<a href="/">Go To Home</a>'
-                                              })
+                                            })
                                         })
                                         .catch((err) => {
                                             console.log(err);
                                         });
-                                    navigate("/cusdash");
+                                    navigate("/manageservice/viewallrep");
 
                                 }}>
 
                                     <div class="">
                                         <div class="mb-6">
                                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Enter Item Name</label>
-                                            <input
+                                            <input 
+                                                defaultValue={itemname}
                                                 onChange={(e) => { setitemname(e.target.value) }}
                                                 type="text"
                                                 id="base-input"
@@ -123,6 +153,7 @@ export default function AddRepair() {
 
                                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Service / Repair Description</label>
                                         <textarea
+                                            defaultValue={description}
                                             onChange={(e) => { setdescription(e.target.value) }}
                                             id="message"
                                             rows="4"
@@ -133,6 +164,7 @@ export default function AddRepair() {
                                         <div className="servfile">
                                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Image</label>
                                             <input
+                                                required
                                                 onChange={(e) => { setimgurl(e.target.files[0]) }}
                                                 class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" />
                                         </div>
@@ -155,5 +187,5 @@ export default function AddRepair() {
             </div>
 
         </div>
-    );
+    )
 }

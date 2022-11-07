@@ -1,0 +1,54 @@
+.servicecontainer{
+    width: 80%;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.serv{
+    width: 100%;
+    height: 100%;
+}
+
+.servleft{
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/producticon%2FTiny%20technicians%20repairing%20smartphone.jpg?alt=media&token=25a6043a-1c34-4435-8e65-9cb7c2476abd);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.servright{
+    background-color: rgba(111, 0, 255, 0.103);
+}
+
+.servtext{
+    width: 450px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    background-color: rgba(37, 37, 37, 0.445);
+    border-radius: 10px;
+    padding: 30px;
+    transition: 0.5s;
+    color: aliceblue;
+}
+
+.servtext:hover{
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.445);
+}
+
+.servbtn{
+    width: 200px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+}
+

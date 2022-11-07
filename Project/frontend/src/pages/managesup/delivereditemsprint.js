@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 // import { Link } from "react-router-dom";
-import "./Stock.css";
+import "./supplier.css";
 
 const RecordLowStock = (props) => (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
             className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.brand}
+            {props.record.date}
         </th>
+        <td className="py-4 px-6">
+            {props.record.brand}
+        </td>
         <td className="py-4 px-6">
             {props.record.itemname}
         </td>
@@ -19,12 +22,12 @@ const RecordLowStock = (props) => (
             {props.record.unitprice}
         </td>
         <td className="py-4 px-6">
-            {props.record.unitstock}
+            {props.record.quantity}
         </td>
         <td className="py-4 px-6">
             <a href={`/addOrder/${props.record._id}`}>
                 <button type="button" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                    Order Items
+                   Decline
                 </button>
             </a>
         </td>
@@ -32,7 +35,7 @@ const RecordLowStock = (props) => (
 );
 
 
-export class LowStockPrint extends React.PureComponent {
+export class DeliveredItemsPrint extends React.PureComponent {
 
     // const [records2, setRecords2] = useState([]);
 
@@ -72,7 +75,7 @@ export class LowStockPrint extends React.PureComponent {
     }
 
     componentDidMount() {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/item/low`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/order/recieved`)
             .then(response => response.json())
             .then(records2 => this.setState({ records2 }));
     }
@@ -86,6 +89,9 @@ export class LowStockPrint extends React.PureComponent {
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
+                                <th scope="col" className="py-3 px-6">
+                                        Order Date
+                                    </th>
                                     <th scope="col" className="py-3 px-6">
                                         Brand
                                     </th>

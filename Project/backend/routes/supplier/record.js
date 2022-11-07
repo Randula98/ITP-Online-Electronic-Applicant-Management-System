@@ -67,13 +67,13 @@ supplierRoutes.route("/update/:id").post(function (req, response) {
 	let newvalues = {
 		$set: {
 			//supplierid: req.body.supplierid,
-			supplierfname: req.body.supplierfname.supplierfname,
-			supplierlname: req.body.supplierlname.supplierlname,
-			street: req.body.street.street,
-			city: req.body.city.city,
-			province: req.body.province.province,
-			contactnumber: req.body.contactnumber.contactnumber,
-			email: req.body.email.email,
+			supplierfname: req.body.supplierfname,
+			supplierlname: req.body.supplierlname,
+			street: req.body.street,
+			city: req.body.city,
+			province: req.body.province,
+			contactnumber: req.body.contactnumber,
+			email: req.body.email,
 			imgurl: req.body.imgurl,
 		},
 	};
@@ -91,6 +91,20 @@ supplierRoutes.route("/delete/:id").delete((req, response) => {
 		console.log("1 document deleted");
 		response.json(obj);
 	});
+});
+
+//search by supplierfname
+supplierRoutes.route("/search/:key").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let myquery = { supplierfname: { $regex: key, $options: "i" } };
+	db_connect
+		.collection("supplier")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 module.exports = supplierRoutes;

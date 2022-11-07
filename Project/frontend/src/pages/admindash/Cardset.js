@@ -152,7 +152,7 @@ export default function Cardset() {
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
             <a href="/managestocks">
               <img className="rounded-t-lg"
-                src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Forder.png?alt=media&token=fd9bd0c8-4a39-4898-aff9-b07bb7ef6a3d"
+                src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/empdash%2Fpur.jpg?alt=media&token=8b6f84f4-6815-4b5b-9e88-b4fc64d4a1fc"
                 alt="" />
             </a>
             <div className="p-5">
@@ -160,7 +160,7 @@ export default function Cardset() {
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Purchase
                   Management</h5>
               </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the details of the purchases done by the system. Get a report of Purchase Details.</p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Manage all the details of the purchases done by the system. Generate a report of top Purchase details .</p>
               <a href="/managepurchase"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
