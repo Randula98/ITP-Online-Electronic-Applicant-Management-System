@@ -54,3 +54,24 @@ a.vbtn {
     margin-top: -80px;
 
 }
+
+.repitemcard{
+    background-color: rgba(127, 255, 212, 0.056);
+    border-radius: 10px;
+    width: 540px;
+    height: 400px;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    transition: 0.5;
+}
+
+.repitemcard:hover{
+    background-color: rgba(127, 255, 212, 0.2);
+    transition: 0.5;
+}
+
+.repitemcardtext{
+    height: 309px;
+}

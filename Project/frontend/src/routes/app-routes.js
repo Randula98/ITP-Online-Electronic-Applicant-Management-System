@@ -88,6 +88,7 @@ import {
 	AllCompletedOrders,
 	SupSearch,
 	SearchRep,
+	UpdateRep,
 } from "../pages";
 
 function App() {
@@ -185,6 +186,7 @@ function App() {
 					<Route path="/manageservice/viewrep/:id" element={<ViewRep />} />
 					<Route path="/manageservice/addrepair" element={<AddRepair />} />
 					<Route path="/manageservice/searchrep/:key" element={<SearchRep />} />
+					<Route path="/manageservice/updaterep/:id" element={<UpdateRep />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />

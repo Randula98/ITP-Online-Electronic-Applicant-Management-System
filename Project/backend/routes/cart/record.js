@@ -217,7 +217,7 @@ recordRoutes.route("/delivered/:id").get(function (req, res) {
 
 
 // change status to delivered
-recordRoutes.route("/delivered/:id").put(function (req, res) {
+recordRoutes.route("/delivered/:id").post(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	let myquery = { _id: ObjectId(req.params.id) };
 	let newvalues = { $set: { status: "delivered" } };
