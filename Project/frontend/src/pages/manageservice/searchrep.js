@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams} from "react-router-dom";
 import "./serdash.css";
 
 const RecordAllRep = (props) => (
@@ -31,16 +31,17 @@ const RecordAllRep = (props) => (
     </div>
 );
 
-export default function ViewAllRep() {
+export default function SearchRep() {
 
     const [records, setRecords] = useState([]);
     const [search , setSearch] = useState("");
+    const params = useParams();
 
     const navigate = useNavigate();
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/search/${params.key}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;

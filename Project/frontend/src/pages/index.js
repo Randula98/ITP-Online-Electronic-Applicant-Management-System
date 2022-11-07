@@ -78,6 +78,7 @@ import ViewCusProf from "./managepurchase/viewcusprof";
 import ViewCartItems from "./managepurchase/viewcartitems";
 import AllCompletedOrders from "./managepurchase/allcompletedorders";
 import SupSearch from "./managesup/supsearch";
+import SearchRep from "./manageservice/searchrep";
 
 export {
 	About,
@@ -160,4 +161,5 @@ export {
 	ViewCartItems,
 	AllCompletedOrders,
 	SupSearch,
+	SearchRep,
 };

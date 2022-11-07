@@ -1,126 +1,178 @@
 import React, { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 import "./serdash.css";
-
-const RecordNewDelivery = (props) => (
-
-    <div
-        className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cuscard">
-        <a href={`/manageservice/viewdel/${props.record._id}`}>
-            <img className="rounded-t-lg" src="https://via.placeholder.com/300" alt="" />
-        </a>
-        <div className="p-5">
-            <a href="#">
-                <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-white">{props.record.itemid}
-                </h5>
-            </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {props.record.itemname}<br />
-                {props.record.date}<br />
-                {props.record.customerid}<br />
-            </p>
-            <a href={`/manageservice/viewdel/${props.record._id}`} target="_blank" rel="noreferrer"
-                className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 vbtn">
-                View Details
-                <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </a>
-        </div>
-    </div>
-
-);
+import './serv.css'
 
 const RecordNewRepairs = (props) => (
-
-    <div
-        class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cuscard">
-        <a href={`/manageservice/viewrep/${props.record._id}`}>
-            <img class="rounded-t-lg" src={props.record.imgurl} alt="" />
-        </a>
-        <div class="p-5">
-            <a href="#">
-                <h5 class="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-white">{props.record.itemname}
-                </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {props.record.repairdate}<br />
-                {props.record.customerid}<br />
-
-            </p>
-            <a href={`/manageservice/viewrep/${props.record._id}`} target="_blank" rel="noreferrer"
-                class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800B vbtn">
-                View Details
-                <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </a>
-        </div>
-    </div>
-);
-const RecordRepairedItems = (props) => (
-
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row"
-            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.customerid}
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.itemname}
         </th>
-        <td className="py-4 px-6">
-            {props.record.employeeid}
-        </td>
-        <td className="py-4 px-6">
+        <td class="py-4 px-6">
             {props.record.repairdate}
         </td>
-        <td className="py-4 px-6">
+        <td class="py-4 px-6">
+            <button
+                onClick={() => {
+                    Swal.fire(
+                        'Desciption',
+                        `${props.record.description}`,
+                        'question'
+                    )
+                }}
+                type="button"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</button>
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => {
+                    Swal.fire({
+                        imageUrl: `${props.record.imgurl}`,
+                        imageHeight: 500,
+                        imageAlt: 'image'
+                    })
+                }}
+                type="button"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</button>
+        </td>
+        <td>
+            <a href={`/viewcus/${props.record.customerid}`}>
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View
+                </button>
+            </a>
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => { props.setAccept(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Accept</button>
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline</button>
+        </td>
+    </tr>
+
+
+);
+
+const RecordAcceptedRepairs = (props) => (
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {props.record.itemname}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.repaidescription}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.repairfee}
-        </td>
-    </tr>
-
-
-);
-
-const RecordDeliveredItems = (props) => (
-
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row"
-            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {props.record.itemid}
         </th>
-        <td className="py-4 px-6">
-            {props.record.status}
+        <td class="py-4 px-6">
+            {props.record.repairdate}
         </td>
-        <td className="py-4 px-6">
-            {props.record.date}
+        <td class="py-4 px-6">
+            <button
+                onClick={() => {
+                    Swal.fire(
+                        'Desciption',
+                        `${props.record.description}`,
+                        'question'
+                    )
+                }}
+                type="button"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</button>
         </td>
-        <td className="py-4 px-6">
-            {props.record.remarks}
+        <td class="py-4 px-6">
+            <button
+                onClick={() => {
+                    Swal.fire({
+                        imageUrl: `${props.record.imgurl}`,
+                        imageHeight: 500,
+                        imageAlt: 'image'
+                    })
+                }}
+                type="button"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</button>
+        </td>
+        <td>
+            <a href={`/viewcus/${props.record.customerid}`}>
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View
+                </button>
+            </a>
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => { props.setCompleted(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Completed</button>
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline</button>
         </td>
     </tr>
 
 
 );
+
+const RecordCompletedRepairs = (props) => (
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {props.record.itemname}
+        </th>
+        <td class="py-4 px-6">
+            {props.record.repairdate}
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => {
+                    Swal.fire(
+                        'Desciption',
+                        `${props.record.description}`,
+                        'question'
+                    )
+                }}
+                type="button"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</button>
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => {
+                    Swal.fire({
+                        imageUrl: `${props.record.imgurl}`,
+                        imageHeight: 500,
+                        imageAlt: 'image'
+                    })
+                }}
+                type="button"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</button>
+        </td>
+        <td>
+            <a href={`/viewcus/${props.record.customerid}`}>
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View
+                </button>
+            </a>
+        </td>
+        <td class="py-4 px-6">
+            <button
+                onClick={() => { props.deleteRecord(props.record._id) }}
+                type="button"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Decline</button>
+        </td>
+    </tr>
+
+
+);
+
 export default function ServiceManagement() {
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
     const [records3, setRecords3] = useState([]);
-    const [records4, setRecords4] = useState([]);
 
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/delivery/new5`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/pending`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -137,9 +189,10 @@ export default function ServiceManagement() {
         return;
     }, [records.length]);
 
+    // This method fetches the records from the database.
     useEffect(() => {
-        async function getRecords2() {
-            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/new5`);
+        async function getRecords() {
+            const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/accepted`);
 
             if (!response2.ok) {
                 const message = `An error occurred: ${response2.statusText}`;
@@ -151,14 +204,15 @@ export default function ServiceManagement() {
             setRecords2(records2);
         }
 
-        getRecords2();
+        getRecords();
 
         return;
     }, [records2.length]);
 
+    // This method fetches the records from the database.
     useEffect(() => {
-        async function getRecords3() {
-            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/`);
+        async function getRecords() {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/completed`);
 
             if (!response3.ok) {
                 const message = `An error occurred: ${response3.statusText}`;
@@ -170,34 +224,160 @@ export default function ServiceManagement() {
             setRecords3(records3);
         }
 
-        getRecords3();
+        getRecords();
 
         return;
     }, [records3.length]);
 
-    useEffect(() => {
-        async function getRecords4() {
-            const response4 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/delivery/completed`);
+    async function deleteRecord(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
 
-            if (!response4.ok) {
-                const message = `An error occurred: ${response4.statusText}`;
-                window.alert(message);
-                return;
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this! You will lose the Repair Details!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/delete/${id}`, {
+                    method: "DELETE"
+                });
+
+                const newRecords = records.filter((el) => el._id !== id);
+                setRecords(newRecords);
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Repair Details has been deleted.',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Repair Details Not Deleted:)',
+                    'info'
+                )
             }
+        })
+    }
 
-            const records4 = await response4.json();
-            setRecords4(records4);
-        }
-        getRecords4();
-        return;
-    }, [records4.length]);
+    async function setAccept(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "After Accepting the Repair will redirect to the Accepted Section!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Confirm it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/accept/${id}`, {
+                    method: "POST"
+                });
+
+                swalWithBootstrapButtons.fire(
+                    'Success!',
+                    'Repair / Service has been Accepted.!',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Repair / Service Status Not Changed:)',
+                    'info'
+                )
+            }
+        })
+
+    }
+
+    async function setCompleted(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+                cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "After Accepting the Repair will redirect to the Completed Section!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Confirm it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/repair/complete/${id}`, {
+                    method: "POST"
+                });
+
+                swalWithBootstrapButtons.fire(
+                    'Success!',
+                    'Repair / Service has been Completed.!',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Repair / Service Status Not Changed:)',
+                    'info'
+                )
+            }
+        })
+
+    }
+
 
     function recordList() {
         return records.map((record) => {
             return (
-                <RecordNewDelivery
+                <RecordNewRepairs
                     record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    setAccept={() => setAccept(record._id)}
                     key={record._id}
                 />
             );
@@ -207,9 +387,10 @@ export default function ServiceManagement() {
     function recordList2() {
         return records2.map((record) => {
             return (
-                <RecordNewRepairs
+                <RecordAcceptedRepairs
                     record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    setCompleted={() => setCompleted(record._id)}
                     key={record._id}
                 />
             );
@@ -219,61 +400,25 @@ export default function ServiceManagement() {
     function recordList3() {
         return records3.map((record) => {
             return (
-                <RecordRepairedItems
+                <RecordCompletedRepairs
                     record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
+                    deleteRecord={() => deleteRecord(record._id)}
+                    //setCompleted={() => setCompleted(record._id)}
                     key={record._id}
                 />
             );
         });
     }
 
-    function recordList4() {
-        return records4.map((record) => {
-            return (
-                <RecordDeliveredItems
-                    record={record}
-                    // deleteRecord={() => deleteRecord(record._id)}
-                    key={record._id}
-                />
-            );
-        });
-    }
+
 
     return (
         <div>
-            <div className="newRepairs">
-                <div className="addbtn">
-                    <a href="/manageservice/addDelivery" target="_blank">
-                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Deliveries</button>
-                    </a>
-                    <a href="/manageservice/addRepair" target="_blank">
-                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add Repairs</button>
-                    </a>
-
-                </div>
-                <div className="row">
-                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-                        role="alert">
-                        <span className="font-medium">
-                            <h1>New Deliveries.!!</h1>
-                        </span>
-                    </div>
-                </div>
-
-                <div className="row">
-                    {recordList()}
-                </div >
-                <br />
-                <div className="supRibbon"></div>
-                <div className="row btnrow">
-                    <a href="/manageservice/viewalldel" target="_blank"><button type="button"
-                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
-                        All Deliveries</button></a>
-                </div>
-            </div>
+            <br />
+            <br />
             <br />
             <div className="newRepairs">
+
                 <div className="row">
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
@@ -282,12 +427,38 @@ export default function ServiceManagement() {
                         </span>
                     </div>
                 </div>
-
-                <div className="row">
-                    {recordList2()}
+                <div className="servrow">
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Placed Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Description
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Image
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Customer
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList()}
+                            </tbody>
+                        </table>
+                    </div>
                 </div >
-
-                <div className="supRibbon"></div>
+                <br />
                 <div className="row btnrow">
                     <a href="/manageservice/viewallrep" target="_blank"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
@@ -296,91 +467,103 @@ export default function ServiceManagement() {
                 </div>
             </div>
 
-            <div className="repairedItems"><div className="row">
-
-                <div className="overflow-x-auto relative">
-                    <div className="row">
-                        <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-                            role="alert">
-                            <span className="font-medium">
-                                <h1>Repaired Items!!</h1>
-                            </span>
-                        </div>
+            <div className="newRepairs">
+                <div className="row">
+                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                        role="alert">
+                        <span className="font-medium">
+                            <h1>Accepted Repairs.!!</h1>
+                        </span>
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="py-3 px-6">
-                                    Customer ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Item ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Date
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Item Name
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Description
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Repair Price
-                                </th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {recordList3()}
-                        </tbody>
-                    </table>
                 </div>
 
-            </div>
-            </div>
+                <div className="servrow">
 
-            <div className="repairedItems"><div className="row">
-
-                <div className="overflow-x-auto relative">
-                    <div className="row">
-                        <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-                            role="alert">
-                            <span className="font-medium">
-                                <h1>Delivered Items!!</h1>
-                            </span>
-                        </div>
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Placed Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Description
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Image
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Customer
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList2()}
+                            </tbody>
+                        </table>
                     </div>
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="py-3 px-6">
-                                    Item ID
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Status
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Date
-                                </th>
-                                <th scope="col" className="py-3 px-6">
-                                    Remarks
-                                </th>
 
+                </div >
+            </div>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {recordList4()}
-                        </tbody>
-                    </table>
+            <div className="newRepairs">
+                <div className="row">
+                    <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                        role="alert">
+                        <span className="font-medium">
+                            <h1>Completed Repairs.!!</h1>
+                        </span>
+                    </div>
                 </div>
 
+                <div className="servrow">
+
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Item Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Placed Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Description
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Image
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Customer
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recordList3()}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div >
+                <br />
+
+                <div className="row btnrow">
+                    <a href="/manageservice/viewallrep" target="_blank"><button type="button"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
+                        All Repairs</button></a>
+
+                </div>
             </div>
-            </div>
-
-
-
 
         </div>
 
