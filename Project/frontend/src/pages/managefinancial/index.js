@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./finance.css"
 
 const RecordPendingLoans = (props) => (
@@ -120,7 +120,7 @@ export default function FinanceDash() {
         setRecords2(newRecords);
     }
 
-    async function updateStatus(id){
+    async function updateStatus(id) {
         await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/approve/${id}`, {
             method: "POST"
         });
@@ -142,18 +142,18 @@ export default function FinanceDash() {
         });
     }
 
-        // This method will map out the records on the table
-        function recordList2() {
-            return records2.map((record) => {
-                return (
-                    <ApprovedLoansRecord
-                        record={record}
-                        deleteRecord={() => deleteRecord2(record._id)}
-                        key={record._id}
-                    />
-                );
-            });
-        }
+    // This method will map out the records on the table
+    function recordList2() {
+        return records2.map((record) => {
+            return (
+                <ApprovedLoansRecord
+                    record={record}
+                    deleteRecord={() => deleteRecord2(record._id)}
+                    key={record._id}
+                />
+            );
+        });
+    }
 
     return (
         <><div>
@@ -220,7 +220,7 @@ export default function FinanceDash() {
                 <div class="row">
 
                     <div class="overflow-x-auto relative">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="py-3 px-6">

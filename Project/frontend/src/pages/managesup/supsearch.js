@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams, } from "react-router-dom";
 import "./supplier.css";
 
 const RecordAllCus = (props) => (
@@ -10,13 +11,12 @@ const RecordAllCus = (props) => (
             <img className="rounded-t-lg" src={props.record.imgurl} alt="" />
         </a>
         <div className="p-5">
-            <a href={`/viewsup/${props.record._id}`}>
+            <a href={`/viewcus/${props.record._id}`}>
                 <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.supplierfname} {props.record.supplierlname}
                 </h5>
             </a>
             <p className="mb-3 font-normal text-gray-400 dark:text-gray-700">
-                {props.record.street} {props.record.city} <br />
-                {props.record.province}<br />
+                {props.record.email}<br />
                 {props.record.contactnumber}<br />
             </p>
             <a href={`/viewsup/${props.record._id}`} target="_blank" rel="noreferrer"
@@ -33,16 +33,21 @@ const RecordAllCus = (props) => (
     </div>
 );
 
-export default function ViewAllSup() {
-
+export default function SupSearch() {
     const [records, setRecords] = useState([]);
     const [search , setSearch] = useState("");
+
+    const params = useParams();
+
+    const key = params.key.toString();
+
+    //alert(key);
 
     const navigate = useNavigate();
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/supplier/search/${key}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -80,6 +85,19 @@ export default function ViewAllSup() {
         });
     }
 
+    // async function searchRecord(e) {
+    //     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/search/${search}`);
+
+    //     if (!response.ok) {
+    //         const message = `An error occurred: ${response.statusText}`;
+    //         window.alert(message);
+    //         return;
+    //     }
+    //     const records = await response.json();
+    //     setRecords(records);
+        
+    // }
+
     function searchRecord(e) {
         const key = search;
         console.log("Search Function");
@@ -89,9 +107,9 @@ export default function ViewAllSup() {
     }
 
     return (
-        <div className="allSuppliers">
+        <div className="allCustomers">
             <div className="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300" role="alert">
-                <span className="font-large text-2xl" >All Suppliers Registered In The System</span>
+                <span className="font-large text-2xl" >Search Results For "{key}"</span>
             </div>
             <div className="row searchRow">
                 <form onSubmit={searchRecord}>
@@ -103,7 +121,7 @@ export default function ViewAllSup() {
                         <input type="search" 
                         id="default-search" 
                         className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                        placeholder="Enter Supplier's First Name... " 
+                        placeholder="Enter Suppliers's First Name... " 
                         onChange={(e) => setSearch(e.target.value)}
                         required="" />
                         <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
