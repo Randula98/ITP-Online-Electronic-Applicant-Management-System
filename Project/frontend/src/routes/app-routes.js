@@ -87,6 +87,7 @@ import {
 	ViewCartItems,
 	AllCompletedOrders,
 	SupSearch,
+	SearchRep,
 } from "../pages";
 
 function App() {
@@ -174,7 +175,6 @@ function App() {
 					<Route path="/managesales/setpromotionupdate/:id" element={<SetPromotionUpdate />} />
 					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
 					
-
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
 					{/* <Route PATH="/manageservice/addRepair" element={<AddRepair />} /> */}
@@ -184,6 +184,7 @@ function App() {
 					<Route path="/manageservice/viewallrep" element={<ViewAllRep />} />
 					<Route path="/manageservice/viewrep/:id" element={<ViewRep />} />
 					<Route path="/manageservice/addrepair" element={<AddRepair />} />
+					<Route path="/manageservice/searchrep/:key" element={<SearchRep />} />
           
 					{/* HR Management */}
 					<Route path="/managehr" element={<HRManagement />} />
