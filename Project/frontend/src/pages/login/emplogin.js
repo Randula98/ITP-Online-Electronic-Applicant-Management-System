@@ -1,5 +1,6 @@
 import React from "react";
 import jwt_decode from 'jwt-decode';
+import Swal from 'sweetalert2'
 
 export default function EmpLogin() {
 	const [email, setEmail] = React.useState("");
@@ -21,7 +22,6 @@ export default function EmpLogin() {
 		console.log(content);
 
 		if (content.user === true) {
-			alert("Login Success");
 			localStorage.setItem("session", "yes");
 			localStorage.setItem("empID", jwt_decode(content.token).id);
 			localStorage.setItem("empFname", jwt_decode(content.token).fname);
@@ -38,9 +38,22 @@ export default function EmpLogin() {
 			localStorage.setItem("user", "EMPLOYEE");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
-			window.location.href = "/empdash";
+			Swal.fire({
+				icon: 'success',
+				title: 'Successful...',
+				text: 'Login Successful as an Employee!',
+				footer: '<a href="/empdash">Go to Dashboard</a>'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "/empdash";
+				}
+			})
 		} else {
-			alert("Login Failed");
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Check Your Email & Passoword Again!!!',
+			  })
 		}
 	}
 

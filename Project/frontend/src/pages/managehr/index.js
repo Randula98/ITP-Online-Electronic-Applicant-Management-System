@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
-import "./index.css";
+import "./hr.css";
 import { Link } from "react-router-dom";
 
 const RecordNewEmp = (props) => (
@@ -44,12 +44,6 @@ const RecordTopEmp = (props) => (
         </td>
         <td className="py-4 px-6">
             {props.record.contact}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.totalsales}
-        </td>
-        <td className="py-4 px-6">
-            {props.record.totalappoinments}
         </td>
         <td className="py-4 px-6">
             {props.record.totalservices}
@@ -260,13 +254,7 @@ export default function EmpManagement() {
                                         Employee Contact No
                                     </th>
                                     <th scope="col" class="py-3 px-6">
-                                        Number of Sales
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        number of Appoinments
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Number of Services
+                                        Number of Actions
                                     </th>
                                 </tr>
                             </thead>
@@ -338,14 +326,14 @@ export default function EmpManagement() {
                 </div>
                 <br />
                 <div className="row btnrow2">
-                    <a href="#"><button type="button"
-                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                        Generate Employee Salary Report</button></a>
                     <a href="/addposition"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btnright">
                         Add Employee Positions</button></a>
                 </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
 
         </div>
     )
