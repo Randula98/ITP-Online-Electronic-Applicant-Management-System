@@ -41,7 +41,6 @@ export default function Cuslogin() {
 			localStorage.setItem("user", "CUSTOMER");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
-			alert(localStorage.getItem("cusCartID"));
 			
 			Swal.fire({
 				icon: 'success',
