@@ -9,7 +9,7 @@ export default class About extends Component {
 				<br />
 				<br />
 				<br />
-				<h1>About Us</h1>
+				<b><h1 class = "abt">About Us</h1></b>
 
 				<div class="flex-container">
 
@@ -26,12 +26,12 @@ export default class About extends Component {
 						</p>
 					</div>
 
-					<div class="flex-child green">
-						{/* <iframe class="map"
+					{/* <div class="flex-child green">
+						<iframe class="map"
 							src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1980.576732363835!2d79.9670716!3d6.8722082!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2511c53a187ff%3A0x6008df5c046e6f27!2zNsKwNTInMTkuMyJOIDc5wrA1OCcwMS4zIkU!5e0!3m2!1sen!2slk!4v1667752477520!5m2!1sen!2slk"
 							width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-							referrerpolicy="no-referrer-when-downgrade"></iframe> */}
-					</div>
+							referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</div> */}
 
 				</div>
 
