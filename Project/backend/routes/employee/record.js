@@ -45,12 +45,28 @@ employeeRoutes.route("/top5").get(function (req, res) {
 	db_connect
 		.collection("employee")
 		.find({})
-		.sort({ totalsales: -1 })
-		.sort({ totalappoinments: -1 })
+		.sort({ totalservices: -1 })
 		.limit(5)
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
+		});
+});
+
+//set employee position
+employeeRoutes.route("/setposition/:id").post(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			position: req.body.position,
+		},
+	};
+	db_connect
+		.collection("employee")
+		.updateOne(myquery, newvalues, function (err, result) {
+			if (err) throw err;
+			res.json("1 document updated");
 		});
 });
 
@@ -196,6 +212,17 @@ employeeRoutes.route("/login").post(function (req, response) {
 		} else {
 			return response.json({ user: false, msg: "Login Failed", status: "error", email: email, password: password });
 		}
+	});
+});
+
+//search employee by fname
+employeeRoutes.route("/search/:key").get(function (req, response) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let query = { fname: { $regex: key, $options: "i" } };
+	db_connect.collection("employee").find(query).toArray(function (err, result) {
+		if (err) throw err;
+		response.json(result);
 	});
 });
 

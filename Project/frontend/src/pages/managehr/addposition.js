@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import'./hr.css';
 
 export default function AddPosition() {
 
@@ -48,17 +49,16 @@ export default function AddPosition() {
     return (
         <div>
             <div className="salary">
-                <section className="bg-gray-50 dark:bg-gray-400">
+                <br/>
+                <section className="">
                     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 form">
-                        <br />
-                        <br />
-                        <br />
+
                         <div
-                            className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                            className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-l xl:p-0 dark:bg-gray-600 dark:border-gray-700">
                             <div className="p-10 space-y-10 md:space-y-10 sm:p-8">
                                 <h1
                                     className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                    EMPLOYEE SALARY DETAILS
+                                    ENTER EMPLOYEE POSITION & SALARY DETAILS
                                 </h1>
 
                                 <form onSubmit={onSubmit}>
@@ -67,7 +67,7 @@ export default function AddPosition() {
                                             Position</label>
                                         <input type="text" id="position" name="position"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Position" required="" 
+                                            placeholder="Position" required 
                                             onChange={(e) => updateForm({position: e.target.value})}/>
                                     </div>
                                     <div className="mb-6">
@@ -75,7 +75,7 @@ export default function AddPosition() {
                                             Salary</label>
                                         <input type="text" id="basicsal" name="basicsal"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Basic Salary" required="" 
+                                            placeholder="Basic Salary" required
                                             onChange={(e) => updateForm({basicSalary: e.target.value})}/>
                                     </div>
                                     <div className="mb-6">
@@ -83,7 +83,7 @@ export default function AddPosition() {
                                             Allowances</label>
                                         <input type="text" id="allowances" name="allowances"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Allowances" required="" 
+                                            placeholder="Allowances" required
                                             onChange={(e) => updateForm({allowances: e.target.value})}/>
                                     </div>
 
@@ -92,7 +92,7 @@ export default function AddPosition() {
                                             EPF</label>
                                         <input type="text" id="epf" name="epf"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="EPF" required="" 
+                                            placeholder="EPF" required 
                                             onChange={(e) => updateForm({epf: e.target.value})}/>
                                     </div>
 
@@ -101,7 +101,7 @@ export default function AddPosition() {
                                             ETF</label>
                                         <input type="text" id="etf" name="etf"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="ETF" required="" 
+                                            placeholder="ETF" required 
                                             onChange={(e) => updateForm({etf: e.target.value})}/>
                                     </div>
 
@@ -110,7 +110,7 @@ export default function AddPosition() {
                                             Bonus</label>
                                         <input type="text" id="bonus" name="bonus"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Bonus" required="" 
+                                            placeholder="Bonus" required 
                                             onChange={(e) => updateForm({bonus: e.target.value})}/>
                                     </div>
 
@@ -119,15 +119,13 @@ export default function AddPosition() {
                                             Deduction</label>
                                         <input type="text" id="deduction" name="deduction"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Deduction" required="" 
+                                            placeholder="Deduction" required
                                             onChange={(e) => updateForm({deductions: e.target.value})}/>
                                     </div>
 
                                     <button type="submit"
                                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                                 </form>
-
-
                             </div>
                         </div>
                     </div>

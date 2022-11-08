@@ -90,6 +90,8 @@ import ViewAllDiscount from "./managesales/viewalldiscount";
 import EnterDist from "./managesales/enterdist";
 import DistSearch from "./managesales/distsearch";
 import SearchCart from "./managepurchase/searchcart";
+import ViewEmp from "./managehr/viewemp";
+import SearchEmp from "./managehr/searchemp";
 
 export {
 	About,
@@ -184,4 +186,6 @@ export {
 	EnterDist,
 	DistSearch,
 	SearchCart,
+	ViewEmp,
+	SearchEmp,
 };

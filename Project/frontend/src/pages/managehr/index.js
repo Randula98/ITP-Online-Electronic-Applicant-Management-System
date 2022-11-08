@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import "./hr.css";
+import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 
 const RecordNewEmp = (props) => (
@@ -76,10 +77,12 @@ const RecordPosition = (props) => (
             {props.record.deductions}
         </td>
         <td class="py-4 px-6">
-            <Link className="btn btn-link" to={`/UpdatePosition/${props.record._id}`}><span className="text-red-800"> Edit - </span></Link>
+            <Link className="btn btn-link" to={`/UpdatePosition/${props.record._id}`}><span className="text-red-800"><button type="button"
+                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            >Edit</button></span></Link>
             <button onClick={() => {
                 props.deleteRecord(props.record._id);
-            }}><span className="text-red-800"> Delete</span></button>
+            }}class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
         </td>
     </tr>
 )
@@ -158,14 +161,49 @@ export default function EmpManagement() {
     //     setRecords(newRecords);
     // }
 
-    async function deleteRecord(id) {
-        await fetch(`${process.env.REACT_APP_BACKEND_URL}/position/delete/${id}`, {
-            method: "DELETE"
-        });
-
-        const newRecords = records.filter((el) => el._id !== id);
-        setRecords3(newRecords);
-    }
+    async function deleteRecord(id){
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+            cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+          },
+          buttonsStyling: false
+        })
+    
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this! You will the Delete the Employee Position Details!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/position/delete/${id}`, {
+                method: "DELETE"
+            });
+    
+            const newRecords = records.filter((el) => el._id !== id);
+            setRecords3(newRecords);
+    
+            swalWithBootstrapButtons.fire(
+              'Deleted!',
+              'This Employee Position has been deleted.',
+              'success'
+            )
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelled',
+              'This Employee Position is Not Deleted:)',
+              'info'
+            )
+          }
+        })
+      }
 
     // This method will map out the records on the table
     function recordList() {
@@ -275,7 +313,7 @@ export default function EmpManagement() {
             </div>
             <br />
 
-            <div className="topemp">
+            <div className="topemp empposlist">
                 <div className="row">
                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
@@ -325,16 +363,13 @@ export default function EmpManagement() {
 
                 </div>
                 <br />
-                <div className="row btnrow2">
+                <div className="btnemp">
                     <a href="/addposition"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 btnright">
                         Add Employee Positions</button></a>
                 </div>
             </div>
-            <br/>
-            <br/>
-            <br/>
-
+            <br />
         </div>
     )
 }
