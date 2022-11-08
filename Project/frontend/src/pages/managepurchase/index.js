@@ -369,12 +369,11 @@ export default function PurchaseManagement() {
           method: "POST"
         });
 
-        window.location.reload();
         swalWithBootstrapButtons.fire(
           'Success!',
           'Customer Order has been Accepted.!',
           'success'
-        )
+        ).then((res) => window.location.reload())  
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
@@ -411,13 +410,11 @@ export default function PurchaseManagement() {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/cart/send/${id}`, {
           method: "POST"
         });
-
-        window.location.reload();
         swalWithBootstrapButtons.fire(
           'Success!',
           'Customer Order has been redirected to Delivery Section!.',
           'success'
-        )
+        ).then((res) => window.location.reload())  
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
