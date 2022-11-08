@@ -10,12 +10,12 @@
     width: auto;
     height: auto;
     box-sizing: border-box;
-    background: rgb(226, 220, 220);
+    /* background: rgb(226, 220, 220); */
     text-align: center;
     border: 1px solid rgb(219, 213, 213);
     margin-left: 50px;
     margin-right: 50px;
-    background-color: rgba(185, 182, 182, 0.479);
+    /* background-color: rgba(185, 182, 182, 0.479); */
 
 
 }
@@ -25,13 +25,14 @@
 
     float: left;
     width: auto;
-    height: auto;
+    height: 400px;
     box-sizing: border-box;
     background: rgba(78, 77, 77, 0.479);
     text-align: center;
     border: 1px solid #c7c8c9;
     background-color: rgba(185, 182, 182, 0.479);
     align-content: center;
+    margin-top: 50px;
 
 }
 
@@ -50,6 +51,7 @@
 .abt {
     text-align: center;
     padding: 50px;
+    font-size: 30px;
 }
 
 .color {
