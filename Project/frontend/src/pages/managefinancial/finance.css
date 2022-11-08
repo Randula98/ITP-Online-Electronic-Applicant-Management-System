@@ -9,7 +9,6 @@
 }
 
 .btnrow {
-    margin-top: 30px;
     width: 280px;
     margin: 0px auto;
 }
@@ -20,9 +19,7 @@
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-    margin-top: 20px;
     background-color: #c8c2c243;
-    margin-top: 10px;
 }
 
 .salestable:first-child{
@@ -32,5 +29,52 @@
 .btnright {
     position: relative;
     float: right;
-    margin-bottom: 60px;
+}
+
+.loancont , .paycont{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #00000047;
+    margin-top: 120px;
+    min-height: 100px;
+    border-radius: 30px;
+}
+
+.sap{
+    margin-top: 0px;
+    width:100%;
+}
+
+.paycont{
+    padding: 0px;
+    width:99%;
+}
+
+.payalert{
+    width: 40%;;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.epd{
+    font-size: 20px;
+}
+
+.payform{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: rgb(135, 127, 127);
+    padding: 20px;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.payform:hover{
+    background-color: rgba(0, 0, 0, 0.295);
+    scale: 1.02;
 }

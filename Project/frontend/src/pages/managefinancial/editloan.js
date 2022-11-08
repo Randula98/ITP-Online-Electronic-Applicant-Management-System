@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import Swal from 'sweetalert2';
+import React, { useState , useEffect} from "react";
+import { useNavigate , useParams } from "react-router";
+import Swal from 'sweetalert2'
 
-export default function ReqLoan() {
+export default function EditLoan(){
+
+    const params = useParams();
 
     const Emergency = "Emergency Loan";
     const Home = "Home Loan";
@@ -23,6 +25,25 @@ export default function ReqLoan() {
     });
     const navigate = useNavigate();
 
+    useEffect(() => {
+        async function getRecords() {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/loan/${params.id}`);
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const records = await response.json();
+            setForm(records);
+        }
+
+        getRecords();
+
+        return;
+     }, [params.id, navigate]);
+
     // These methods will update the state properties.
     function updateForm(value) {
         return setForm((prev) => {
@@ -37,7 +58,7 @@ export default function ReqLoan() {
         // When a post request is sent to the create url, we'll add a new record to the database.
         const newPerson = { ...form };
 
-        await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/add`, {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/loan/update/${params.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -57,13 +78,13 @@ export default function ReqLoan() {
             loanpurpose: "",
             employeeid: "",
         });
-        Swal.fire({
-            icon: 'success',
-            title: 'Perfect!!',
-            text: 'Your Loan Has been Requested Successfully',
-            footer: 'Wait 2/3 working days for a response :)'
-          })
-        navigate("/empdash");
+
+        Swal.fire(
+            'Successfully Updated!',
+            'Loan Details Have Successfully Updated',
+            'sucess'
+          )
+        navigate("/allloans");
     }
     return (
         <div>
@@ -72,11 +93,11 @@ export default function ReqLoan() {
                     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                         <div
-                            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-l xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-m xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <h1
                                     class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                    LOAN APPLICATION FORM
+                                    UPDATE LOAN APPLICATION
                                 </h1>
                                 <form class="space-y-4 md:space-y-6" onSubmit={onSubmit}>
 
@@ -106,6 +127,7 @@ export default function ReqLoan() {
                                         <input type="text" name="text" id="amount"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Rs 1000000.00"
+                                            value = {form.amount}
                                             onChange={(e) => updateForm({ amount: e.target.value })}
                                             required />
                                     </div>
@@ -117,6 +139,7 @@ export default function ReqLoan() {
                                         <input type="text" name="text" id="amount"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="60"
+                                            value = {form.duration}
                                             onChange={(e) => updateForm({ duration: e.target.value })}
                                             required />
                                     </div>

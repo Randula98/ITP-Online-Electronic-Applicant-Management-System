@@ -48,7 +48,7 @@ loanRoutes.route("/pendingloans").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("loan")
-		.find({status: "pending"})
+		.find({ status: "pending" })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -60,7 +60,7 @@ loanRoutes.route("/approvedloans").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
 	db_connect
 		.collection("loan")
-		.find({status: "approved"})
+		.find({ status: "approved" })
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -80,25 +80,25 @@ loanRoutes.route("/loan/:id").get(function (req, res) {
 // This section will help you get a single record by id - approved
 loanRoutes.route("/loan/pending/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
-	let myquery = { _id: ObjectId(req.params.id) , status: "pending"};
+	let myquery = { _id: ObjectId(req.params.id), status: "pending" };
 	db_connect
 		.collection("loan")
 		.findOne(myquery, function (err, result) {
-		if (err) throw err;
-		res.json(result);
-	});
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 // This section will help you get a single record by id - approved
 loanRoutes.route("/loan/approved/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
-	let myquery = { _id: ObjectId(req.params.id) , status: "approved"};
+	let myquery = { _id: ObjectId(req.params.id), status: "approved" };
 	db_connect
 		.collection("loan")
 		.findOne(myquery, function (err, result) {
-		if (err) throw err;
-		res.json(result);
-	});
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 // This section will help you create a new record.
@@ -129,7 +129,7 @@ loanRoutes.route("/update/:id").post(function (req, response) {
 			loandate: req.body.loandate,
 			duedate: req.body.duedate,
 			amount: req.body.amount,
-			duration: req.body.duration,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+			duration: req.body.duration,
 			loanpurpose: req.body.loanpurpose,
 			employeeid: req.body.employeeid,
 			status: "approved",
@@ -166,6 +166,20 @@ loanRoutes.route("/delete/:id").delete((req, response) => {
 		console.log("1 document deleted");
 		response.json(obj);
 	});
+});
+
+//search loan by purpose
+loanRoutes.route("/search/:key").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let myquery = { loanpurpose: { $regex: key, $options: "i" } };
+	db_connect
+		.collection("loan")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 module.exports = loanRoutes;
