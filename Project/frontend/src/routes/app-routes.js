@@ -94,6 +94,10 @@ import {
 	AddPayments,
 	EditPayments,
 	ViewAllPayments,
+	ViewAllDiscount,
+	EnterDist,
+	DistSearch,
+	SearchCart,
 } from "../pages";
 
 function App() {
@@ -170,6 +174,7 @@ function App() {
 					<Route path="/viewcusprof/:id" element={<ViewCusProf />} />
 					<Route path="/viewcartitems/:id" element={<ViewCartItems />} />
 					<Route path="/allcompletedorders" element={<AllCompletedOrders />} />
+					<Route path="/searchcart/:key" element={<SearchCart/>}/>
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />
@@ -180,6 +185,9 @@ function App() {
 					<Route path="/managesales/setdiscountupdate/:id" element={<SetDiscountUpdate />} />
 					<Route path="/managesales/setpromotionupdate/:id" element={<SetPromotionUpdate />} />
 					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
+					<Route path="/managesales/viewalldiscount" element={<ViewAllDiscount />} />
+					<Route path="/managesales/enterdist/:id" element={<EnterDist />} />
+					<Route path="/managesales/searchdist/:key" element={<DistSearch />} />
 					
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
