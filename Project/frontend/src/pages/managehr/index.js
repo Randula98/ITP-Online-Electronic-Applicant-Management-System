@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import ReactToPrint from 'react-to-print';
+
 // import { Link } from "react-router-dom";
 import "./hr.css";
 import { Link } from "react-router-dom";
+
+import { TopEmployeesPrint } from './topemployeeprint';
+
 
 const RecordNewEmp = (props) => (
     <div
@@ -85,6 +90,8 @@ const RecordPosition = (props) => (
 )
 
 export default function EmpManagement() {
+    const componentRef = useRef();
+
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
@@ -242,7 +249,7 @@ export default function EmpManagement() {
 
                     <div className="overflow-x-auto relative">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            {/* <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="py-3 px-6">
                                         Employee Name
@@ -257,20 +264,31 @@ export default function EmpManagement() {
                                         Number of Actions
                                     </th>
                                 </tr>
-                            </thead>
+                            </thead> */}
                             <tbody>
-                                {recordList2()}
+                                {/* {recordList2()} */}
+                                <TopEmployeesPrint ref={componentRef} />
+
                             </tbody>
+                            <br />
+                            <div className="row btnrow">
+                                <ReactToPrint
+                                    trigger={() => <button
+                                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                    >Get Report Of The Top Employees!</button>}
+                                    content={() => componentRef.current}
+                                />
+                            </div>
                         </table>
                     </div>
 
                 </div>
-                <br />
+                {/* <br />
                 <div className="row btnrow">
                     <a href="#"><button type="button"
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                         Generate Employee Activity Record</button></a>
-                </div>
+                </div> */}
 
             </div>
             <br />
