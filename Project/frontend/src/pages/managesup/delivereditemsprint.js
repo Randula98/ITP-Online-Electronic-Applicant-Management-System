@@ -3,7 +3,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import "./supplier.css";
 
-const RecordLowStock = (props) => (
+const RecordDeliveredItems = (props) => (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row"
             className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -115,7 +115,7 @@ export class DeliveredItemsPrint extends React.PureComponent {
                             <tbody>
                                 {this.state.records2.map((record) => {
                                     return (
-                                        <RecordLowStock
+                                        <RecordDeliveredItems
                                             record={record}
                                             // deleteRecord={() => deleteRecord(record._id)}
                                             key={record._id}
