@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import ReactToPrint from 'react-to-print';
+
 import Swal from 'sweetalert2'
 import "./serdash.css";
 import './serv.css'
+
+import { DeliveredOrdersPrint } from "./deliveredorderprint";
+
 
 const RecordNewRepairs = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -239,6 +244,8 @@ const RecordDeliveredOrders = (props) => (
 );
 
 export default function ServiceManagement() {
+    const componentRef = useRef();
+
 
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
@@ -856,7 +863,7 @@ export default function ServiceManagement() {
                 <div className="servrow">
                     <div class="overflow-x-auto relative">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            {/* <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="py-3 px-6">
                                         Customer Name
@@ -877,10 +884,20 @@ export default function ServiceManagement() {
                                         Actions
                                     </th>
                                 </tr>
-                            </thead>
+                            </thead> */}
                             <tbody>
-                                {recordList5()}
+                                {/* {recordList5()} */}
+                                <DeliveredOrdersPrint ref={componentRef} />
                             </tbody>
+                            <br />
+                            <div className="row btnrow">
+                                <ReactToPrint
+                                    trigger={() => <button
+                                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                    >Get Report Of The Delivered Orders!</button>}
+                                    content={() => componentRef.current}
+                                />
+                            </div>
                         </table>
                     </div>
                 </div >
