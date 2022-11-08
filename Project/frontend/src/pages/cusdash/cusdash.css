@@ -63,3 +63,14 @@
 .deletebtn{
     margin-top: 10px;
 }
+
+.nogap{
+    margin-top:0px;
+    min-height: 200px;
+}
+
+.rep1{
+    min-height: 100px;
+    width: 88.5%;
+    margin: 0 auto;
+}

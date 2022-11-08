@@ -105,6 +105,45 @@ repairRoutes.route("/pending").get(function (req, res) {
 		});
 });
 
+// get all pending repairs by customerid
+repairRoutes.route("/pending/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { customerid: req.params.id , status: "pending"};
+	db_connect
+		.collection("repair")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// get all accepted repairs by customerid
+repairRoutes.route("/accepted/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { customerid: req.params.id , status: "accepted"};
+	db_connect
+		.collection("repair")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+// get all completed repairs by customerid
+repairRoutes.route("/completed/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { customerid: req.params.id , status: "completed"};
+	db_connect
+		.collection("repair")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // get status to accepted and update date
 repairRoutes.route("/accept/:id").post(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");

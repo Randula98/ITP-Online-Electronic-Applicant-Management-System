@@ -139,7 +139,7 @@ recordRoutes.route("/accepted").get(function (req, res) {
 //get accepted records by customer id
 recordRoutes.route("/accepted/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
-	let myquery = { _id: req.params.id, status: "accepted" };
+	let myquery = { customerid: req.params.id, status: "accepted" };
 	db_connect
 		.collection("cart")
 		.find(myquery)

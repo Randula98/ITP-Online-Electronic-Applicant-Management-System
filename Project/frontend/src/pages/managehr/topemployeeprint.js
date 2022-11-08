@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 // import { Link } from "react-router-dom";
-import "./index.css";
+import "./hr.css";
 
 const RecordTopEmployees = (props) => (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -14,12 +14,6 @@ const RecordTopEmployees = (props) => (
     </td>
     <td className="py-4 px-6">
         {props.record.contact}
-    </td>
-    <td className="py-4 px-6">
-        {props.record.totalsales}
-    </td>
-    <td className="py-4 px-6">
-        {props.record.totalappoinments}
     </td>
     <td className="py-4 px-6">
         {props.record.totalservices}
@@ -90,12 +84,6 @@ export class TopEmployeesPrint extends React.PureComponent {
                                     </th>
                                     <th scope="col" class="py-3 px-6">
                                         Employee Contact No
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Number of Sales
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        number of Appoinments
                                     </th>
                                     <th scope="col" class="py-3 px-6">
                                         Number of Services
