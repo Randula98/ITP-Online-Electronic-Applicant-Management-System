@@ -52,7 +52,6 @@ import {
 	ViewAllEmp,
 	AddPosition,
 	UpdatePosition,
-	SupplierManagement,
 	FinanceDash,
 	ReqLoan,
 	AddBrand,
@@ -89,6 +88,12 @@ import {
 	SupSearch,
 	SearchRep,
 	UpdateRep,
+	AllLoans,
+	SearchLoans,
+	EditLoan,
+	AddPayments,
+	EditPayments,
+	ViewAllPayments,
 } from "../pages";
 
 function App() {
@@ -178,7 +183,6 @@ function App() {
 					
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
-					{/* <Route PATH="/manageservice/addRepair" element={<AddRepair />} /> */}
 					<Route path="/manageservice/addDelivery" element={<AddDelivery />} />
 					<Route path="/manageservice/viewalldel" element={<ViewAllDel />} />
 					<Route path="/manageservice/viewdel/:id" element={<ViewDel />} />
@@ -195,13 +199,16 @@ function App() {
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
 					<Route path="/empdash/empupdate/:id" element={<EmpUpdate/>}/> 
 					<Route path="/empdash/empdanger" element={<EmpDanger/>}/> 
-
-					{/* supplier Management */}
-					<Route path="/managesup" element={<SupplierManagement />} />
           
 					{/* Finance Management */}
 					<Route path="/managefinance" element={<	FinanceDash />} />
 					<Route path="/reqloan" element={<ReqLoan />} />
+					<Route path="/searchloans/:key" element={<SearchLoans />} />
+					<Route path="/allloans" element={<AllLoans />} />
+					<Route path="/editloan/:id" element={<EditLoan />} />
+					<Route path="/addpayments" element={<AddPayments />} />
+					<Route path="/viewallpayments" element={<ViewAllPayments />} />
+					<Route path="/editpayments/:id" element={<EditPayments />} />
 
 					{/* Supplier Management */}
 					<Route path="/managesup" element={<SupManagement />} />
