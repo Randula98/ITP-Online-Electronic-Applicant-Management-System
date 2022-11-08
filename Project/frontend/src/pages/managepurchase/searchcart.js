@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import "./purchases.css";
 
@@ -30,15 +30,16 @@ const RecordCompletedCart = (props) => (
 );
 
 
-export default function AllCompletedOrders() {
+export default function SearchCart() {
 
     const [records, setRecords] = useState([]);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
+    const params = useParams();
 
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cart/delivered`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cart/delivered/search/${params.key}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;

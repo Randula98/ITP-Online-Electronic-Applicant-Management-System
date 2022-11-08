@@ -230,6 +230,26 @@ recordRoutes.route("/delivered/:id").post(function (req, res) {
 	});
 });
 
+//search delivered records by customer name
+recordRoutes.route("/delivered/search/:key").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let myquery = {
+		status: "delivered",
+		$or: [
+			{ customername: { $regex: key, $options: "i" } },
+			{ customerid: { $regex: key, $options: "i" } },
+		],
+	};
+	db_connect
+		.collection("cart")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // change status to completed
 recordRoutes.route("/completed/:id").put(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");

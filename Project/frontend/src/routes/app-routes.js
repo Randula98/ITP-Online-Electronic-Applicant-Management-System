@@ -97,6 +97,7 @@ import {
 	ViewAllDiscount,
 	EnterDist,
 	DistSearch,
+	SearchCart,
 } from "../pages";
 
 function App() {
@@ -173,6 +174,7 @@ function App() {
 					<Route path="/viewcusprof/:id" element={<ViewCusProf />} />
 					<Route path="/viewcartitems/:id" element={<ViewCartItems />} />
 					<Route path="/allcompletedorders" element={<AllCompletedOrders />} />
+					<Route path="/searchcart/:key" element={<SearchCart/>}/>
 
 					{/* Sales Management */}
 					<Route path="/managesales" element={<SalesManagement />} />

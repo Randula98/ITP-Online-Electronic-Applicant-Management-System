@@ -89,6 +89,7 @@ import EditPayments from "./managefinancial/editpayments";
 import ViewAllDiscount from "./managesales/viewalldiscount";
 import EnterDist from "./managesales/enterdist";
 import DistSearch from "./managesales/distsearch";
+import SearchCart from "./managepurchase/searchcart";
 
 export {
 	About,
@@ -182,4 +183,5 @@ export {
 	ViewAllDiscount,
 	EnterDist,
 	DistSearch,
+	SearchCart,
 };
