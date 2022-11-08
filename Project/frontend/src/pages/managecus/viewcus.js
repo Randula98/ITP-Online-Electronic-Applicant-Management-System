@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 import "./managecus.css"
 
 export default function ViewCus() {
@@ -43,12 +44,47 @@ export default function ViewCus() {
   }, [params.id, navigate]);
 
   async function deleteRecord(id) {
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
-      method: "DELETE"
-    });
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+            cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+        },
+        buttonsStyling: false
+    })
 
-    navigate("/viewallcus");
-  }
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this! You will the Delete the This Customer Details!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
+            method: "DELETE"
+          });
+      
+          navigate("/viewallcus");
+
+            swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'This Customer Profile has been deleted.',
+                'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'This Customer Profile is Not Deleted:)',
+                'info'
+            )
+        }
+    })
+}
 
   // This method will delete a record
   // async function deleteRecord(id) {
