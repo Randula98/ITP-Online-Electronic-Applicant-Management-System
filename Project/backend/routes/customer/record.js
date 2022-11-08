@@ -129,7 +129,7 @@ customerRoutes.route("/add").post(function (req, response) {
 					db_connect.collection("customer").insertOne(myobj, function (err, res) {
 						if (err) throw err;
 						console.log("1 document inserted");
-						return response.status(400).json({ success: true, msg: "1 document inserted" , found: "contact" });
+						return response.status(400).json({ success: true, msg: "1 document inserted" });
 					});
 				}
 			});
@@ -149,9 +149,6 @@ customerRoutes.route("/update/:id").post(function (req, response) {
 			address: req.body.address,
 			contactno: req.body.contactno,
 			email: req.body.email,
-			// password: req.body.password,
-			// totalpurchases: req.body.totalpurchases,
-			// totalpayments: req.body.totalpayments,
 			imgurl: req.body.imgurl,
 		},
 	};

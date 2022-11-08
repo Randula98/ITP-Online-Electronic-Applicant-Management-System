@@ -3,6 +3,7 @@ import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
+import Swal from 'sweetalert2'
 
 export default function EmpUpdate() {
   // const [imageUpload, setImageUpload] = useState(null);
@@ -10,7 +11,7 @@ export default function EmpUpdate() {
 
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
-  const [contactno, setContactno] = useState("");
+  const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [imgurl, setImgurl] = useState("");
   // const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function EmpUpdate() {
   const [form, setForm] = useState({
     fname: "",
     lname: "",
-    contactno: "",
+    contact: "",
     email: "",
     imgurl: "",
   });
@@ -48,7 +49,7 @@ export default function EmpUpdate() {
 
       setFname(record.fname);
       setLname(record.lname);
-      setContactno(record.contact);
+      setContact(record.contact);
       setEmail(record.email);
 
       setForm(record);
@@ -60,14 +61,14 @@ export default function EmpUpdate() {
 
   return (
     <div className="cusupdate">
-      <br />
+
       <section className="bg-gray-50 dark: ">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 cusregcard">
           <a href="/register" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white regtext">
             <img className="w-10 h-10 mr-2 regimg" src="https://i.ibb.co/dKgfxZQ/cus.png" alt="logo" />
             <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl lg:text-5xl">
               <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                Update Customer Profile
+                Update Employee Profile
               </span>
             </h1>
           </a>
@@ -116,18 +117,18 @@ export default function EmpUpdate() {
                       const editedCustomer = {
                         fname,
                         lname,
-                        //address,
-                        contactno,
+                        contact,
+                        position:localStorage.getItem("empPosition"),
                         email,
-                        password: localStorage.getItem("cusPassword"),
-                        totalpurchases: localStorage.getItem("cusTotalpurchases"),
-                        totalpayments: localStorage.getItem("cusTotalpayments"),
                         imgurl: url,
+                        totalsaletoday: localStorage.getItem("empTotalSales"),
+                        totalappointments: localStorage.getItem("empTotalAppoinments"),
+                        totalservices: localStorage.getItem("empTotalServices"),
                       };
 
                       console.log("Image : " + imgurl);
 
-                      const response = await fetch(`${BASE_URL}/customer/update/${params.id}`, {
+                      const response = await fetch(`${BASE_URL}/employee/update/${params.id}`, {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json",
@@ -140,27 +141,24 @@ export default function EmpUpdate() {
                       const content = await response.json();
                       console.log(content);
 
-                      localStorage.setItem("cusFname", fname);
-                      localStorage.setItem("cusLname", lname);
+                      localStorage.setItem("empFname", fname);
+                      localStorage.setItem("empLname", lname);
                       // localStorage.setItem("cusAddress", address);
-                      localStorage.setItem("cusContactno", contactno);
-                      localStorage.setItem("cusEmail", email);
-                      localStorage.setItem("cusImgurl", url);
+                      localStorage.setItem("empContactno", contact);
+                      localStorage.setItem("empEmail", email);
+                      localStorage.setItem("empImgurl", url);
 
-                      if (content.success === true) {
-                        alert("Profile Updates Successfully");
-                        window.location.href = "/cusdash";
-                      }
-                      else if (content.found === "email") {
-                        alert("Email already exist");
-                        window.location.href = "/cusdash";
-                      }
-                      else if (content.found === "contact") {
-                        alert("Contact Number already exist");
-                        window.location.href = "/cusdash";
-                      }
-                      alert("Profile Updates Successfully");
-                      window.location.href = "/cusdash";
+                      
+                      Swal.fire({
+												icon: 'success',
+												title: 'Successful...',
+												text: 'Profile Updated Successfully!',
+												footer: '<a href="/empdash">Go to Dashboard</a>'
+											}).then((result) => {
+												if (result.isConfirmed) {
+													window.location.href = "/empdash";
+												}
+											})
                     })
                     .catch((err) => {
                       console.log(err);
@@ -198,22 +196,6 @@ export default function EmpUpdate() {
                     />
                   </div>
                 </div>
-                {/* address name */}
-                <div>
-                  <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    name="adddress"
-                    id="address"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="No. 134, Main Road, Colombo"
-                    // onChange={(e) => setAddress(e.target.value)}
-                    defaultValue={form.address}
-                    required
-                  />
-                </div>
                 {/* contactno */}
                 <div>
                   <label htmlFor="contactno" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -225,8 +207,8 @@ export default function EmpUpdate() {
                     id="contactno"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="011-2364567"
-                    onChange={(e) => setContactno(e.target.value)}
-                    defaultValue={form.contactno}
+                    onChange={(e) => setContact(e.target.value)}
+                    defaultValue={form.contact}
                     required
                   />
                 </div>
@@ -269,7 +251,7 @@ export default function EmpUpdate() {
                       onChange={(e) => {
                         setImgurl(e.target.files[0]);
                       }}
-
+                      required
                     />
                   </div>
                 </div>

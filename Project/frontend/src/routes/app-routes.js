@@ -206,7 +206,7 @@ function App() {
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
 					<Route path="/empdash/empupdate/:id" element={<EmpUpdate/>}/> 
-					<Route path="/empdash/empdanger" element={<EmpDanger/>}/> 
+					<Route path="/empdash/empdanger/:id" element={<EmpDanger/>}/> 
           
 					{/* Finance Management */}
 					<Route path="/managefinance" element={<	FinanceDash />} />

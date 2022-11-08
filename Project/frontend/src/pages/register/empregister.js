@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import Swal from 'sweetalert2'
 // import { async } from "@firebase/util";
 
 export default function EmpRegister() {
@@ -57,7 +58,7 @@ export default function EmpRegister() {
 
 									const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
-									const storageRef = ref(storage, `employee/${Image.name + v4()}`);
+									const storageRef = ref(storage, `customer/${Image.name + v4()}`);
 
 									await uploadBytes(storageRef, imgurl)
 										.then(() => {
@@ -68,7 +69,7 @@ export default function EmpRegister() {
 										});
 
 									await getDownloadURL(storageRef)
-										.then((url) => {
+										.then(async (url) => {
 											setImgurl(url);
 
 											console.log(url);
@@ -77,13 +78,13 @@ export default function EmpRegister() {
 												fname,
 												lname,
 												contact,
-												position,
+												position: "",
 												email,
 												password,
 												imgurl: url,
 											};
 
-											fetch(`${BASE_URL}/employee/add`, {
+											const response = await fetch(`${BASE_URL}/employee/add`, {
 												method: "POST",
 												headers: {
 													"Content-Type": "application/json",
@@ -93,13 +94,38 @@ export default function EmpRegister() {
 												window.alert(err);
 												// return;
 											});
+											const content = await response.json();
+											console.log(content);
+
+
+											if (content.success === true) {
+												Swal.fire({
+													icon: 'success',
+													title: 'Successfully Registered',
+													text: 'New Employee Registered Succesfully!',
+													footer: '<a href="/">Go To Homepage</a>'
+												}).then((result) => {
+													window.location.href = "/login/emplogin";
+												})
+											}
+											else if (content.found === "email") {
+												Swal.fire({
+													icon: 'error',
+													title: 'Oops...',
+													text: 'Email Already Exist. Use a Different Email!',
+												  })
+											}
+											else if (content.found === "contact") {
+												Swal.fire({
+													icon: 'error',
+													title: 'Oops...',
+													text: 'Contant No Already Exist. Use a different Email!',
+												  })
+											}
 										})
 										.catch((err) => {
 											console.log(err);
 										});
-
-									console.log("newCustomer");
-									alert("User Registered Successfully");
 								}}
 							>
 								{/* name  */}
@@ -130,26 +156,6 @@ export default function EmpRegister() {
 											required
 										/>
 									</div>
-								</div>
-								{/* address name */}
-								<div>
-									<label
-										htmlFor="countries"
-										className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-									>
-										Select an option
-									</label>
-									<select
-										id="countries"
-										className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-										onChange={(e) => setPosition({ position: e.target.value })}
-									>
-										<option selected="">Choose a country</option>
-										<option value="US">United States</option>
-										<option value="CA">Canada</option>
-										<option value="FR">France</option>
-										<option value="DE">Germany</option>
-									</select>
 								</div>
 								{/* contactno */}
 								<div>
@@ -211,7 +217,7 @@ export default function EmpRegister() {
 											id="confirm-password"
 											placeholder="••••••••"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											// required
+										    required
 										/>
 									</div>
 								</div>
@@ -233,6 +239,7 @@ export default function EmpRegister() {
 											onChange={(e) => {
 												setImgurl(e.target.files[0]);
 											}}
+											required
 										/>
 									</div>
 								</div>
@@ -243,7 +250,7 @@ export default function EmpRegister() {
 											aria-describedby="terms"
 											type="checkbox"
 											className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-											// required
+										    required
 										/>
 									</div>
 									<div className="ml-3 text-sm">

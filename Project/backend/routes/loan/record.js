@@ -55,6 +55,32 @@ loanRoutes.route("/pendingloans").get(function (req, res) {
 		});
 });
 
+//get pending loans by employeeid
+loanRoutes.route("/pendingloans/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { employeeid: req.params.id, status: "pending" };
+	db_connect
+		.collection("loan")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get approved loans by employeeid
+loanRoutes.route("/approvedloans/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { employeeid: req.params.id, status: "approved" };
+	db_connect
+		.collection("loan")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 // get approved loans
 loanRoutes.route("/approvedloans").get(function (req, res) {
 	let db_connect = dbo.getDb("synthetic");
