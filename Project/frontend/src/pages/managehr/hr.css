@@ -38,9 +38,46 @@
     margin: 0px auto;
     margin-top: 50px;
     padding: 20px;  
-    height:1000px;
+    min-height:900px;
+}
+
+.upsal{
+    width: 80%;
 }
 
 section{
     margin-top: 50px;
+}
+
+.emponeviewcard{
+    background-color: rgba(0, 255, 255, 0.24);
+    width: 600px;
+    padding:30px;
+    color: antiquewhite;
+    transition: 0.5s;
+    border-radius: 30px;
+    height: 480px;
+}
+
+.emponeviewcard:hover{
+    color: black;
+}
+
+.setposform{
+    margin-top: 10px;
+    width: 90%;
+    height: 150px;
+    background-color: #c8c2c243;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.setposform button{
+    margin-top: 10px;
+}
+
+.btnemp{
+    width: 200px;
+    height: 50px;
+    margin:0 auto;
 }

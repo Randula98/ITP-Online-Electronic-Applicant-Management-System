@@ -98,6 +98,8 @@ import {
 	EnterDist,
 	DistSearch,
 	SearchCart,
+	ViewEmp,
+	SearchEmp,
 } from "../pages";
 
 function App() {
@@ -135,6 +137,8 @@ function App() {
 
 					{/* Employee Dashboard */}
 					<Route path="/empdash" element={<EmpDash />} />
+					<Route path="/empdash/empupdate/:id" element={<EmpUpdate/>}/> 
+					<Route path="/empdash/empdanger/:id" element={<EmpDanger/>}/> 
 
 					{/* Customer Dashboard */}
 					<Route path="/cusdash" element={<CusDash />} />
@@ -205,8 +209,9 @@ function App() {
 					<Route path="/viewallEmp" element={<ViewAllEmp />} />
 					<Route path="/addposition" element={<AddPosition />} />
 					<Route path="/updateposition/:id" element={<UpdatePosition />} />
-					<Route path="/empdash/empupdate/:id" element={<EmpUpdate/>}/> 
-					<Route path="/empdash/empdanger/:id" element={<EmpDanger/>}/> 
+					<Route path="/viewemployee/:id" element={<ViewEmp/>}/>
+					<Route path="/searchemp/:key" element={<SearchEmp />} />
+
           
 					{/* Finance Management */}
 					<Route path="/managefinance" element={<	FinanceDash />} />
