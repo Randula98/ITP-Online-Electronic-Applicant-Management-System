@@ -150,3 +150,16 @@
     overflow: hidden;
     border-radius: 25%;
 }
+
+.cusdetailscard{
+    width: 450px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.cusrows p{
+    font-size: 20px;
+}
