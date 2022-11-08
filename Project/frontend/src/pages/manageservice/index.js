@@ -7,7 +7,6 @@ import './serv.css'
 
 import { DeliveredOrdersPrint } from "./deliveredorderprint";
 
-
 const RecordNewRepairs = (props) => (
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -245,8 +244,7 @@ const RecordDeliveredOrders = (props) => (
 
 export default function ServiceManagement() {
     const componentRef = useRef();
-
-
+    
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
     const [records3, setRecords3] = useState([]);
@@ -587,7 +585,6 @@ export default function ServiceManagement() {
         })
 
     }
-
 
     function recordList() {
         return records.map((record) => {

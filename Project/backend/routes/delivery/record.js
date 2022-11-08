@@ -114,4 +114,5 @@ deliveryRoutes.route("/delete/:id").delete((req, response) => {
 		response.json(obj);
 	});
 });
+
 module.exports = deliveryRoutes;
