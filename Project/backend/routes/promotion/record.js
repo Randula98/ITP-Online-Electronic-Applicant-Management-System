@@ -32,7 +32,7 @@ promotionRoutes.route("/new3").get(function (req, res) {
 		.collection("promotion")
 		.find({})
 		.sort({ _id: -1 })
-		.limit(3)
+		.limit(5)
 		.toArray(function (err, result) {
 			if (err) throw err;
 			res.json(result);
@@ -100,12 +100,12 @@ promotionRoutes.route("/delete/:id").delete((req, response) => {
 
 //filter data between specific daterange
 promotionRoutes.route("/getHistory/:startDate/:endDate").get(function (req, res) {
-let db_connect = dbo.getDb("synthetic");
-let myquery = { $and: [{startdate: {$gte:new Date(req.params.startDate)}}, {enddate: {$lte:new Date(req.params.endDate)}}] };
-db_connect.collection("promotion").find(myquery).sort({ _id: -1 })
-.toArray(function (err, result) {
-	if (err) throw err;
-	res.json(result);
+	let db_connect = dbo.getDb("synthetic");
+	let myquery = { $and: [{ startdate: { $gte: new Date(req.params.startDate) } }, { enddate: { $lte: new Date(req.params.endDate) } }] };
+	db_connect.collection("promotion").find(myquery).sort({ _id: -1 })
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
-});	
 module.exports = promotionRoutes;

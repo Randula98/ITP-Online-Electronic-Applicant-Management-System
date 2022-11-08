@@ -86,6 +86,9 @@ import EditLoan from "./managefinancial/editloan";
 import AddPayments from "./managefinancial/addpayments";
 import ViewAllPayments from "./managefinancial/viewallpayments";
 import EditPayments from "./managefinancial/editpayments";
+import ViewAllDiscount from "./managesales/viewalldiscount";
+import EnterDist from "./managesales/enterdist";
+import DistSearch from "./managesales/distsearch";
 
 export {
 	About,
@@ -176,4 +179,7 @@ export {
 	AddPayments,
 	ViewAllPayments,
 	EditPayments,
+	ViewAllDiscount,
+	EnterDist,
+	DistSearch,
 };

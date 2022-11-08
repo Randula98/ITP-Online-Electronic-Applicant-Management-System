@@ -94,6 +94,9 @@ import {
 	AddPayments,
 	EditPayments,
 	ViewAllPayments,
+	ViewAllDiscount,
+	EnterDist,
+	DistSearch,
 } from "../pages";
 
 function App() {
@@ -180,6 +183,9 @@ function App() {
 					<Route path="/managesales/setdiscountupdate/:id" element={<SetDiscountUpdate />} />
 					<Route path="/managesales/setpromotionupdate/:id" element={<SetPromotionUpdate />} />
 					<Route path="/managesales/viewallpromo" element={<ViewAllPromo />} />
+					<Route path="/managesales/viewalldiscount" element={<ViewAllDiscount />} />
+					<Route path="/managesales/enterdist/:id" element={<EnterDist />} />
+					<Route path="/managesales/searchdist/:key" element={<DistSearch />} />
 					
 					{/* Service Management */}
 					<Route path="/manageservice" element={<ServiceManagement />} />
