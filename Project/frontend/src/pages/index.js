@@ -80,6 +80,12 @@ import AllCompletedOrders from "./managepurchase/allcompletedorders";
 import SupSearch from "./managesup/supsearch";
 import SearchRep from "./manageservice/searchrep";
 import UpdateRep from "./manageservice/updaterep";
+import AllLoans from "./managefinancial/allloans";
+import SearchLoans from "./managefinancial/searchloans";
+import EditLoan from "./managefinancial/editloan";
+import AddPayments from "./managefinancial/addpayments";
+import ViewAllPayments from "./managefinancial/viewallpayments";
+import EditPayments from "./managefinancial/editpayments";
 
 export {
 	About,
@@ -164,4 +170,10 @@ export {
 	SupSearch,
 	SearchRep,
 	UpdateRep,
+	AllLoans,
+	SearchLoans,
+	EditLoan,
+	AddPayments,
+	ViewAllPayments,
+	EditPayments,
 };
