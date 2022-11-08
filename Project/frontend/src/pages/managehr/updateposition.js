@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import'./hr.css';
 
 export default function UpdatePosition() {
 
@@ -74,17 +75,19 @@ export default function UpdatePosition() {
     }
     return (
         <div>
-            <div classNameName="salary salUpdate">
-                <br/>   
-                <section className="bg-gray-50 dark:bg-gray-400">
+            <div classNameName="salary upsal">
+                <br/>  
+                <br/> 
+                <br/>  
+                <section className="">
                     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                         <div
-                            className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                            className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-l xl:p-0 dark:bg-gray-600 dark:border-gray-700 upsal">
                             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <h1
                                     className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                    EMPLOYEE SALARY UPDATE</h1>
+                                    UPDATE EMPLOYEE POSITION & SALARY DETAILS</h1>
 
                                 <form onSubmit={onsubmit}>
                                     <div className="mb-6">
@@ -170,6 +173,7 @@ export default function UpdatePosition() {
                     </div>
                 </section>
             </div>
+            <br/>
         </div>
     )
 }

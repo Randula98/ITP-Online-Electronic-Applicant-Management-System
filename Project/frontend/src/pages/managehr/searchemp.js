@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams } from "react-router-dom";
 import "./hr.css";
 
 const RecordAllEmp = (props) => (
@@ -37,11 +37,12 @@ export default function ViewAllEmp() {
     const [records, setRecords] = useState([]);
     const [search , setSearch] = useState("");
     const navigate = useNavigate();
+    const params = useParams();
 
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/employee/`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/employee/search/${params.key}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
