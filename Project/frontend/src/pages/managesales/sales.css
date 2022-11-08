@@ -62,3 +62,49 @@
     height: auto;
     margin: 0px auto;
 }
+
+.distcont{
+    width:90%;
+    min-height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    background-color: rgb(141, 139, 139);
+}
+
+.contitems{
+    width: 90%;
+    min-height: 100px;
+    margin-top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(99, 96, 96, 0.247);
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.itemtypeitemdist{
+    background-color: black;
+    height: auto;
+}
+
+.enterdist{
+    width: 90%;
+    min-height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    background-color: rgb(141, 139, 139);
+}
+
+.distform{
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.364);
+}
+
+.distView{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}

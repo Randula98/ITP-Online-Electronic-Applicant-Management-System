@@ -59,9 +59,13 @@ discountRoutes.route("/discount/:id").get(function (req, res) {
 discountRoutes.route("/add").post(function (req, response) {
 	let db_connect = dbo.getDb("synthetic");
 	let myobj = {
-		itemID: req.body.itemID,
-		precentage: req.body.precentage,
-		remarks: req.body.remarks,
+		itemid: req.body.itemid,
+		itemname: req.body.itemname,
+		itemtype: req.body.itemtype,
+		brand: req.body.brand,
+		price: req.body.price,
+		imgurl: req.body.imgurl,
+		discount: req.body.discount,
 	};
 	db_connect.collection("discount").insertOne(myobj, function (err, res) {
 		if (err) throw err;
@@ -95,6 +99,34 @@ discountRoutes.route("/delete/:id").delete((req, response) => {
 		console.log("1 document deleted");
 		response.json(obj);
 	});
+});
+
+//search by itemname
+discountRoutes.route("/search/:key").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	let key = req.params.key;
+	let myquery = { itemname: { $regex: key, $options: "i" } };
+	db_connect
+		.collection("discount")
+		.find(myquery)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+//get new5 discounts
+discountRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("synthetic");
+	db_connect
+		.collection("discount")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
 });
 
 module.exports = discountRoutes;
