@@ -26,21 +26,43 @@ export function HeroSection() {
 						data-bs-slide-to="2"
 						aria-label="Slide 3"
 					></button>
+					<button
+						type="button"
+						data-bs-target="#carouselExampleCaptions"
+						data-bs-slide-to="3"
+						aria-label="Slide 4"
+					></button>
+					<button
+						type="button"
+						data-bs-target="#carouselExampleCaptions"
+						data-bs-slide-to="4"
+						aria-label="Slide 5"
+					></button>
 				</div>
 				<div className="carousel-inner relative w-full overflow-hidden">
 					<div className="carousel-item active relative float-left w-full">
 						<img
-							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2FAdvertiesment%202.png?alt=media&token=160fab3d-58ad-429d-b2a0-233fd811c4cc"
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2F1.jpg?alt=media&token=1995b58e-5d8a-4de7-90a4-fdeb81c10ef3"
 							className="block w-full" alt="..." />
 					</div>
 					<div className="carousel-item relative float-left w-full">
 						<img
-							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2FAdvertiesment%203.png?alt=media&token=96b49321-b61f-40c4-b05c-4e15e0c48638"
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2F2.png?alt=media&token=0111af1e-4ddf-42f2-81c0-17ce6a4649b0"
 							className="block w-full" alt="..." />
 					</div>
 					<div className="carousel-item relative float-left w-full">
 						<img
-							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2FAdvertisement%201.png?alt=media&token=593af167-7290-4d74-b5fb-9ec67e5688df"
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2F3.png?alt=media&token=403a9834-2312-47c5-997e-ad188edbdcce"
+							className="block w-full" alt="..." />
+					</div>
+					<div className="carousel-item relative float-left w-full">
+						<img
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2F4.png?alt=media&token=8cd2b0b4-3e77-465e-8454-c441618c4853"
+							className="block w-full" alt="..." />
+					</div>
+					<div className="carousel-item relative float-left w-full">
+						<img
+							src="https://firebasestorage.googleapis.com/v0/b/synthetic-dealz.appspot.com/o/slider%2F5.png?alt=media&token=2862f67d-5e71-4d29-a725-8fd703282273"
 							className="block w-full" alt="..." />
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 import "./managecus.css"
 
 export default function ViewCus() {
@@ -43,12 +44,47 @@ export default function ViewCus() {
   }, [params.id, navigate]);
 
   async function deleteRecord(id) {
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
-      method: "DELETE"
-    });
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+            cancelButton: 'text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+        },
+        buttonsStyling: false
+    })
 
-    navigate("/viewallcus");
-  }
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this! You will the Delete the This Customer Details!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/delete/${id}`, {
+            method: "DELETE"
+          });
+      
+          navigate("/viewallcus");
+
+            swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'This Customer Profile has been deleted.',
+                'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'This Customer Profile is Not Deleted:)',
+                'info'
+            )
+        }
+    })
+}
 
   // This method will delete a record
   // async function deleteRecord(id) {
@@ -74,9 +110,8 @@ export default function ViewCus() {
   // }
   return (
     <div>
-      <div class="viewcus dark:bg-gray-700 grid grid-cols-8 gap-4 hover:bg-gray-500 left">
+      <div class="viewcus dark:bg-gray-400 grid grid-cols-8 gap-4 hover:bg-gray-500 left">
         <div class="col-span-3"><img src={form.imgurl} alt="" />
-          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update Profile</button>
           <button onClick={() => {
             deleteRecord(form._id);
           }}
@@ -84,15 +119,35 @@ export default function ViewCus() {
           >Delete Profile</button>
         </div>
 
-        <div class="">
-          <p class="text-lg"><b>{form.fname}&#160;{form.lname}</b></p>
+        <div class="cusdetailscard">
+          <div class="p-4 text-xl text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300 itemrows" role="alert">
+            <span class="font-medium">{form.fname} {form.lname}</span>
+          </div>
           <br />
-          <p class="text-lg sm">{form.contactno} </p>
-          <p class="text-lg sm">{form.address} </p>
-          <p class="text-lg sm">{form.email} </p>
-          <p class="text-lg sm">Total&#160;Purchases&#160;Done&#160;-{form.totalpurchases} </p>
-          <p class="text-lg sm">Total&#160;Spent&#160;Amount&#160;-{form.totalpayments} </p>
-          <p class="text-lg sm">Loyalty&#160;Level&#160;-&#160;{form.loyaltylevel} </p>
+          <div class="p-4 text-xl text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300 itemrows" role="alert">
+            <span class="font-medium">{form.contactno}</span>
+          </div>
+          <br />
+          <div class="p-4 text-xl text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300 itemrows" role="alert">
+            <span class="font-medium">{form.address}</span>
+          </div>
+          <br />
+          <div class="p-4 text-xl text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300 itemrows" role="alert">
+            <span class="font-medium">{form.email}</span>
+          </div>
+          <br />
+          <div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg cusrows" role="alert">
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <ul class="mt-1.5 ml-4 text-blue-700 list-disc list-inside">
+                <li>Total&#160;Purchases&#160;Done&#160;-{form.totalpurchases}</li>
+                <li>Total&#160;Spent&#160;Amount&#160;-{form.totalpayments}</li>
+                <li>Loyalty&#160;Level&#160;-&#160;{form.loyaltylevel}</li>
+              </ul>
+            </div>
+          </div>
+
 
         </div>
 
