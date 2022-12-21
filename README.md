@@ -28,7 +28,7 @@ machinery and a highly trained staff to provide 365-days best aftermarket servic
 
 This Electronic applicant marketing management system is a web-based application that handles
 different sections of the company. This web-based application contains 8 main functions as
-Customer Management, Finance Management, HR management, Salary Management, Stock
+Customer Management, Finance Management, HR management, Sales Management, Stock
 Management, Service Management, Supplier Management and Purchase Management.
 We mostly concerned to find the best solutions to the current situation in the country like
 transport issues and to reduce the number of customers in the showrooms due to the COVID-19
@@ -45,7 +45,7 @@ and company will give an efficient delivery for them.
 <li>MongoDB - Database program</li>
 <li>Express.js - Back-end web application framework for Node.js,</li>
 <li>React.js - Front-end JavaScript library for building user interfaces</li>
-<li>Node.js - Back-end JavaScript runtime environmen</li>
+<li>Node.js - Back-end JavaScript runtime environment</li>
 <ul>
 
 Note - The student's github account should be given in brackets e.g. (asiriRepos), this ideally should be your student id 
